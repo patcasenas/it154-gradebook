@@ -3,6 +3,7 @@
 
 <head>
     <?php require('head.php')?>
+    <?php require('dbConfig.php')?>
 </head>
 
 <body>

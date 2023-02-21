@@ -1,5 +1,4 @@
 <?php
-include_once 'php/dbConfig.php';
 // Get status message
 if(!empty($_GET['status'])){
     switch($_GET['status']){
@@ -24,7 +23,7 @@ if(isset($_POST['truncate'])) {
     $query = "TRUNCATE table studentinfo";
 
     if (mysqli_multi_query($db, $query)) {
-      echo '<script>alert("Members have been successfully deleted!")</script>';
+      echo '<script>alert("Students have been successfully removed!")</script>';
     } else {
       echo "Error!" . mysqli_error($db);
     }
@@ -86,7 +85,7 @@ if(isset($_POST['truncate'])) {
             <input type="file" name="file" />
             <input type="submit" class="import-btn" name="importSubmit" value="IMPORT">
         </form>
-        <form method="post" onsubmit="return confirm('Danger! This action deletes all members of this table.')">
+        <form method="post" onsubmit="return confirm('Danger! This action removes all students from the database.')">
             <input type="submit" value="Delete students" name="truncate">
         </form>
     </div>
