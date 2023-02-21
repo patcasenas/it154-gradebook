@@ -4,6 +4,7 @@ html, body {
 	width: 100%;
     height: 100%;
     background-color: #EBEBEE;
+    font-family: 'Roboto';
 }
 .login {
     background-image: url(../img/bg-index.png);
@@ -48,15 +49,6 @@ html, body {
     max-width: 40%;
     height: auto;
 }
-/* General Container */
-.container {
-	padding: 0;
-	width: 100%;
-    height: 94%;
-    align-items: stretch;
-    position: relative;
-    display: flex;
-}
 /* Navigation Bar */
 .nav {
     background-color: #031D45;
@@ -100,3 +92,19 @@ html, body {
     display: flex;
     margin-right: 15%;
 }
+/* General Container */
+.container {
+	padding: 0;
+	width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+/* Alert notification */
+#alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+/* Table display */
