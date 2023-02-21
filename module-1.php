@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include "php/navbar.php"; ?>
-    <?php include "php/dbConfig.php"; ?>
+    <?php include "php/navbar.php";
+          include "php/dbConfig.php";?>
     <title>IT154-8 GRADEBOOK</title>
 </head>
 <body>
     <table>
     <thead>
                 <tr>
-                    <th>Module Number</th>
                     <th>Last Name</th>
                     <th>First Name</th>
                     <th>SA 1</th>
@@ -20,14 +19,12 @@
             </thead>
             <tbody>
     <?php    
-        $result = $db->query ("SELECT s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName 
+        $result = $db->query ("SELECT s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName 
         FROM summative AS s 
-        LEFT JOIN studentinfo AS si ON s.studNum = si.studNum 
-        WHERE modID = '1';");
+        LEFT JOIN studentinfo AS si ON s.studNum = si.studNum ");
 
             while($row = $result->fetch_assoc()) {?>
                 <tr>
-                    <td><?php echo $row['modID'];?></td>
                     <td><?php echo $row['lastName'];?></td>
                     <td><?php echo $row['firstName'];?></td>
                     <td><?php echo $row['SA1'];?></td>
@@ -39,3 +36,5 @@
     </tbody></table>
 </body>
 </html>
+<!-- //  Insert studNum into formative table -->
+    <!-- $db->query ("INSERT INTO formative (studNum, sumID) SELECT studnum, studID FROM studentinfo"); -->

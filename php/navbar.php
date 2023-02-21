@@ -13,7 +13,7 @@
         </div>
         <div class="nav-container">
             <a href="index.php" class="nav-link">View Students</a>
-            <a href="#" class="nav-link"> Module 1</a>
+            <a href="module-1.php" class="nav-link"> Module 1</a>
             <a href="#" class="nav-link">Module 2</a>
             <a href="#" class="nav-link">Module 3</a>
             <a href="#" class="nav-link">Generate</a>
