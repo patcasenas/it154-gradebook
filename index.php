@@ -19,6 +19,9 @@ if(!empty($_GET['status'])){
             $statusMsg = '';
     }
 }
+// Includes navbar & DB connection
+include "php/navbar.php"; 
+
 if(isset($_POST['truncate'])) {
     $query = "TRUNCATE table studentinfo";
 
@@ -34,15 +37,14 @@ if(isset($_POST['truncate'])) {
 <html>
 
 <head>
-    <?php include "php/navbar.php";  ?>
     <title>View Students</title>
 </head>
 
 <body>
-<div class="container">
-    <!-- Display status message -->
-    <span id="alert">
-    <?php if(!empty($statusMsg)){
+    <div class="container">
+        <!-- Display status message -->
+        <span id="alert">
+            <?php if(!empty($statusMsg)){
         echo "<p style='font-weight:500;'>$statusType!&nbsp;</p>";
         echo $statusMsg;
     } ?><br></span>
@@ -79,16 +81,17 @@ if(isset($_POST['truncate'])) {
                 <?php } ?>
             </tbody>
         </table>
-    <!-- Import link -->
-    <div class="import-btn-cont">
-        <form action="php/importStud.php" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" />
-            <input type="submit" class="import-btn" name="importSubmit" value="IMPORT">
-        </form>
-        <form method="post" onsubmit="return confirm('Danger! This action removes all students from the database.')">
-            <input type="submit" value="Delete students" name="truncate">
-        </form>
-    </div>
+        <!-- Import link -->
+        <div class="import-btn-cont">
+            <form action="php/importStud.php" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <input type="submit" class="import-btn" name="importSubmit" value="IMPORT">
+            </form>
+            <form method="post"
+                onsubmit="return confirm('Danger! This action removes all students from the database.')">
+                <input type="submit" value="Delete students" name="truncate">
+            </form>
+        </div>
     </div>
 </body>
 

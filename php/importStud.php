@@ -37,10 +37,6 @@ if(isset($_POST['importSubmit'])){
         $qstring = '?status=invalid_file';
     }
 
-    // Insert students to formative and summative table
-    
-    $db->query("INSERT INTO summative (studNum, sumID) SELECT studnum, studID FROM studentinfo");
-    $db->query ("INSERT INTO formative (studNum, formID) SELECT studnum, studID FROM studentinfo");
 }
 
 // Redirect to the listing page
