@@ -23,12 +23,12 @@ if(!empty($_GET['status'])){
 include "php/navbar.php"; 
 
 if(isset($_POST['truncate'])) {
-    $query = "TRUNCATE table studentinfo";
+    $query = "DELETE FROM studentinfo";
 
     if (mysqli_multi_query($db, $query)) {
       echo '<script>alert("Students have been successfully removed!")</script>';
     } else {
-      echo "Error!" . mysqli_error($db);
+      echo "Error! " . mysqli_error($db);
     }
 }
 ?>
@@ -43,20 +43,18 @@ if(isset($_POST['truncate'])) {
 <body>
     <div class="container">
         <!-- Display status message -->
-        <span id="alert">
-            <?php if(!empty($statusMsg)){
-        echo "<p style='font-weight:500;'>$statusType!&nbsp;</p>";
-        echo $statusMsg;
-    } ?><br></span>
+        <?php if(!empty($statusMsg)){
+        // echo "<p style='font-weight:500;'>$statusType!&nbsp;</p>";
+        echo "<script>alert('$statusType! $statusMsg');</script>";
+    } ?>
 
         <table class="students-table">
             <thead>
                 <tr>
-                    <th>Last Name</th>
-                    <th>First Name</th>
-                    <th>Student Number</th>
-                    <th>Program</th>
-                    <th>Section</th>
+                    <th width="15%">Program</th>
+                    <th width="40%">Student Name</th>
+                    <th width="20%">Student Number</th>
+                    <th width="15%">Section</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,10 +66,9 @@ if(isset($_POST['truncate'])) {
                 while($row = $result->fetch_assoc()){
             ?>
                 <tr>
-                    <td><?php echo $row['lastName']; ?></td>
-                    <td><?php echo $row['firstName']; ?></td>
-                    <td><?php echo $row['studNum']; ?></td>
                     <td><?php echo $row['studProg']; ?></td>
+                    <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+                    <td><?php echo $row['studNum']; ?></td>
                     <td><?php echo $row['section']; ?></td>
                 </tr>
                 <?php } }else{ ?>
@@ -86,7 +83,7 @@ if(isset($_POST['truncate'])) {
             <form action="php/importStud.php" method="post" enctype="multipart/form-data">
                 <input type="file" name="file" />
                 <input type="submit" class="import-btn" name="importSubmit" value="IMPORT">
-            </form>
+            </form><br>
             <form method="post"
                 onsubmit="return confirm('Danger! This action removes all students from the database.')">
                 <input type="submit" value="Delete students" name="truncate">

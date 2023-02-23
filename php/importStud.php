@@ -23,7 +23,7 @@ if(isset($_POST['importSubmit'])){
             $section = $line[4];
             
             $db->query("INSERT INTO studentinfo (lastName, firstName, studNum, studProg, section) VALUES ('".$lastName."', '".$firstName."', '".$studNum."', '".$studProg."', '".$section."')");    
-            $db->query("UPDATE studentinfo SET studProg = UPPER(studProg), section = UPPER(section)");
+            $db->query("UPDATE studentinfo SET studProg = UPPER(studProg), section = UPPER(section), lastName = UPPER(lastName)");
         }
             
         // Close opened CSV file
@@ -38,7 +38,12 @@ if(isset($_POST['importSubmit'])){
     }
 
 }
-
+$query=$db->query("SELECT studNum FROM studentinfo");
+while($row = $query->fetch_assoc()){
+$db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 1)");
+$db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 2)");
+$db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 3)");
+}
 // Redirect to the listing page
 header("Location: ../index.php".$qstring);
 ?>
