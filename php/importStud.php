@@ -43,6 +43,10 @@ while($row = $query->fetch_assoc()){
 $db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 1)");
 $db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 2)");
 $db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 3)");
+
+$db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 1)");
+$db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 2)");
+$db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 3)");
 }
 // Redirect to the listing page
 header("Location: ../index.php".$qstring);

@@ -38,7 +38,6 @@ if(!empty($_GET['status'])){
             <table class="students-table">
                 <tr>
                     <th><input type="checkbox" id="selectAll">Select All</th>
-                    <th>ModID</th>
                     <th>Program</th>
                     <th>Student Number</th>
                     <th>Student Name</th>
@@ -52,13 +51,12 @@ if(!empty($_GET['status'])){
             $query = ("SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
             FROM summative AS s 
             LEFT JOIN studentinfo AS si ON s.studNum = si.studNum 
-            WHERE modID = '1'
+            WHERE modID = '3'
             ORDER BY si.lastName ASC");
             $result = mysqli_query($db,$query);
 
             while($row = mysqli_fetch_array($result)) {
                 $sumID = $row['sumID'];
-                $modID = $row['modID'];
                 $studNum = $row['studNum'];
                 $SA1 = $row['SA1'];
                 $SA2 = $row['SA2'];
@@ -67,7 +65,6 @@ if(!empty($_GET['status'])){
             ?>
                 <tr>
                     <td><input type="checkbox" name="update[]" value='<?= $sumID?>'></td>
-                    <td class="student-data-module"><?php echo $row['modID']?></td>
                     <td class="student-data-module"><?php echo $row['studProg'];?></td>
                     <td class="student-data-module"><?php echo $row['studNum'];?></td>
                     <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>

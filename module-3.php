@@ -18,7 +18,7 @@
         <h1><?php echo "Module 3 - " . $row["modName"];?></h1>
         
         <!-- Update Grades button -->
-        <form action="updateGrade.php" method="post">
+        <form action="updateGrade-mod3.php" method="post">
             <input type="submit" value="Update Grades" name="updateGrade">
         </form>
         
