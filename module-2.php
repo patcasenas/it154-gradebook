@@ -1,3 +1,4 @@
+<?php include ("php/query-alert.php");?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +11,9 @@
 
 <body>
     <div class="container">
+        <?php if(!empty($statusMsg)){
+            echo "<script>alert('$statusType! $statusMsg');</script>";
+        }?>
         <!-- Module Name -->
         <?php 
             $modTitle = $db->query ("SELECT modName FROM moduleinfo WHERE modID = '2'");

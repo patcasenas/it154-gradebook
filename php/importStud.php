@@ -40,9 +40,9 @@ if(isset($_POST['importSubmit'])){
 }
 $query=$db->query("SELECT studNum FROM studentinfo");
 while($row = $query->fetch_assoc()){
-$db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 1)");
-$db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 2)");
-$db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 3)");
+$db->query("INSERT INTO summative (studNum, modID, section) VALUES ($row[studNum], 1)");
+$db->query("INSERT INTO summative (studNum, modID, section) VALUES ($row[studNum], 2)");
+$db->query("INSERT INTO summative (studNum, modID, section) VALUES ($row[studNum], 3)");
 
 $db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 1)");
 $db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 2)");

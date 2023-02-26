@@ -12,6 +12,7 @@
     <div class="container">
         <!-- Module Name -->
         <?php 
+        include("section.php");
             $modTitle = $db->query ("SELECT modName FROM moduleinfo WHERE modID = '1'");
             $row = $modTitle->fetch_assoc();
         ?>

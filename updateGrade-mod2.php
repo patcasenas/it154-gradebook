@@ -1,22 +1,3 @@
-<?php
-if(isset($_POST['updateGrade'])) {
-// Get status message
-if(!empty($_GET['status'])){
-    switch($_GET['status']){
-        case 'succ':
-            $statusType = 'Success';
-            $statusMsg = 'Student data has been imported successfully.';
-            break;
-        case 'err':
-            $statusType = 'Error';
-            $statusMsg = 'Error in updating grade. Try again.';
-            break;
-        default:
-            $statusType = '';
-            $statusMsg = '';
-        }
-      }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +9,6 @@ if(!empty($_GET['status'])){
         ?>
     </head>
     <div class="container">
-        <?php if(!empty($statusMsg)){
-            echo "<script>alert('$statusType! $statusMsg');</script>";
-        }?>
         <form action="php/updateGrade.php" method="post">
             <input type="button" onclick="history.go(-1)" value="Back" />
             <input type="submit" value="Update Selected Records" name="btn-update"><br><br>
@@ -107,4 +85,3 @@ $(document).ready(function() {
 });
 </script>
 </html>
-<?php }?>
