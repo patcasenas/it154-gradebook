@@ -12,11 +12,11 @@
     <div class="container">
         <!-- Module Name -->
         <?php 
-        include("section.php");
             $modTitle = $db->query ("SELECT modName FROM moduleinfo WHERE modID = '1'");
             $row = $modTitle->fetch_assoc();
         ?>
         <h1><?php echo "Module 1 - " . $row["modName"];?></h1>
+        <?php include("section.php"); ?>
         <form action="updateGrade-mod1.php" method="post">
             <input type="submit" value="Update Grades" name="updateGrade">
         </form>
@@ -34,4 +34,5 @@
         </table>
     </div>
 </body>
+
 </html>

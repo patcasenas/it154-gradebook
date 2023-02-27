@@ -8,18 +8,17 @@ if(isset($_POST['btn-update'])){
       $SA2 = $_POST['SA2_'.$updateid];
       $SA3 = $_POST['SA3_'.$updateid];
 
-      if($SA1 !='' || $SA2 !='' || $SA3 != '') {
+    if($SA1 !='' || $SA2 !='' || $SA3 != '') {
         $updateGrade = "UPDATE summative SET 
                         SA1 = '".$SA1."', SA2 = '".$SA2."', SA3 = '".$SA3."'
                         WHERE sumID=".$updateid;
-        
-        echo "Success";
+        mysqli_query($db,$updateGrade);
+        echo "<script>alert('Grades have been updated successfully.');</script>";
     } else {
       echo "error" . mysqli_error($db);
     }
       } 
     }
   }
-  header("location:javascript:history.go(-2)") . $qstring;
   exit;
 ?>
