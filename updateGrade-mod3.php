@@ -1,32 +1,14 @@
-<?php
-if(isset($_POST['updateGrade'])) {
-// Get status message
-if(!empty($_GET['status'])){
-    switch($_GET['status']){
-        case 'succ':
-            $statusType = 'Success';
-            $statusMsg = 'Student data has been imported successfully.';
-            break;
-        case 'err':
-            $statusType = 'Error';
-            $statusMsg = 'Error in updating grade. Try again.';
-            break;
-        default:
-            $statusType = '';
-            $statusMsg = '';
-        }
-      }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
-<body>
-    <head>
-        <?php
+<head>
+    <?php
             require("php/dbConfig.php");
             include("php/navbar.php");
         ?>
-    </head>
+</head>
+
+<body>
     <div class="container">
         <?php if(!empty($statusMsg)){
             echo "<script>alert('$statusType! $statusMsg');</script>";
@@ -106,5 +88,5 @@ $(document).ready(function() {
     });
 });
 </script>
+
 </html>
-<?php }?>

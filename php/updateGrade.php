@@ -14,11 +14,11 @@ if(isset($_POST['btn-update'])){
                         WHERE sumID=".$updateid;
         mysqli_query($db,$updateGrade);
         echo "<script>alert('Grades have been updated successfully.');</script>";
+        echo "<script>javascript:history.go(-2);</script>";
     } else {
       echo "error" . mysqli_error($db);
     }
       } 
     }
   }
-  exit;
 ?>

@@ -16,7 +16,9 @@
             $row = $modTitle->fetch_assoc();
         ?>
         <h1><?php echo "Module 1 - " . $row["modName"];?></h1>
-        <?php include("section.php"); ?>
+        
+        <!-- Section Filter & Update Grades Button -->
+        <?php include("php/section.php"); ?>
         <form action="updateGrade-mod1.php" method="post">
             <input type="submit" value="Update Grades" name="updateGrade">
         </form>
@@ -34,5 +36,4 @@
         </table>
     </div>
 </body>
-
 </html>

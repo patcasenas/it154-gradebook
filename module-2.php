@@ -1,4 +1,3 @@
-<?php include ("php/query-alert.php");?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,9 +10,6 @@
 
 <body>
     <div class="container">
-        <?php if(!empty($statusMsg)){
-            echo "<script>alert('$statusType! $statusMsg');</script>";
-        }?>
         <!-- Module Name -->
         <?php 
             $modTitle = $db->query ("SELECT modName FROM moduleinfo WHERE modID = '2'");
@@ -21,7 +17,8 @@
         ?>
         <h1><?php echo "Module 2 - " . $row["modName"];?></h1>
 
-        <!-- Update Grades button -->
+        <!-- Section Filter & Update Grades button -->
+        <?php include("php/section.php"); ?>
         <form action="updateGrade-mod2.php" method="post">
             <input type="submit" value="Update Grades" name="updateGrade">
         </form>
@@ -35,6 +32,8 @@
         ORDER BY si.lastName ASC");
 
         include("php/studentData.php");?>
+        </tbody>
+        </table>
     </div>
 </body>
 
