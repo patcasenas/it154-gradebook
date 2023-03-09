@@ -1,7 +1,7 @@
 <?php
 include("dbConfig.php");
 
-if(isset($_POST['submit'])) {
+if(isset($_GET['submit'])) {
     ?>
 <table>
     <thead>
@@ -15,11 +15,11 @@ if(isset($_POST['submit'])) {
     </thead>
     <tbody>
         <?php            
-            $data = implode($_POST['section']);
+            $data = implode($_GET['section']);
             $query = "SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
             FROM summative AS s
             LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
-            WHERE modID = 1 AND section IN ('$data')
+            WHERE modID = 1 AND si.section IN ('$data')
             ORDER BY si.lastName ASC";
             $result = $db->query($query);
             if (!$result) {

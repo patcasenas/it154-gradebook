@@ -18,20 +18,11 @@
         <h1><?php echo "Module 2 - " . $row["modName"];?></h1>
 
         <!-- Section Filter & Update Grades button -->
-        <?php include("php/section.php"); ?>
+        <?php include("php/filter-mod2.php"); ?>
         <form action="updateGrade-mod2.php" method="post">
             <input type="submit" value="Update Grades" name="updateGrade">
         </form>
 
-        <!-- Query for table display -->
-        <?php
-        $result = $db->query ("SELECT s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
-        FROM summative AS s 
-        LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
-        WHERE modID = '2'
-        ORDER BY si.lastName ASC");
-
-        include("php/studentData.php");?>
         </tbody>
         </table>
     </div>
