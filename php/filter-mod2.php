@@ -29,9 +29,17 @@ if(mysqli_num_rows($result)>0){
 
 </html>
 <?php
+// session_start();
 if(isset($_GET['submit'])) {
-    $data = implode($_GET['section']);
-    echo $data;
+    $_SESSION['filter'] = $_GET['section'];
+}
+if(isset($_SESSION['filter'])) {
+    $data = implode($_SESSION['filter']);
+    if ($data == 0) {
+        
+    } else {
+        echo $data;
+    }
     $query = "SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
             FROM summative AS s
             LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
@@ -41,8 +49,13 @@ if(isset($_GET['submit'])) {
     $result = $db->query($query);
             if (!$result) {
                 echo mysqli_error($db);
-            } else {
+            } else if ($data == 0) {
+                echo "Select a section from the dropdown";
+
+            }else {
                include("php/studentData.php");
            }
+} else {
+    echo "Select a section from the dropdown";
 }
 ?>

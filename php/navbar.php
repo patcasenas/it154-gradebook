@@ -13,9 +13,9 @@
         </div>
         <div class="nav-container">
             <a href="index.php" class="nav-link">View Students</a>
-            <a href="module-1.php" class="nav-link"> Module 1</a>
-            <a href="module-2.php" class="nav-link">Module 2</a>
-            <a href="module-3.php" class="nav-link">Module 3</a>
+            <a href="sa-mod1.php" class="nav-link"> Module 1</a>
+            <a href="sa-mod2.php" class="nav-link">Module 2</a>
+            <a href="sa-mod3.php" class="nav-link">Module 3</a>
             <a href="#" class="nav-link">Generate</a>
         </div>
 

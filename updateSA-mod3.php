@@ -1,3 +1,6 @@
+<?php 
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,16 +13,16 @@
 
 <body>
     <div class="container">
-        <?php if(!empty($statusMsg)){
-            echo "<script>alert('$statusType! $statusMsg');</script>";
-        }?>
         <form action="php/updateGrade.php" method="post">
-            <input type="button" onclick="history.go(-1)" value="Back" />
-            <input type="submit" value="Update Selected Records" name="btn-update"><br><br>
+            <input type="button" value="Back" onclick="history.go(-1)" />
+            <input type="submit" value="Update Records" name="btn-update"><br><br>
 
-            <table class="students-table">
+            <table class="stud-tbl">
+              <tr>
+                <th><input type="checkbox" id="selectAll"></th>
+              </tr>
                 <tr>
-                    <th><input type="checkbox" id="selectAll">Select All</th>
+                    <th>Select All</th>
                     <th>Program</th>
                     <th>Student Number</th>
                     <th>Student Name</th>
@@ -28,23 +31,24 @@
                     <th>SA 3</th>
                     <th>Average</th>
                 </tr>
-
                 <?php
-            $query = ("SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
-            FROM summative AS s 
-            LEFT JOIN studentinfo AS si ON s.studNum = si.studNum 
-            WHERE modID = '3'
-            ORDER BY si.lastName ASC");
-            $result = mysqli_query($db,$query);
+          $data = implode($_SESSION['filter']);
+          echo $data;
+          $query = "SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
+                  FROM summative AS s
+                  LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
+                  WHERE si.section IN ('$data') AND modID = '3'
+                  ORDER BY si.lastName ASC";
+          $result = $db->query($query);
 
-            while($row = mysqli_fetch_array($result)) {
-                $sumID = $row['sumID'];
-                $studNum = $row['studNum'];
-                $SA1 = $row['SA1'];
-                $SA2 = $row['SA2'];
-                $SA3 = $row['SA3'];
-                $SAavg = $row['SAavg'];
-            ?>
+          while($row = mysqli_fetch_array($result)) {
+            $sumID = $row['sumID'];
+            $studNum = $row['studNum'];
+            $SA1 = $row['SA1'];
+            $SA2 = $row['SA2'];
+            $SA3 = $row['SA3'];
+            $SAavg = $row['SAavg'];
+        ?>
                 <tr>
                     <td><input type="checkbox" name="update[]" value='<?= $sumID?>'></td>
                     <td class="student-data-module"><?php echo $row['studProg'];?></td>
