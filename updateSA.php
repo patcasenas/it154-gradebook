@@ -13,7 +13,7 @@
 
 <body>
     <div class="container">
-        <form action="php/updateGrade.php" method="post">
+        <form action="php/sa-updateGrade.php" method="post">
             <input type="button" value="Back" onclick="history.go(-1)" />
             <input type="submit" value="Update Records" name="btn-update"><br><br>
 
@@ -34,10 +34,12 @@
                 <?php
           $data = implode($_SESSION['filter']);
           echo $data;
+          $modID = session_id();
+        //   echo $modID;
           $query = "SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
                   FROM summative AS s
                   LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
-                  WHERE si.section IN ('$data') AND modID = '1'
+                  WHERE si.section IN ('$data') AND modID = $modID
                   ORDER BY si.lastName ASC";
           $result = $db->query($query);
 

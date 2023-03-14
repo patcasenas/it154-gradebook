@@ -35,6 +35,7 @@ if(isset($_GET['submit'])) {
 }
 if(isset($_SESSION['filter'])) {
     $data = implode($_SESSION['filter']);
+    $modID = session_id();
     if ($data == 0) {
         
     } else {
@@ -43,7 +44,7 @@ if(isset($_SESSION['filter'])) {
     $query = "SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
             FROM summative AS s
             LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
-            WHERE si.section IN ('$data') AND modID = '3'
+            WHERE si.section IN ('$data') AND modID = $modID
             ORDER BY si.lastName ASC";
             
     $result = $db->query($query);
@@ -53,7 +54,7 @@ if(isset($_SESSION['filter'])) {
                 echo "Select a section from the dropdown";
 
             }else {
-               include("php/studentData.php");
+               include("php/sa-studentData.php");
            }
 } else {
     echo "Select a section from the dropdown";

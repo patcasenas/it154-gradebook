@@ -35,15 +35,16 @@ if(isset($_GET['submit'])) {
 }
 if(isset($_SESSION['filter'])) {
     $data = implode($_SESSION['filter']);
+    $modID = session_id();
     if ($data == 0) {
         
     } else {
         echo $data;
     }
-    $query = "SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
-            FROM summative AS s
-            LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
-            WHERE si.section IN ('$data') AND modID = '1'
+    $query = "SELECT f.formID, f.modID, f.studNum, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.FAavg, si.lastName, si.firstName, si.studProg 
+            FROM formative AS f
+            LEFT JOIN studentinfo AS si ON f.studNum = si.studNum
+            WHERE si.section IN ('$data') AND modID = $modID
             ORDER BY si.lastName ASC";
             
     $result = $db->query($query);
@@ -53,7 +54,7 @@ if(isset($_SESSION['filter'])) {
                 echo "Select a section from the dropdown";
 
             }else {
-               include("php/studentData.php");
+               include("php/fa-studentData.php");
            }
 } else {
     echo "Select a section from the dropdown";

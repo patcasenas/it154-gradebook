@@ -3,6 +3,7 @@
 
 <head>
     <?php
+        session_id("3");
         require("php/session_start.php");
         require_once("php/dbConfig.php");
         include("php/navbar.php");
@@ -17,14 +18,14 @@
             $row = $modTitle->fetch_assoc();
         ?>
         <h1><?php echo "Module 3 - " . $row["modName"];?></h1>
+        <input type="button" value="Formative Assessment" onclick="window.location='fa-mod3.php'">
 
         <!-- Section Filter & Update Grades button -->
-        <?php include("php/filter-mod3.php"); ?>
-        <form action="updateSA-mod3.php" method="post">
+        <?php include("php/filter-sa.php"); ?>
+        <form action="updateSA.php" method="post">
             <input type="submit" value="Update Grades" name="updateGrade">
         </form>
 
-        <!-- Query for table display -->
         </tbody>
         </table>
     </div>

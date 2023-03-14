@@ -21,5 +21,4 @@ if(isset($_POST['btn-update'])){
   }
   echo "<script>alert('Grades have been updated successfully.');</script>";
   echo "<script>javascript:history.go(-2);</script>";
-  unset($_SESSION['filter']);
 ?>
