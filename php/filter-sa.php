@@ -23,7 +23,7 @@ if(mysqli_num_rows($result)>0){
     }
     ?>
         </select>
-        <input type="submit" name="submit">
+        <input type="submit" name="submit" value="Filter">
     </form>
 </body>
 
@@ -37,7 +37,7 @@ if(isset($_SESSION['filter'])) {
     $data = implode($_SESSION['filter']);
     $modID = session_id();
     if ($data == 0) {
-        
+        echo "";
     } else {
         echo $data;
     }
@@ -45,10 +45,13 @@ if(isset($_SESSION['filter'])) {
             FROM summative AS s
             LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
             WHERE si.section IN ('$data') AND modID = $modID
-            ORDER BY si.lastName ASC";
-            
-    $result = $db->query($query);
-            if (!$result) {
+            ORDER BY si.lastName ASC";  
+    $studData = $db->query($query);
+
+    $section = "SELECT SA1max, SA2max, SA3max FROM maxscore WHERE modID = $modID";
+    $result = $db->query($section);
+
+            if (!$studData && !$result) {
                 echo mysqli_error($db);
             } else if ($data == 0) {
                 echo "Select a section from the dropdown";

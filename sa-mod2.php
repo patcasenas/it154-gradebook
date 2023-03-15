@@ -18,8 +18,10 @@
             $row = $modTitle->fetch_assoc();
         ?>
         <h1><?php echo "Module 2 - " . $row["modName"];?></h1>
-        <input type="button" value="Formative Assessment" onclick="window.location='fa-mod2.php'">
-
+        <div class="btn">
+        <button onclick="window.location='fa-mod2.php'">Formative Assessment</button>
+        <button onclick="window.location='sa-maxscore.php'">Set Maximum Score</button>
+        </div>
         <!-- Section Filter & Update Grades button -->
         <?php include("php/filter-sa.php"); ?>
         <form action="updateSA.php" method="post">

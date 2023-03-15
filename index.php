@@ -44,7 +44,6 @@ if(isset($_POST['truncate'])) {
     <div class="container">
         <!-- Display status message -->
         <?php if(!empty($statusMsg)){
-        // echo "<p style='font-weight:500;'>$statusType!&nbsp;</p>";
         echo "<script>alert('$statusType! $statusMsg');</script>";
     } ?>
 

@@ -10,7 +10,21 @@
             include("php/navbar.php");
         ?>
 </head>
+<?php 
+          $data = implode($_SESSION['filter']);
+          echo $data;
+          $modID = session_id();
+        //   echo $modID;
+        $query = "SELECT f.formID, f.modID, f.studNum, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.FAavg, si.lastName, si.firstName, si.studProg 
+            FROM formative AS f
+            LEFT JOIN studentinfo AS si ON f.studNum = si.studNum
+            WHERE si.section IN ('$data') AND modID = $modID
+            ORDER BY si.lastName ASC";
+        $studData = $db->query($query);
 
+        $maxscore = "SELECT FA1max, FA2max, FA3max, FA4max, FA5max, FA6max, FA7max, FA8max, FA9max, FA10max FROM maxscore WHERE modID = $modID";           
+        $result = $db->query($maxscore);
+?>
 <body>
     <div class="container">
         <form action="php/fa-updateGrade.php" method="post">
@@ -19,13 +33,13 @@
 
             <table class="stud-tbl">
                 <tr>
-                    <th><input type="checkbox" id="selectAll"></th>
+                    <th></th>
                 </tr>
                 <tr>
-                    <th>Select All</th>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
+                    <th><input type="checkbox" id="selectAll"></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th>FA 1</th>
                     <th>FA 2</th>
                     <th>FA 3</th>
@@ -38,19 +52,26 @@
                     <th>FA 10</th>
                     <th>Average</th>
                 </tr>
+                <tr>
+                    <th>Select All</th>
+                    <th>Program</th>
+                    <th>Student Number</th>
+                    <th>Student Name</th>
+                    <?php $row = $result->fetch_assoc()?>
+                    <th><?php echo $row['FA1max']?></th>
+                    <th><?php echo $row['FA2max']?></th>
+                    <th><?php echo $row['FA3max']?></th>
+                    <th><?php echo $row['FA4max']?></th>
+                    <th><?php echo $row['FA5max']?></th>
+                    <th><?php echo $row['FA6max']?></th>
+                    <th><?php echo $row['FA7max']?></th>
+                    <th><?php echo $row['FA8max']?></th>
+                    <th><?php echo $row['FA9max']?></th>
+                    <th><?php echo $row['FA10max']?></th>
+                    <th></th>
+                </tr>
                 <?php
-          $data = implode($_SESSION['filter']);
-          echo $data;
-          $modID = session_id();
-        //   echo $modID;
-          $query = "SELECT f.formID, f.modID, f.studNum, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.FAavg, si.lastName, si.firstName, si.studProg 
-            FROM formative AS f
-            LEFT JOIN studentinfo AS si ON f.studNum = si.studNum
-            WHERE si.section IN ('$data') AND modID = $modID
-            ORDER BY si.lastName ASC";
-          $result = $db->query($query);
-
-          while($row = mysqli_fetch_array($result)) {
+          while($row = mysqli_fetch_array($studData)) {
             $formID = $row['formID'];
             $studNum = $row['studNum'];
             $FA1 = $row['FA1'];

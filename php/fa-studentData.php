@@ -1,9 +1,10 @@
+<?php require_once("dbConfig.php"); ?>
 <table class="students-table">
     <thead>
         <tr>
-            <th>Program</th>
-            <th>Student Number</th>
-            <th>Student Name</th>
+            <th></th>
+            <th></th>
+            <th></th>
             <th>FA 1</th>
             <th>FA 2</th>
             <th>FA 3</th>
@@ -16,10 +17,26 @@
             <th>FA 10</th>
             <th>Average</th>
         </tr>
+    <?php $row = $result->fetch_assoc() ?>
+        <tr>
+            <th>Program</th>
+            <th>Student Number</th>
+            <th>Student Name</th>
+            <th><?php echo $row['FA1max']?></th>
+            <th><?php echo $row['FA2max']?></th>
+            <th><?php echo $row['FA3max']?></th>
+            <th><?php echo $row['FA4max']?></th>
+            <th><?php echo $row['FA5max']?></th>
+            <th><?php echo $row['FA6max']?></th>
+            <th><?php echo $row['FA7max']?></th>
+            <th><?php echo $row['FA8max']?></th>
+            <th><?php echo $row['FA9max']?></th>
+            <th><?php echo $row['FA10max']?></th>
+            <th></th>
+        </tr>
     </thead>
     <?php
-require_once("dbConfig.php");
-while($row = $result->fetch_assoc()) {?>
+        while($row = $studData->fetch_assoc()) {?>
     <tr>
         <td class="student-data-module"><?php echo $row['studProg'];?></td>
         <td class="student-data-module"><?php echo $row['studNum'];?></td>

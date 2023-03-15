@@ -1,5 +1,5 @@
 <?php 
-  session_start();
+ require_once("php/session_start.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +10,21 @@
             include("php/navbar.php");
         ?>
 </head>
+<?php
+          $data = implode($_SESSION['filter']);
+          echo $data;
+          $modID = session_id();
+        //   echo $modID;
+        $query = "SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
+        FROM summative AS s
+        LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
+        WHERE si.section IN ('$data') AND modID = $modID
+        ORDER BY si.lastName ASC";  
+        $studData = $db->query($query);
+
+        $section = "SELECT SA1max, SA2max, SA3max FROM maxscore WHERE modID = $modID";
+        $result = $db->query($section);
+          ?>
 
 <body>
     <div class="container">
@@ -18,47 +33,47 @@
             <input type="submit" value="Update Records" name="btn-update"><br><br>
 
             <table class="stud-tbl">
-              <tr>
-                <th><input type="checkbox" id="selectAll"></th>
-              </tr>
                 <tr>
-                    <th>Select All</th>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th><input type="checkbox" id="selectAll"></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th>SA 1</th>
                     <th>SA 2</th>
                     <th>SA 3</th>
                     <th>Average</th>
                 </tr>
+                <tr>
+                    <th>Select All</th>
+                    <th>Program</th>
+                    <th>Student Number</th>
+                    <th>Student Name</th>
+                    <?php $row = $result->fetch_assoc()?>
+                    <th><?php echo $row['SA1max'];?></th>
+                    <th><?php echo $row['SA2max']; ?></th>
+                    <th><?php echo $row['SA3max'];?></th>
+                    <th></th>
+                </tr>
                 <?php
-          $data = implode($_SESSION['filter']);
-          echo $data;
-          $modID = session_id();
-        //   echo $modID;
-          $query = "SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
-                  FROM summative AS s
-                  LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
-                  WHERE si.section IN ('$data') AND modID = $modID
-                  ORDER BY si.lastName ASC";
-          $result = $db->query($query);
-
-          while($row = mysqli_fetch_array($result)) {
-            $sumID = $row['sumID'];
-            $studNum = $row['studNum'];
-            $SA1 = $row['SA1'];
-            $SA2 = $row['SA2'];
-            $SA3 = $row['SA3'];
-            $SAavg = $row['SAavg'];
-        ?>
+                    while($row = $studData->fetch_assoc()) {
+                        $sumID = $row['sumID'];
+                        $studNum = $row['studNum'];
+                        $SA1 = $row['SA1'];
+                        $SA2 = $row['SA2'];
+                        $SA3 = $row['SA3'];
+                        $SAavg = $row['SAavg'];
+                ?>
                 <tr>
                     <td><input type="checkbox" name="update[]" value='<?= $sumID?>'></td>
                     <td class="student-data-module"><?php echo $row['studProg'];?></td>
                     <td class="student-data-module"><?php echo $row['studNum'];?></td>
                     <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
-                    <td><input type="number" name='SA1_<?= $sumID?>' value='<?= $SA1 ?>'></td>
-                    <td><input type="number" name='SA2_<?= $sumID?>' value='<?= $SA2 ?>'></td>
-                    <td><input type="number" name='SA3_<?= $sumID?>' value='<?= $SA3 ?>'></td>
+                    <td><input type="number" name='SA1_<?= $sumID?>' value='<?= $SA1 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
+                    <td><input type="number" name='SA2_<?= $sumID?>' value='<?= $SA2 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
+                    <td><input type="number" name='SA3_<?= $sumID?>' value='<?= $SA3 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
                     <td><?php echo $row['SAavg']?></td>
                 </tr>
                 <?php }?>
