@@ -27,9 +27,7 @@
         <form action="updateSA.php" method="post">
             <input type="submit" value="Update Grades" name="updateGrade">
         </form>
-
-        </tbody>
-        </table>
+        <button onclick="window.location='generate.php'">Generate OBE Course Assessment</button>
     </div>
 </body>
 
