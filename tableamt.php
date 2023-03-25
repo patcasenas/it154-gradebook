@@ -1,0 +1,39 @@
+<?php
+    include("php/navbar.php");
+    require_once("php/dbConfig.php");
+    include("php/session_start.php");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form action="" method="post" onsubmit="return confirm('Are you sure you want to save?')>
+        <?php
+            $query= $db->query("SELECT * FROM tblamt");
+            $row = $query->fetch_assoc();
+        ?>
+            <label for="SAamt">Input the amount of SA for this term: <input type="number" 
+                name="SAamt" value="<?php echo $row['SAamt']?>" min="1" max="3" required></label><br>
+            <label for="FAamt">Input the amount of FA for this term: <input type="number" 
+                name="FAamt" value="<?php echo $row['FAamt']?>" min="1" max="10" required></label><br>
+            <input type="submit" name="submit" value="Save">
+        </form>
+    </div>
+</body>
+</html>
+<?php
+if(isset($_POST['submit'])) {
+    $modID = session_id();
+    $SAamt = $_POST['SAamt'];
+    $FAamt = $_POST['FAamt'];
+    // echo session_id();
+
+    $update = $db->query("UPDATE tblamt SET SAamt=$SAamt, FAamt=$FAamt WHERE modID=$modID");
+    
+    echo "<script>alert('Grades have been updated successfully.');</script>";
+    echo "<script>javascript:history.go(-2);</script>";
+}
+?>

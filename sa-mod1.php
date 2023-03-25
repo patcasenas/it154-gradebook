@@ -21,6 +21,7 @@
         <div class="btn">
         <button onclick="window.location='fa-mod1.php'">Formative Assessment</button>
         <button onclick="window.location='sa-maxscore.php'">Set Maximum Score</button>
+        <button onclick="window.location='tableamt.php'">Set Amount of FA and SA</button>
         </div>
         <!-- Section Filter & Update Grades Button -->
         <?php include("php/filter-sa.php"); ?>
