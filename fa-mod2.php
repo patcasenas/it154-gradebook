@@ -21,6 +21,7 @@
         <div class="btn">
         <button onclick="window.location='sa-mod2.php'">Summative Assessment</button>
         <button onclick="window.location='fa-maxscore.php'">Set Maximum Score</button>
+        <button onclick="window.location='tableamt.php'">Set Amount of FA and SA</button>
         </div>
         
         <!-- Section Filter & Update Grades Button -->

@@ -2,6 +2,8 @@
     include("php/navbar.php");
     require_once("php/dbConfig.php");
     include("php/session_start.php");
+
+    $modID = session_id();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,9 +12,9 @@
 </head>
 <body>
     <div class="container">
-        <form action="" method="post" onsubmit="return confirm('Are you sure you want to save?')>
+        <form action="" method="post" onsubmit="return confirm('Are you sure you want to save?')">
         <?php
-            $query= $db->query("SELECT * FROM tblamt");
+            $query = $db->query("SELECT * FROM tblamt WHERE modID = $modID");
             $row = $query->fetch_assoc();
         ?>
             <label for="SAamt">Input the amount of SA for this term: <input type="number" 
@@ -26,10 +28,8 @@
 </html>
 <?php
 if(isset($_POST['submit'])) {
-    $modID = session_id();
     $SAamt = $_POST['SAamt'];
     $FAamt = $_POST['FAamt'];
-    // echo session_id();
 
     $update = $db->query("UPDATE tblamt SET SAamt=$SAamt, FAamt=$FAamt WHERE modID=$modID");
     
