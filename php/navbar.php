@@ -16,7 +16,7 @@
             <a href="sa-mod1.php" class="nav-link">Module 1</a>
             <a href="sa-mod2.php" class="nav-link">Module 2</a>
             <a href="sa-mod3.php" class="nav-link">Module 3</a>
-            <a href="generate.php" class="nav-link">Generate Template</a>
+            <a href="generate.php" class="nav-link">??</a>
     </nav>
     <script>
         function dropDown() {

@@ -3,7 +3,7 @@
 
 <head>
     <?php
-        session_id("1");
+        session_id("2");
         require("php/session_start.php");
         require_once("php/dbConfig.php");
         include("php/navbar.php");
@@ -17,7 +17,7 @@
             $modTitle = $db->query ("SELECT modName FROM moduleinfo WHERE modID = '2'");
             $row = $modTitle->fetch_assoc();
         ?>
-        <h1><?php echo "Module 3 - " . $row["modName"];?></h1>
+        <h1><?php echo "Module 2 - " . $row["modName"];?></h1>
         <div class="btn">
         <button onclick="window.location='sa-mod2.php'">Summative Assessment</button>
         <button onclick="window.location='fa-maxscore.php'">Set Maximum Score</button>

@@ -37,26 +37,27 @@ if(isset($_SESSION['filter'])) {
     $data = implode($_SESSION['filter']);
     $modID = session_id();
     if ($data == 0) {
-        echo "";
+        echo "<script>alert('Select a section from the dropdown')</script>";
     } else {
         echo $data;
     }
-    $query = "SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
-            FROM summative AS s
-            LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
-            WHERE si.section IN ('$data') AND modID = $modID
-            ORDER BY si.lastName ASC";  
-    $studData = $db->query($query);
 
-    $section = "SELECT SA1max, SA2max, SA3max FROM maxscore WHERE modID = $modID";
-    $result = $db->query($section);
-
-            if (!$studData && !$result) {
-                echo mysqli_error($db);
-            } else if ($data == 0) {
-                echo "Select a section from the dropdown";
-
-            }else {?>
+        $studData = $db->query("SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg
+                                FROM summative AS s
+                                LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
+                                WHERE si.section IN ('$data') AND s.modID = $modID
+                                ORDER BY si.lastName ASC");  
+        $maxscore = $db->query("SELECT * FROM maxscore WHERE modID = $modID");
+        $tblamt = $db->query("SELECT * FROM `tblamt` WHERE modID = $modID;");
+        $row = $tblamt->fetch_assoc(); 
+        $SA = $row['SAamt'];
+        
+        if (!$studData && !$maxscore && !$tblamt) {
+            echo mysqli_error($db);
+        } 
+        else if ($SA == 3){
+            //Get table amt, declare SAamts if else 3x
+            ?>
                 <table class="students-table">
                     <thead>
                         <tr>
@@ -66,9 +67,10 @@ if(isset($_SESSION['filter'])) {
                             <th>SA 1</th>
                             <th>SA 2</th>
                             <th>SA 3</th>
-                            <th>Average</th>
+                            <th></th>
+                            <th></th>
                         </tr>
-                    <?php $row = $result->fetch_assoc() ?>
+                        <?php $row = $maxscore->fetch_assoc() ?>
                         <tr>
                             <th>Program</th>
                             <th>Student Number</th>
@@ -76,25 +78,96 @@ if(isset($_SESSION['filter'])) {
                             <th><?php echo $row['SA1max'];?></th>
                             <th><?php echo $row['SA2max']; ?></th>
                             <th><?php echo $row['SA3max'];?></th>
-                            <th></th>
+                            <th>Average</th>
+                            <th>60%</th>
                         </tr>
                     </thead>
-                    <?php while($row = $studData->fetch_assoc()) {?>
-                    <tr>
-                        <td class="student-data-module"><?php echo $row['studProg'];?></td>
-                        <td class="student-data-module"><?php echo $row['studNum'];?></td>
-                        <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
-                        <td class="student-data-module"><?php echo $row['SA1'];?></td>
-                        <td class="student-data-module"><?php echo $row['SA2']; ?></td>
-                        <td class="student-data-module"><?php echo $row['SA3'];?></td>
-                        <td class="student-data-module"><?php echo $row['SAavg'];?></td>
-                    </tr>
-                    <?php }?>
                     <tbody>
+                    <?php while($row = $studData->fetch_assoc()) {?>
+                        <tr>
+                            <td class="student-data-module"><?php echo $row['studProg'];?></td>
+                            <td class="student-data-module"><?php echo $row['studNum'];?></td>
+                            <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+                            <td class="student-data-module"><?php echo $row['SA1'];?></td>
+                            <td class="student-data-module"><?php echo $row['SA2']; ?></td>
+                            <td class="student-data-module"><?php echo $row['SA3'];?></td>
+                            <td class="student-data-module"><?php echo $row['SAavg'];?></td>
+                            <td class="student-data-module"><?php echo $row['60per'];?></td>
+                        </tr>
+                        <?php }?>
                     </tbody>
                 </table>
-          <?php }
-} else {
-    echo "Select a section from the dropdown";
-}
+            <?php } else if ($SA == 2) { ?>
+                <table class="students-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>SA 1</th>
+                            <th>SA 2</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <?php $row = $maxscore->fetch_assoc() ?>
+                        <tr>
+                            <th>Program</th>
+                            <th>Student Number</th>
+                            <th>Student Name</th>
+                            <th><?php echo $row['SA1max'];?></th>
+                            <th><?php echo $row['SA2max']; ?></th>
+                            <th>Average</th>
+                            <th>60%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php while($row = $studData->fetch_assoc()) {?>
+                        <tr>
+                            <td class="student-data-module"><?php echo $row['studProg'];?></td>
+                            <td class="student-data-module"><?php echo $row['studNum'];?></td>
+                            <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+                            <td class="student-data-module"><?php echo $row['SA1'];?></td>
+                            <td class="student-data-module"><?php echo $row['SA2']; ?></td>
+                            <td class="student-data-module"><?php echo $row['SAavg'];?></td>
+                            <td class="student-data-module"><?php echo $row['60per'];?></td>
+                        </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+            <?php } else if ($SA == 1) { ?>
+                <table class="students-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>SA 1</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <?php $row = $maxscore->fetch_assoc() ?>
+                        <tr>
+                            <th>Program</th>
+                            <th>Student Number</th>
+                            <th>Student Name</th>
+                            <th><?php echo $row['SA1max'];?></th>
+                            <th>Average</th>
+                            <th>60%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php while($row = $studData->fetch_assoc()) {?>
+                        <tr>
+                            <td class="student-data-module"><?php echo $row['studProg'];?></td>
+                            <td class="student-data-module"><?php echo $row['studNum'];?></td>
+                            <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+                            <td class="student-data-module"><?php echo $row['SA1'];?></td>
+                            <td class="student-data-module"><?php echo $row['SAavg'];?></td>
+                            <td class="student-data-module"><?php echo $row['60per'];?></td>
+                        </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+            <?php }
+}      
 ?>

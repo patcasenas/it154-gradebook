@@ -3,7 +3,7 @@
 
 <head>
     <?php
-        session_id("1");
+        session_id("3");
         require("php/session_start.php");
         require_once("php/dbConfig.php");
         include("php/navbar.php");
