@@ -47,16 +47,18 @@
 </html>
 <?php 
     if(isset($_POST['maxscore'])) {
-        $SA1max = $_POST['SA1max'];
-        $SA2max = $_POST['SA2max'];
-        $SA3max = $_POST['SA3max'];
-
         // Update grades to database
         if ($SAamt == 3) {
+            $SA1max = $_POST['SA1max'];
+            $SA2max = $_POST['SA2max'];
+            $SA3max = $_POST['SA3max'];
             $result = $db->query("UPDATE maxscore SET SA1max = $SA1max, SA2max = $SA2max, SA3max = $SA3max WHERE modID = $modID");
         } else if ($SAamt == 2) {
+            $SA1max = $_POST['SA1max'];
+            $SA2max = $_POST['SA2max'];
             $result = $db->query("UPDATE maxscore SET SA1max = $SA1max, SA2max = $SA2max WHERE modID = $modID");
         } else if ($SAamt == 1) {
+            $SA1max = $_POST['SA1max'];
             $result = $db->query("UPDATE maxscore SET SA1max = $SA1max WHERE modID = $modID");
         }
 

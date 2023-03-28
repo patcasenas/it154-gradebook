@@ -7,7 +7,8 @@
         require("php/session_start.php");
         require_once("php/dbConfig.php");
         include("php/navbar.php");
-        include("phpcompute/computeFA.php");
+        include("phpcompute/computeSA.php");
+        // echo session_id();
     ?>
 </head>
 

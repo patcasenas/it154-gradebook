@@ -1,7 +1,6 @@
 <?php
     require_once("php/dbConfig.php");
 
-    $data = implode($_SESSION['filter']);
     $modID = session_id();
 
     $studData = $db->query("SELECT s.sumID, s.modID, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, ta.SAamt, ms.SA1max, ms.SA2max, ms.SA3max 
@@ -9,7 +8,7 @@
                             LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
                             LEFT JOIN tblamt AS ta ON s.modID = ta.modID
                             LEFT JOIN maxscore AS ms ON s.modID = ms.modID
-                            WHERE si.section IN ('$data') AND s.modID = $modID
+                            WHERE s.modID = $modID
                             ORDER BY si.lastName ASC");  
     // $studData = $db->query($query);
 

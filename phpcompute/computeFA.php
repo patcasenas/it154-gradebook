@@ -1,7 +1,6 @@
 <?php
     require_once("php/dbConfig.php");
 
-    $data = implode($_SESSION['filter']);
     $modID = session_id();
 
     $studData = $db->query("SELECT f.formID, f.modID, f.studNum, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.FAavg, f.40per, ta.FAamt, FA1max, FA2max, FA3max, FA4max, FA5max, FA6max, FA7max, FA8max, FA9max, FA10max 
@@ -9,8 +8,9 @@
                             LEFT JOIN studentinfo AS si ON f.studNum = si.studNum 
                             LEFT JOIN tblamt AS ta ON f.modID = ta.modID 
                             LEFT JOIN maxscore AS ms ON f.modID = ms.modID 
-                            WHERE si.section IN ('$data') AND f.modID = $modID
+                            WHERE f.modID = $modID
                             ORDER BY si.lastName ASC");
+    
     if(!$studData) {
         mysqli_error($db);
     } else {
@@ -43,9 +43,9 @@
             if($FAamt == 5) {
                 $computeFA = ($FA1/$FA1max+$FA2/$FA2max+$FA3/$FA3max+$FA4/$FA4max+$FA5/$FA5max)*100/$FAamt;
                 $fortyper = $computeFA*0.4;
-                // $db->query("UPDATE formative SET FAavg = $computeFA, 40per = $fortyper WHERE formID = '".$formID."'");
-                echo $fortyper;
-                echo $computeFA;
+                $db->query("UPDATE formative SET FAavg = $computeFA, 40per = $fortyper WHERE formID = '".$formID."'");
+                // echo $fortyper;
+                // echo $computeFA;
             } else if ($FAamt == 6) {
                 $computeFA = ($FA1/$FA1max+$FA2/$FA2max+$FA3/$FA3max+$FA4/$FA4max+$FA5/$FA5max+$FA6/$FA6max)*100/$FAamt;
                 $fortyper = $computeFA*0.4;

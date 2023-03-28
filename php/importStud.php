@@ -48,6 +48,20 @@ $db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 1)");
 $db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 2)");
 $db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 3)");
 }
+
+$SArunAvg = $db->query("SELECT si.studNum, si.section, si.studProg, si.studProg, s.SAavg, s.60per, s.modID
+FROM studentinfo AS si
+LEFT JOIN summative AS s ON s.studNum = si.studNum");
+    while($row = $SArunAvg->fetch_assoc()) {
+        $studNum = $row['studNum'];
+        $studProg = $row['studProg'];
+        $modID = $row['modID'];
+        $SAavg = $row['SAavg'];
+        $sixtyper = $row['60per'];
+        $section = $row['section'];
+
+        $insertinto = $db->query("INSERT INTO runavg (studNum, section, studProg, modID, transmutation) VALUES ('".$studNum."', '".$section."' ,'".$studProg."', '".$modID."', 'IP')");
+    } 
 // Redirect to the listing page
 header("Location: ../index.php".$qstring);
 ?>
