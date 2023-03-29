@@ -1,8 +1,5 @@
 <?php
-    require_once("php/dbConfig.php");
-    include("phpcompute/grades.php");
-    include("php/navbar.php");
-
+require_once("dbConfig.php");
 $section = $db->query("SELECT DISTINCT section FROM runavg ORDER BY section ASC");
 $sections = array();
 if(mysqli_num_rows($section)>0) {
@@ -10,17 +7,9 @@ if(mysqli_num_rows($section)>0) {
         $sections[] = $row;
     }
 }
+// echo '<pre>' . print_r($sections) . '</pre>';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>View Module Grades</title>
-</head>
-
-<body>
-    <h1>View Module Grades</h1>
-    <form method="get">
+<form method="get">
         <select name="section[]">
             <option value="0" selected="selected" hidden> Filter Sections</option>
             <?php
@@ -43,7 +32,7 @@ if(mysqli_num_rows($section)>0) {
             $data = implode($_SESSION['filter']);
             if ($data == 0) {
                 echo "<script>alert('Select a section from the dropdown')</script>";
-                echo "<script>window.location.href='grades.php'</script>";
+                echo "<script>window.location.href='viewmodulegrades.php'</script>";
             } else {
                 echo $data;
             }
@@ -87,5 +76,3 @@ if(mysqli_num_rows($section)>0) {
             <?php } ?>
             </table>    
         <?php } ?>
-</body>
-</html>

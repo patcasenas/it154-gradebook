@@ -38,7 +38,6 @@
                         <th></th>
                     </tr>
                     <tr>
-                        <th><input type="checkbox" id="selectAll"></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -48,7 +47,6 @@
                         <th>Average</th>
                     </tr>
                     <tr>
-                        <th>Select All</th>
                         <th>Program</th>
                         <th>Student Number</th>
                         <th>Student Name</th>
@@ -68,7 +66,7 @@
                             $SAavg = $row['SAavg'];
                     ?>
                     <tr>
-                        <td><input type="checkbox" name="update[]" value='<?= $sumID?>'></td>
+                        <input type="checkbox" name="update[]" value='<?= $sumID?>' checked hidden/>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>
                         <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
@@ -85,7 +83,6 @@
                         <th></th>
                     </tr>
                     <tr>
-                        <th><input type="checkbox" id="selectAll"></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -94,7 +91,6 @@
                         <th>Average</th>
                     </tr>
                     <tr>
-                        <th>Select All</th>
                         <th>Program</th>
                         <th>Student Number</th>
                         <th>Student Name</th>
@@ -112,7 +108,7 @@
                             $SAavg = $row['SAavg'];
                     ?>
                     <tr>
-                        <td><input type="checkbox" name="update[]" value='<?= $sumID?>'></td>
+                        <input type="checkbox" name="update[]" value='<?= $sumID?>' checked hidden/>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>
                         <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
@@ -128,7 +124,6 @@
                         <th></th>
                     </tr>
                     <tr>
-                        <th><input type="checkbox" id="selectAll"></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -136,7 +131,6 @@
                         <th>Average</th>
                     </tr>
                     <tr>
-                        <th>Select All</th>
                         <th>Program</th>
                         <th>Student Number</th>
                         <th>Student Name</th>
@@ -153,7 +147,7 @@
                             $SAavg = $row['SAavg'];
                     ?>
                     <tr>
-                        <td><input type="checkbox" name="update[]" value='<?= $sumID?>'></td>
+                        <input type="checkbox" name="update[]" value='<?= $sumID?>' checked hidden/>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>
                         <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
@@ -169,18 +163,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-
-    // Check/Uncheck All
-    $('#selectAll').change(function() {
-        if ($(this).is(':checked')) {
-            $('input[name="update[]"]').prop('checked', true);
-        } else {
-            $('input[name="update[]"]').each(function() {
-                $(this).prop('checked', false);
-            });
-        }
-    });
-
     // Checkbox click
     $('input[name="update[]"]').click(function() {
         var total_checkboxes = $('input[name="update[]"]').length;

@@ -1,7 +1,6 @@
 <?php
-require_once("php/dbConfig.php");
-require('fpdf185/fpdf.php');
-include("php/session_start.php");
+require_once("dbConfig.php");
+require('../fpdf185/fpdf.php');
 
 ob_end_clean();
 

@@ -20,14 +20,14 @@ if(isset($_POST['btn-update'])){
                         FA1 = '".$FA1."', FA2 = '".$FA2."', FA3 = '".$FA3."', FA4 = '".$FA4."', FA5 = '".$FA5."', FA6 = '".$FA6."', FA7 = '".$FA7."', FA8 = '".$FA8."', FA9 = '".$FA9."', FA10 = '".$FA10."'
                         WHERE formID=".$updateid;
         mysqli_query($db,$updateGrade);
-        echo "<script>alert('Grades have been updated successfully.');</script>";
-        echo "<script>javascript:history.go(-2);</script>";
+        // echo "<script>alert('Grades have been updated successfully.');</script>";
+        // echo "<script>javascript:history.go(-2);</script>";
     } else {
       echo "error" . mysqli_error($db);
     }
       } 
     }
   }
-//   echo "<script>alert('Grades have been updated successfully.');</script>";
-//   echo "<script>javascript:history.go(-2);</script>";
+  echo "<script>alert('Grades have been updated successfully.');</script>";
+  echo "<script>javascript:history.go(-2);</script>";
 ?>

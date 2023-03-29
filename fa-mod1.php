@@ -8,6 +8,7 @@
         require_once("php/dbConfig.php");
         include("php/navbar.php");
         include("phpcompute/computeFA.php");
+        $data = implode($_SESSION['filter']);
     ?>
 </head>
 
@@ -26,11 +27,14 @@
         </div>
         
         <!-- Section Filter & Update Grades Button -->
-        <?php include("php/filter-fa.php"); ?>
-        <form action="updateFA.php" method="post">
-            <input type="submit" value="Update Grades" name="updateGrade">
-        </form>
-        <button onclick="window.location='generate.php'">Generate OBE Course Assessment</button>
+        <?php 
+            include("php/filter-fa.php"); 
+            
+            if($data != "0") { ?>
+            <form action="updateFA.php" method="post">
+                <input type="submit" value="Update Grades" name="updateGrade">
+            </form>
+        <?php }?>
     </div>
 </body>
 </html>
