@@ -45,7 +45,7 @@ if(isset($_POST['truncate'])) {
         <!-- Display status message -->
         <?php if(!empty($statusMsg)){
         echo "<script>alert('$statusType! $statusMsg');</script>";
-    } ?>
+        } ?>
 
         <table class="students-table">
             <thead>

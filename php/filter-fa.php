@@ -39,6 +39,7 @@ if(isset($_SESSION['filter'])) {
     // echo $modID;
     if ($data == 0) {
         echo "<script>alert('Select a section from the dropdown')</script>";
+        // echo "<script>javascript:history.go(-1);</script>";
     } else {
         echo $data;
     }
