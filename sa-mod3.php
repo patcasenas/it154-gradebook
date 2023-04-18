@@ -8,7 +8,6 @@
         require_once("php/dbConfig.php");
         include("php/navbar.php");
         include("phpcompute/computeSA.php");
-        $data = implode($_SESSION['filter']);
     ?>
 </head>
 
@@ -29,12 +28,10 @@
         <!-- Section Filter & Update Grades button -->
         <?php 
             include("php/filter-sa.php"); 
-
-            if($data != "0") { ?>
-                <form action="updateSA.php" method="post">
-                    <input type="submit" value="Update Grades" name="updateGrade">
-                </form>
-        <?php }?>
+        ?>
+        <form action="updateSA.php" method="post">
+            <input type="submit" value="Update Grades" name="updateGrade">
+        </form>
     </div>
 </body>
 </html>
