@@ -3,6 +3,7 @@
 
 <head>
     <?php require('head.php')?>
+    <?php require('dbConfig.php')?>
 </head>
 
 <body>
@@ -11,7 +12,7 @@
             <img src="img/igrade-white@1x.png" id="nav-logo" alt="iGradebook">
         </div>
         <div class="nav-container">
-            <a href="index.php" class="nav-link">View Courses</a>
+            <a href="index.php" class="nav-link">View Students</a>
             <a href="sa-mod1.php" class="nav-link">Module 1</a>
             <a href="sa-mod2.php" class="nav-link">Module 2</a>
             <a href="sa-mod3.php" class="nav-link">Module 3</a>

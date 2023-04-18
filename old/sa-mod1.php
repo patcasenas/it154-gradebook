@@ -7,7 +7,7 @@
         require("php/session_start.php");
         require_once("php/dbConfig.php");
         include("php/navbar.php");
-        // include("phpcompute/computeSA.php");
+        include("phpcompute/computeSA.php");
     ?>
 </head>
 
@@ -15,11 +15,10 @@
     <div class="container">
         <!-- Module Name -->
         <?php 
-            $courseCode = implode($_SESSION['courseTitle']);
-            $modTitle = $db->query ("SELECT modName FROM moduleinfo WHERE modID = '1' AND courseCode = '".$courseCode."'");
+            $modTitle = $db->query ("SELECT modName FROM moduleinfo WHERE modID = '1'");
             $row = $modTitle->fetch_assoc();
         ?>
-        <h1><?php echo $courseCode . " Module 1 - " . $row["modName"];?></h1>
+        <h1><?php echo "Module 1 - " . $row["modName"];?></h1>
         <div class="btn">
         <button onclick="window.location='fa-mod1.php'">Formative Assessment</button>
         <button onclick="window.location='sa-maxscore.php'">Set Maximum Score</button>
