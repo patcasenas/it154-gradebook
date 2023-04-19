@@ -10,7 +10,7 @@ if(isset($_SESSION['courseTitle'])) {
     $courseCode = implode($_SESSION['courseTitle']);
     $title = $db->query("SELECT courseTitle FROM courseinfo WHERE courseCode = '".$courseCode."'");
     $row = mysqli_fetch_assoc($title);
-    echo $row['courseTitle'];
+    echo "<h1>" . $row['courseTitle'] . "</h1>\n";
 
     // If user does not choose course, show this
     if ($courseCode == 0) {
@@ -56,6 +56,7 @@ if(isset($_SESSION['courseTitle'])) {
             <?php if(!empty($statusMsg)) {
                 echo "<script>alert('$statusType! $statusMsg');</script>";
             }?>
+            Found a mistake? <a href="php-forms/editcourse.php">Edit the course</a>
             <table>
                 <thead>
                     <tr>

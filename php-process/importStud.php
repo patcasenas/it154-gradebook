@@ -17,7 +17,6 @@ if(isset($_POST['importSubmit'])){
 
         // Displays course title
         $courseCode = implode($_SESSION['courseTitle']);
-        echo $courseCode;
         // Parse data from CSV file line by line
         while(($line = fgetcsv($csvFile)) !== FALSE){
             $lastName   = $line[0];
@@ -43,16 +42,16 @@ if(isset($_POST['importSubmit'])){
     }
 
 }
-// $query=$db->query("SELECT studNum FROM studentinfo");
-// while($row = $query->fetch_assoc()){
-// $db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 1)");
-// $db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 2)");
-// $db->query("INSERT INTO summative (studNum, modID) VALUES ($row[studNum], 3)");
+$query=$db->query("SELECT studNum FROM studentinfo");
+while($row = $query->fetch_assoc()){
+    $db->query("INSERT INTO summative (studNum, modNum, courseCode) VALUES ($row[studNum], 1, '".$courseCode."')");
+    $db->query("INSERT INTO summative (studNum, modNum, courseCode) VALUES ($row[studNum], 2, '".$courseCode."')");
+    $db->query("INSERT INTO summative (studNum, modNum, courseCode) VALUES ($row[studNum], 3, '".$courseCode."')");
 
-// $db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 1)");
-// $db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 2)");
-// $db->query("INSERT INTO formative (studNum, modID) VALUES ($row[studNum], 3)");
-// }
+    $db->query("INSERT INTO formative (studNum, modNum, courseCode) VALUES ($row[studNum], 1, '".$courseCode."')");
+    $db->query("INSERT INTO formative (studNum, modNum, courseCode) VALUES ($row[studNum], 2, '".$courseCode."')");
+    $db->query("INSERT INTO formative (studNum, modNum, courseCode) VALUES ($row[studNum], 3, '".$courseCode."')");
+}
 
 // $SArunAvg = $db->query("SELECT si.studNum, si.section, si.studProg, si.studProg, s.SAavg, s.60per, s.modID
 // FROM studentinfo AS si

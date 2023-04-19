@@ -29,6 +29,6 @@
         </select>
         <input type="submit" name="submit" value="Next">
     </form>
-    Don't see your course? <a href="newcourse.php">Create a new course</a>
+    Don't see your course? <a href="php-forms/newcourse.php">Create a new course</a>
 </body>
 </html>
