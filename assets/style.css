@@ -40,6 +40,15 @@ html, body {
     transform: scale(1.2);
     font-weight: 500;
 }
+.logout-link {
+    right: 4%;
+    position: absolute;
+    transform: transform .5s;
+}
+.logout-link:hover {
+    transform: scale(1.2);
+    font-weight: 500;
+}
 .nav-name {
     color: #EBEBEE;
     font-family: 'Roboto';
@@ -82,15 +91,11 @@ html, body {
     flex-direction: column;
     justify-content: center;
 }
-.index-box a {
-    color: #dadb86;
-}
-.index-box a:hover {
-    color:#e7e991;
-}
 .index-text {
     font-weight: 500;
     align-self: flex-start;
+    font-size: 2em;
+    letter-spacing: 0.05em;
 }
 /* Index logo size */
 .index-logo {
@@ -155,6 +160,7 @@ select::-ms-expand {
 .select:hover::after {
     color: #031D45;
 }
+/* Select course submit btn */
 #index-submit {
     background-color: #34495e;
     border: none;
@@ -167,20 +173,132 @@ select::-ms-expand {
     cursor: pointer;
     background-color: #04347c;
 }
+/* New course button */
+#newcourse-btn {
+    border: none;
+    outline: none;
+    text-decoration: underline;
+    background-color: #031d4500;
+    font-size: 1em;
+    color: antiquewhite;
+    letter-spacing: 0.05em;
+}
+#newcourse-btn:hover {
+    cursor: pointer;
+    font-weight: 550;
+}
+/* New course overlay */
+#overlay {
+    position: fixed;
+    display: none;
+    width: inherit;
+    height: inherit;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1b1b1b4b;
+    z-index: 2;
+}
+#close-btn {
+    position: fixed;
+    right: 5%;
+    font-size: 1.5em;
+    border: black;
+    border-radius: 100%;
+    cursor: pointer;
+}
+#newcourse-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    background-color: #EBEBEE;
+    width: 25vw;
+    height: 51vh;
+    color: #1b1b1b;
+    padding: 10 20 5;
+    border-radius: 3%;
+    text-align: start;
+}
+#newcourse-form p {
+    margin: -3% 1% 5%;
+}
+#newcourse-form fieldset{
+    position: relative;
+}
+#newcourse-form legend {
+    font-weight: 600;
+    letter-spacing: 0.12em;
+}
+#newcourse-form label {
+    font-weight: 500;
+}
+#newcourse-form input[type=text] {
+    float: right;
+    width: 75%;
+    font-size: 0.9em;
+}
+/* Save and cancel button */
+.index-form-btns {
+    float: right;
+}
+.index-form-btns input[type=submit] {
+    background-color: #2ea14a;
+    border: none;
+    color: #EBEBEE;
+    padding: 0.8vh 2vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    border-radius: 5%;
+    letter-spacing: 0.05em;
+}
+#cancel-btn {
+    background-color: #858585;
+    color: #EBEBEE;
+    padding: 0.8vh 2vw;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    border-radius: 5%;
+    letter-spacing: 0.05em;
+    margin: 0 0.5vw 0 0;
+    border:none;
+}
+.index-form-btns input[type=submit], #cancel-btn {
+    cursor: pointer;
+}
 /* Table display */
 .students-table th,td {
     border: 1px solid;
 }
 .students-table {
     border-collapse: collapse;
-    margin: 5vh 10vw 2vh 10vw;
     text-align: center;
     table-layout: fixed;
     box-shadow: 0px 0px 10px #858585;
+    width: 80%;
+    margin: 2vh auto 5vh auto;
 }
 input[type=number] {
     width: 4em;
 }
 textarea {
     resize: none;
+}
+#editcourse-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    background-color: #EBEBEE;
+    height: 45vh;
+    width: 30vw;
+    padding: 3vh 2vw 0vh;
+    border-radius: 2%;
 }

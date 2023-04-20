@@ -29,8 +29,6 @@
             <label for="SA2max">SA 2 <input type="number" name="SA2max" min="1"></label><br>
             <label for="SA3max">SA 3 <input type="number" name="SA3max" min="1"></label><br>
             
-            <input type="button" value="Cancel" onclick="history.go(-1)" />
-            <input type="submit" value="Save" name="maxscore">
         <?php } else if($SAamt == 2) { ?>
             <label for="SA1max">SA 1 <input type="number" name="SA1max" min="1"></label><br>
             <label for="SA2max">SA 2 <input type="number" name="SA2max" min="1"></label><br>

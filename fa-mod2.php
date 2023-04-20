@@ -31,7 +31,7 @@
         <?php 
             include("php-process/filter-fa.php"); 
         ?>
-        <form action="updateFA.php" method="post">
+        <form action="php-forms/updateFA.php" method="post">
             <input type="submit" value="Update Grades" name="updateGrade">
         </form>
     </div>

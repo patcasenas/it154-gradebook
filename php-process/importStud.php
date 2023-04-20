@@ -53,19 +53,18 @@ while($row = $query->fetch_assoc()){
     $db->query("INSERT INTO formative (studNum, modNum, courseCode) VALUES ($row[studNum], 3, '".$courseCode."')");
 }
 
-// $SArunAvg = $db->query("SELECT si.studNum, si.section, si.studProg, si.studProg, s.SAavg, s.60per, s.modID
-// FROM studentinfo AS si
-// LEFT JOIN summative AS s ON s.studNum = si.studNum");
-//     while($row = $SArunAvg->fetch_assoc()) {
-//         $studNum = $row['studNum'];
-//         $studProg = $row['studProg'];
-//         $modID = $row['modID'];
-//         $SAavg = $row['SAavg'];
-//         $sixtyper = $row['60per'];
-//         $section = $row['section'];
-
-//         $insertinto = $db->query("INSERT INTO runavg (studNum, section, studProg, modID, transmutation) VALUES ('".$studNum."', '".$section."' ,'".$studProg."', '".$modID."', 'IP')");
-//     } 
+$runAvg = $db->query("SELECT si.studNum, si.courseCode, si.section, si.studProg, s.modNum
+                    FROM studentinfo AS si
+                    LEFT JOIN summative AS s ON s.studNum = si.studNum
+                    WHERE si.courseCode = '".$courseCode."'");
+while($row = $runAvg->fetch_assoc()) {
+    $studNum = $row['studNum'];
+    $studProg = $row['studProg'];
+    $modNum = $row['modNum'];
+    $section = $row['section'];
+    
+    $insertinto = $db->query("INSERT INTO runavg (studNum, section, studProg, modNum, courseCode) VALUES ('".$studNum."', '".$section."', '".$studProg."', $modNum, '".$courseCode."')");
+}
 // Redirect to the listing page
 header("Location: ../classlist.php".$qstring);
 ?>

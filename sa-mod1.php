@@ -30,7 +30,7 @@
         <?php 
             include("php-process/filter-sa.php");
         ?>
-        <form action="updateSA.php" method="post">
+        <form action="php-forms/updateSA.php" method="post">
             <input type="submit" value="Update Grades" name="updateGrade">
         </form>
     </div>
