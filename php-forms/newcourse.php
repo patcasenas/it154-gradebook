@@ -51,9 +51,6 @@
         $insert3 = "INSERT INTO moduleinfo (modNum, modName, courseCode) VALUES ($modNum3, '".$modName3."', '".$courseCode."')";
         mysqli_query($db,$insert3);
 
-        if(!$insert1 || !$insert2 || !$insert3) {
-            mysqli_error($db);
-        }
         // Insert max score for each module and course
         $maxscore1 = "INSERT INTO maxscore (modNum, courseCode) VALUES (1, '".$courseCode."')";
         mysqli_query($db,$maxscore1);
@@ -70,6 +67,11 @@
         $tblamt3 = "INSERT INTO tblamt (modNum, courseCode) VALUES (3, '".$courseCode."')";
         mysqli_query($db,$tblamt3);
 
-        header("Location:../classlist.php");
+        if(!$insert1 || !$insert2 || !$insert3) {
+            mysqli_error($db);
+        } else {
+            echo "<script>alert('Successfully created course. You will be redirected to the homepage.')</script>";
+            echo "<script>window.location.href='../index.php'</script>";
+        }        
     }
 ?>

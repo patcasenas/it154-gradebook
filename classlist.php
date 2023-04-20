@@ -15,7 +15,7 @@ if(isset($_SESSION['courseTitle'])) {
     // If user does not choose course, show this
     if ($courseCode == 0) {
         echo "<script>alert('Select an option from the dropdown')</script>";
-        echo "<script>javascript:history.go(-1);</script>";
+        echo "<script>window.location.href='index.php'</script>";
     } else {
         // Displays if import is successful or not
         if(!empty($_GET['status'])){

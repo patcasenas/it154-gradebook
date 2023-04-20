@@ -1,29 +1,35 @@
-<?php require $_SERVER["DOCUMENT_ROOT"] . "/it154-gradebook/php/head.php"?>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-scroll fixed-top shadow-0 border-bottom border-dark">
-  <div class="container">
-    <a class="navbar-brand" href="#!"><i class="fab fa-mdb fa-4x"></i></a>
-    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-      data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#!">Our Story</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#!">Membership</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#!">Write</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#!">Sign In</a>
-        </li>
-        <button type="button" class="btn btn-dark ms-3">Get Started</button>
-      </ul>
-    </div>
-  </div>
-</nav>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <?php require $_SERVER["DOCUMENT_ROOT"] . "/it154-gradebook/php/head.php"?>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="logo-container">
+            <img src="/it154-gradebook/img/igrade-white@1x.png" id="nav-logo" alt="iGradebook">
+        </div>
+        <div class="nav-container">
+            <a href="/it154-gradebook/index.php" class="nav-link">View Courses</a>
+            <a href="/it154-gradebook/sa-mod1.php" class="nav-link">Module 1</a>
+            <a href="/it154-gradebook/sa-mod2.php" class="nav-link">Module 2</a>
+            <a href="/it154-gradebook/sa-mod3.php" class="nav-link">Module 3</a>
+            <a href="/it154-gradebook/viewmodulegrades.php" class="nav-link">View Module Grades</a>
+    </nav>
+    <script>
+        function dropDown() {
+            document.getElementById("services").classList.toggle("show");
+        }
+
+        window.onclick = function(e) {
+            if (!e.target.matches('.dropbtn')) {
+                var services = document.getElementById("services");
+                if (services.classList.contains('show')) {
+                    services.classList.remove('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

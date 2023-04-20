@@ -1,5 +1,5 @@
 <?php
-    include("php/navbar.php");
+    include("php/head.php");
     require("php/dbConfig.php");
     $sql = "SELECT * FROM courseinfo ORDER BY courseCode ASC";
     $result = mysqli_query($db,$sql);
@@ -16,19 +16,32 @@
 <head>
     <title>Create Course</title>
 </head>
-<body>
-    <form action="classlist.php" method="post">
-        <h1>Select a course to continue</h1>
-        <select name="courseTitle[]">
-            <option value="0" selected="selected" hidden>Select Course Code</option>
-            <?php
-                foreach($coursetitles as $key => $value) {
-                    echo '<option value='.$coursetitles[$key]['courseCode'].'>'
-                    .$coursetitles[$key]['courseCode']. " - " .$coursetitles[$key]['courseTitle']. '</option>';
-                }?>
-        </select>
-        <input type="submit" name="submit" value="Next">
-    </form>
-    Don't see your course? <a href="php-forms/newcourse.php">Create a new course</a>
+<body class="index">
+    <div class="index-cont">
+    <div class="index-logo">
+        <img src="img/soit-logo.png" alt="SOIT logo" id="soitlogo">
+        <img src="img/soit-white@1x.png" alt="School of Information Technology" id="soit">
+        <img src="img/igrade-white@1x.png" alt="SOIT iGradebook" id="igradebook">
+    </div>
+        <div class="index-box">
+        <form action="classlist.php" method="post">
+            <h1 class="index-text">Select a course to continue</h1>
+            <div class="select-cont">
+            <div class="select">
+            <select name="courseTitle[]">
+                <option value="0" selected="selected" hidden>Select Course Code</option>
+                <?php
+                    foreach($coursetitles as $key => $value) {
+                        echo '<option value='.$coursetitles[$key]['courseCode'].'>'
+                        .$coursetitles[$key]['courseCode']. " - " .$coursetitles[$key]['courseTitle']. '</option>';
+                    }?>
+            </select>
+            </div>
+            </div><br>
+            <input type="submit" name="submit" value="Next" id="index-submit">
+        </form>
+        <p>Don't see your course? <a href="php-forms/newcourse.php">Create a new course</a></p>
+        </div>
+    </div>
 </body>
 </html>
