@@ -22,7 +22,7 @@
         <h1><?php echo $courseCode . " Module 3 - " . $row['modName']?></h1>
         <div class="btn">
         <button onclick="window.location='fa-mod3.php'">Formative Assessment</button>
-        <button onclick="window.location='sa-maxscore.php'">Set Maximum Score</button>
+        <button onclick="window.location='php-forms/maxscore.php'">Set Maximum Score</button>
         <button onclick="window.location='php-forms/assessmentAmt.php'">Set Amount of FA and SA</button>
         </div>
         

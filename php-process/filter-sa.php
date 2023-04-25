@@ -92,6 +92,49 @@ if(isset($_SESSION['filter'])) {
                         <td class="student-data-module"><?php echo $row['60per'];?>%</td>
                     </tr>
                     <?php }?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <th>Total passed</th>
+                        <?php 
+                            $sql = $db->query("SELECT SA1max, SA2max, SA3max FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
+                            $row = $sql->fetch_assoc();
+                            $totalPass1 = $row['SA1max'] * 0.70;
+                            $totalPass2 = $row['SA2max'] * 0.70;
+                            $totalPass3 = $row['SA3max'] * 0.70;
+                            $sql1 = $db->query("SELECT SA1, SA2, SA3 FROM summative WHERE modNum = $modNum AND courseCode = '".$courseCode."' AND section = '".$section."'");
+                            $count = 0;
+                            $count2 = 0;
+                            $count3 = 0;
+                            while($row = $sql1->fetch_assoc()) {
+                                $SA1 = $row['SA1'];
+                                $SA2 = $row['SA2'];
+                                $SA3 = $row['SA3'];
+                                for($i=0;$i<mysqli_num_rows($sql1);$i++) {
+                                    if($SA1>=$totalPass1) {
+                                        $count++;
+                                        break;
+                                    }
+                                }
+                                for($i=0;$i<mysqli_num_rows($sql1);$i++) {
+                                    if($SA2>=$totalPass2) {
+                                        $count2++;
+                                        break;
+                                    }
+                                }
+                                for($i=0;$i<mysqli_num_rows($sql1);$i++) {
+                                    if($SA2>=$totalPass3) {
+                                        $count3++;
+                                        break;
+                                    }
+                                }
+                            }?>
+                        <td><?php echo $count; ?></td>
+                        <td><?php echo $count2; ?></td>
+                        <td><?php echo $count3; ?></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         <?php } else if ($SA == 2) { ?>
@@ -129,6 +172,39 @@ if(isset($_SESSION['filter'])) {
                         <td class="student-data-module"><?php echo $row['60per'];?>%</td>
                     </tr>
                     <?php }?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <th>Total passed</th>
+                        <?php 
+                            $sql = $db->query("SELECT SA1max, SA2max FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
+                            $row = $sql->fetch_assoc();
+                            $totalPass1 = $row['SA1max'] * 0.70;
+                            $totalPass2 = $row['SA2max'] * 0.70;
+                            $sql1 = $db->query("SELECT SA1, SA2 FROM summative WHERE modNum = $modNum AND courseCode = '".$courseCode."' AND section = '".$section."'");
+                            $count = 0;
+                            $count2 = 0;
+                            while($row = $sql1->fetch_assoc()) {
+                                $SA1 = $row['SA1'];
+                                $SA2 = $row['SA2'];
+                                for($i=0;$i<mysqli_num_rows($sql1);$i++) {
+                                    if($SA1>=$totalPass1) {
+                                        $count++;
+                                        break;
+                                    }
+                                }
+                                for($i=0;$i<mysqli_num_rows($sql1);$i++) {
+                                    if($SA2>=$totalPass2) {
+                                        $count2++;
+                                        break;
+                                    }
+                                }
+                            }?>
+                        <td><?php echo $count; ?></td>
+                        <td><?php echo $count2; ?></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
         <?php } else if ($SA == 1) { ?>
@@ -172,11 +248,17 @@ if(isset($_SESSION['filter'])) {
                             $row = $sql->fetch_assoc();
                             $totalPass = $row['SA1max'] * 0.70;
                             $sql1 = $db->query("SELECT SA1 FROM summative WHERE modNum = $modNum AND courseCode = '".$courseCode."' AND section = '".$section."'");
+                            $count = 0;
                             while($row = $sql1->fetch_assoc()) {
                                 $SA1 = $row['SA1'];
+                                for($i=0;$i<mysqli_num_rows($sql1);$i++) {
+                                    if($SA1>=$totalPass) {
+                                        $count++;
+                                        break;
+                                    }
+                                }
                             }
-                            
-                            
+                            echo $count;
                             ?></td>
                         <td></td>
                         <td></td>
