@@ -7,7 +7,7 @@
         require("php/session_start.php");
         require_once("php/dbConfig.php");
         include("php/navbar.php");
-        // include("phpcompute/computeFA.php");
+        include("php-compute/computeFA.php");
         $data = implode($_SESSION['filter']);
     ?>
 </head>
@@ -23,7 +23,7 @@
         <h1><?php echo $courseCode . " Module 2 - " . $row["modName"];?></h1>
         <div class="btn">
         <button onclick="window.location='sa-mod2.php'">Summative Assessment</button>
-        <button onclick="window.location='fa-maxscore.php'">Set Maximum Score</button>
+        <button onclick="window.location='php-forms/maxscore.php'">Set Maximum Score</button>
         <button onclick="window.location='php-forms/assessmentAmt.php'">Set Amount of FA and SA</button>
         </div>
         

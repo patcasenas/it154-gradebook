@@ -297,8 +297,8 @@ textarea {
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     background-color: #EBEBEE;
-    height: 45vh;
+    height: 48.5vh;
     width: 30vw;
-    padding: 3vh 2vw 0vh;
+    padding: 1vh 2vw 0vh;
     border-radius: 2%;
 }

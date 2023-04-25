@@ -163,6 +163,24 @@ if(isset($_SESSION['filter'])) {
                         <td class="student-data-module"><?php echo $row['60per'];?>%</td>
                     </tr>
                     <?php }?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <th>Total passed</th>
+                        <td><?php 
+                            $sql = $db->query("SELECT SA1max FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
+                            $row = $sql->fetch_assoc();
+                            $totalPass = $row['SA1max'] * 0.70;
+                            $sql1 = $db->query("SELECT SA1 FROM summative WHERE modNum = $modNum AND courseCode = '".$courseCode."' AND section = '".$section."'");
+                            while($row = $sql1->fetch_assoc()) {
+                                $SA1 = $row['SA1'];
+                            }
+                            
+                            
+                            ?></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
     <?php }

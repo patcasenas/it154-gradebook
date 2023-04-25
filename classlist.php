@@ -84,7 +84,7 @@ if(isset($_SESSION['courseTitle'])) {
             </tr>
             <?php } }else{ ?>
             <tr>
-                <td colspan="5">No member(s) found...</td>
+                <td colspan="4">No member(s) found...</td>
             </tr>
             <?php } ?>
         </tbody>
@@ -111,6 +111,7 @@ if(isset($_SESSION['courseTitle'])) {
             <div id="editcourse-form">
                 <div id="close-btn" onclick="off()">&times;</div>
                 <form method="post">
+                    <h2>Edit Course and Module Info</h2>
                     <fieldset><br>
                         <legend>Edit Course Info</legend>
                         <label for="courseCodeEdit">Course Code: <input type="text" name="courseCodeEdit"
@@ -126,8 +127,10 @@ if(isset($_SESSION['courseTitle'])) {
                         <input type="text" name="modName[]" value="<?php echo $row['modName']?>"><br><br>
                         <?php }?>
                     </fieldset><br>
-                    <button onclick="off()">Cancel</button>
-                    <input type="submit" value="Save Changes" name="submit">
+                    <div class="index-form-btns">
+                    <button onclick="off()" id="cancel-btn">Cancel</button>
+                    <input type="submit" value="Save" name="submit">
+                    </div>
                 </form>
             </div>
         </div>

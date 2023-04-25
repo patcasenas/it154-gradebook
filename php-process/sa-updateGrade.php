@@ -13,12 +13,14 @@ if(isset($_POST['btn-update'])){
                         SA1 = '".$SA1."', SA2 = '".$SA2."', SA3 = '".$SA3."'
                         WHERE sumID='".$updateid."'";
         mysqli_query($db,$updateGrade);
-    } else {
-      echo "error" . mysqli_error($db);
-    }
-      } 
-    }
+    } 
+      if(!$updateGrade) {
+        echo "error" . mysqli_error($db);
+      } else {
+        echo "<script>alert('Grades have been updated successfully.');</script>";
+        echo "<script>javascript:history.go(-2);</script>";
+      }
+    } 
   }
-  echo "<script>alert('Grades have been updated successfully.');</script>";
-  echo "<script>javascript:history.go(-2);</script>";
+}
 ?>

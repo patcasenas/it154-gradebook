@@ -7,7 +7,7 @@
         require("php/session_start.php");
         require_once("php/dbConfig.php");
         include("php/navbar.php");
-        // include("phpcompute/computeSA.php");
+        include("php-compute/computeSA.php");
     ?>
 </head>
 

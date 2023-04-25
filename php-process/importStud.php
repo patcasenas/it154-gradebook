@@ -42,15 +42,15 @@ if(isset($_POST['importSubmit'])){
     }
 
 }
-$query=$db->query("SELECT studNum FROM studentinfo");
+$query=$db->query("SELECT studNum, section FROM studentinfo");
 while($row = $query->fetch_assoc()){
-    $db->query("INSERT INTO summative (studNum, modNum, courseCode) VALUES ($row[studNum], 1, '".$courseCode."')");
-    $db->query("INSERT INTO summative (studNum, modNum, courseCode) VALUES ($row[studNum], 2, '".$courseCode."')");
-    $db->query("INSERT INTO summative (studNum, modNum, courseCode) VALUES ($row[studNum], 3, '".$courseCode."')");
+    $db->query("INSERT INTO summative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 1, '".$courseCode."', '".$row['section']."')");
+    $db->query("INSERT INTO summative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 2, '".$courseCode."', '".$row['section']."')");
+    $db->query("INSERT INTO summative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 3, '".$courseCode."', '".$row['section']."')");
 
-    $db->query("INSERT INTO formative (studNum, modNum, courseCode) VALUES ($row[studNum], 1, '".$courseCode."')");
-    $db->query("INSERT INTO formative (studNum, modNum, courseCode) VALUES ($row[studNum], 2, '".$courseCode."')");
-    $db->query("INSERT INTO formative (studNum, modNum, courseCode) VALUES ($row[studNum], 3, '".$courseCode."')");
+    $db->query("INSERT INTO formative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 1, '".$courseCode."', '".$row['section']."')");
+    $db->query("INSERT INTO formative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 2, '".$courseCode."', '".$row['section']."')");
+    $db->query("INSERT INTO formative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 3, '".$courseCode."', '".$row['section']."')");
 }
 
 $runAvg = $db->query("SELECT si.studNum, si.courseCode, si.section, si.studProg, s.modNum

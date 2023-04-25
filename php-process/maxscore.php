@@ -126,11 +126,7 @@
             $result = $db->query("UPDATE maxscore SET FA1max = $FA1max WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
         }
 
-        if (!$result) {
-            mysqli_error($db);
-        } else {
             echo "<script>alert('Successfully set')</script>";
             echo "<script>javascript:history.go(-2);</script>";
-        }
     }
 ?>
