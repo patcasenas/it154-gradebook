@@ -20,7 +20,7 @@
 </head>
 <body>
     <h1>Setup OBE Course Assessment</h1>
-    <form action="php-process/setup-obe.php" method="post">
+    <form action="../php-process/obe-print.php" method="post">
         <fieldset>
             <legend>Setup Course</legend>
             <label>Program:&emsp;<select name="program[]">
@@ -32,9 +32,9 @@
                     }
                 ?>
             </select></label><br><br>
-            <label for="SY">SY:&emsp;<input type="number" name="SY"></label>
-            <label for="term">Term:&emsp;<input type="number" name="term" min="1" max="4">Q</label>
-            <label for="courseCode">Course Code:&emsp;<input type="text" value=<?php echo $courseCode?> name="courseCode" readonly></label>
+            <label for="SY">SY:&emsp;20<input type="number" name="SYstart" min="22" value="22">- 20<input type="number" name="SYend" min="23" value="23"></label><br><br>
+            <label for="term">Term:&emsp;<input type="number" name="term" min="1" max="4">Q</label><br><br>
+            <label for="courseCode">Course Code:&emsp;<input type="text" value=<?php echo $courseCode?> name="courseCode" readonly></label><br><br>
             <label for="courseTitle">Course Title:&emsp;<input type="text" value=<?php echo "'".$row['courseTitle']."'"?> name="courseTitle" readonly></label>
         </fieldset><br>
 
