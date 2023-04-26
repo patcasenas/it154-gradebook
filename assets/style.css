@@ -71,6 +71,7 @@ html, body {
     background-image: url(../img/bg-index.png);
     height: inherit;
     width: inherit;
+    background-size: cover;
 }
 .index-cont {
     position: relative;

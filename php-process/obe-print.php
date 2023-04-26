@@ -2,30 +2,6 @@
     require("../fpdf185/fpdf.php");
     require("../php/session_start.php");
     if(isset($_POST['save'])) {
-        $CO1 = $_POST['CO1'];
-        $contribution1 = $_POST['contribution1'];
-        $task1 = $_POST['task1'];
-        $satisfactory1 = $_POST['satisfactory1'];
-        $target1 = $_POST['target1'];
-        $freq1 = $_POST['freq1'];
-        $freqper1 = $_POST['freqper1'];
-        $recommendation1 = $_POST['recommendation1'];
-        $CO2 = $_POST['CO2'];
-        $contribution2 = $_POST['contribution2'];
-        $task2 = $_POST['task2'];
-        $satisfactory2 = $_POST['satisfactory2'];
-        $target2 = $_POST['target2'];
-        $freq2 = $_POST['freq2'];
-        $freqper2 = $_POST['freqper2'];
-        $recommendation2 = $_POST['recommendation2'];
-        $CO3 = $_POST['CO3'];
-        $contribution3 = $_POST['contribution3'];
-        $task3 = $_POST['task3'];
-        $satisfactory3 = $_POST['satisfactory3'];
-        $target3 = $_POST['target3'];
-        $freq3 = $_POST['freq3'];
-        $freqper3 = $_POST['freqper3'];
-        $recommendation3 = $_POST['recommendation3'];
         ob_start();
         class PDF extends FPDF {
             function Header() {
@@ -51,7 +27,6 @@
             }
             function COheader() {
                 $this->SetFont('Arial','B',8);
-                $this->Ln(5);
                 $this->Cell(90);
                 $this->Cell(125,10,"Assessment",1,0,'C');
                 $this->MultiCell(50,5,"No. of Students who Satisfied\n the Outcomes/Quarter",1,'C');
@@ -71,7 +46,7 @@
                 $task1 = $_POST['task1'];
                 $satisfactory1 = $_POST['satisfactory1'];
                 $target1 = $_POST['target1'];
-                $freq1 = $_POST['freq1'];
+                $freq1 = 20;
                 $freqper1 = $_POST['freqper1'];
                 $recommendation1 = $_POST['recommendation1'];
 
@@ -92,21 +67,29 @@
                 $freq3 = $_POST['freq3'];
                 $freqper3 = $_POST['freqper3'];
                 $recommendation3 = $_POST['recommendation3'];
+                $current_x = $this->GetX();
+                $current_y = $this->GetY();
 
                 $this->SetFont('Arial','',8);
                 $this->Cell(10,40,"CO1",1,0,'C');
-                $this->Cell(50,40,$CO1,1,0,'C');
+                $this->MultiCell(50,13.3,$CO1,1,'C');
+                $this->SetXY($current_x+60,$current_y);
                 $this->Cell(30,40,$contribution1,1,0,'C');
                 $this->Cell(40,40,$task1,1,0,'C');
                 $this->Cell(40,40,$satisfactory1,1,0,'C');
                 $this->Cell(45,40,$target1,1,0,'C');
                 $this->Cell(25,40,$freq1,1,0,'C');
                 $this->Cell(25,40,$freqper1,1,0,'C');
-                $this->Cell(20,40,"",1,0,'C');
+                    if($freq1>='21'){
+                $this->Cell(20,40,"Passed",1,0,'C');
+                    } else {
+                $this->Cell(20,40,"Failed",1,0,'C');
+                    }
                 $this->Cell(50,40,$recommendation1,1,1,'C');
 
                 $this->Cell(10,40,"CO2",1,0,'C');
-                $this->Cell(50,40,$CO2,1,0,'C');
+                $this->MultiCell(50,13.3,$CO2,1,'C');
+                $this->SetXY($current_x+60,$current_y+60);
                 $this->Cell(30,40,$contribution2,1,0,'C');
                 $this->Cell(40,40,$task2,1,0,'C');
                 $this->Cell(40,40,$satisfactory2,1,0,'C');
