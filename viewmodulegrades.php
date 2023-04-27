@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <div class="container">
     <h1>View Module Grades</h1>
     <button onclick="window.location.href='php-forms/setup-obe.php'">Setup OBE Course Assessment</button>
     <?php
@@ -38,6 +39,7 @@
         <button name="modbtn" value="2" type="submit">Module 2 Grades</button>
         <button name="modbtn" value="3" type="submit">Module 3 Grades</button>
     </form>
+    </div>
 </body>
 </html>
 

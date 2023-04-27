@@ -37,7 +37,6 @@ if(isset($_SESSION['filter'])) {
     $modNum = session_id();
     if ($section == 0) {
         echo "<script>alert('Select a section from the dropdown')</script>";
-        echo "<script>javascript:history.go(-1);</script>";
     } else {
         echo $section;
     }
@@ -58,25 +57,20 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>SA 1</th>
-                        <th>SA 2</th>
-                        <th>SA 3</th>
-                        <th></th>
-                        <th></th>
+                        <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Student Number</th>
+                        <th rowspan="2">Student Name</th>
+                        <th width="10%">SA 1</th>
+                        <th width="10%">SA 2</th>
+                        <th width="10%">SA 3</th>
+                        <th width="10%" rowspan="2">Average</th>
+                        <th width="10%" rowspan="2">60%</th>
                     </tr>
                     <?php $row = $maxscore->fetch_assoc() ?>
                     <tr>
-                        <th>Program</th>
-                        <th>Student Number</th>
-                        <th>Student Name</th>
                         <th><?php echo $row['SA1max'];?></th>
                         <th><?php echo $row['SA2max']; ?></th>
                         <th><?php echo $row['SA3max'];?></th>
-                        <th>Average</th>
-                        <th>60%</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -141,23 +135,18 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>SA 1</th>
-                        <th>SA 2</th>
-                        <th></th>
-                        <th></th>
+                        <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Student Number</th>
+                        <th rowspan="2">Student Name</th>
+                        <th width="10%">SA 1</th>
+                        <th width="10%">SA 2</th>
+                        <th width="10%" rowspan="2">Average</th>
+                        <th width="10%" rowspan="2">60%</th>
                     </tr>
                     <?php $row = $maxscore->fetch_assoc() ?>
                     <tr>
-                        <th>Program</th>
-                        <th>Student Number</th>
-                        <th>Student Name</th>
                         <th><?php echo $row['SA1max'];?></th>
                         <th><?php echo $row['SA2max']; ?></th>
-                        <th>Average</th>
-                        <th>60%</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -211,21 +200,16 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>SA 1</th>
-                        <th></th>
-                        <th></th>
+                    <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Student Number</th>
+                        <th rowspan="2">Student Name</th>
+                        <th width="20%">SA 1</th>
+                        <th width="10%" rowspan="2">Average</th>
+                        <th width="10%" rowspan="2">60%</th>
                     </tr>
                     <?php $row = $maxscore->fetch_assoc() ?>
                     <tr>
-                        <th>Program</th>
-                        <th>Student Number</th>
-                        <th>Student Name</th>
                         <th><?php echo $row['SA1max'];?></th>
-                        <th>Average</th>
-                        <th>60%</th>
                     </tr>
                 </thead>
                 <tbody>

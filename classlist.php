@@ -10,8 +10,9 @@ if(isset($_SESSION['courseTitle'])) {
     $courseCode = implode($_SESSION['courseTitle']);
     $title = $db->query("SELECT courseTitle FROM courseinfo WHERE courseCode = '".$courseCode."'");
     $row = mysqli_fetch_assoc($title);
-    echo "<h1>" . $row['courseTitle'] . "</h1>\n";
-
+    echo '<div class="courseTitle">';
+    echo $row['courseTitle'];
+    echo '</div>';
     // If user does not choose course, show this
     if ($courseCode == 0) {
         echo "<script>alert('Select an option from the dropdown')</script>";
@@ -55,17 +56,24 @@ if(isset($_SESSION['courseTitle'])) {
 </head>
 
 <body>
+    <div class="container">
     <?php if(!empty($statusMsg)) {
                 echo "<script>alert('$statusType! $statusMsg');</script>";
             }?>
-    <p>Found a mistake? <button onclick="on()">Edit Course</button>
+    <!-- Deletes students from table -->
+    <div class="delete-list">
+        <button onclick="on()" id="edit-btn">Edit Course Info</button>
+        <form method="post" onsubmit="return confirm('Danger! This action removes all students from this course.')">
+            <input type="submit" value="Reset Class List" name="truncate">
+        </form>
+    </div>
     <table class="students-table">
         <thead>
             <tr>
-                <th>Program</th>
+                <th width=20%>Program</th>
                 <th>Student Name</th>
-                <th>Student Number</th>
-                <th>Section</th>
+                <th width=20%>Student Number</th>
+                <th width=10%>Section</th>
             </tr>
         </thead>
         <tbody>
@@ -90,16 +98,12 @@ if(isset($_SESSION['courseTitle'])) {
         </tbody>
     </table>
     <!-- Import link -->
-    <div class="import-btn-cont">
+    <div class="upload-list">
         <form action="php-process/importStud.php" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" />
-            <input type="submit" class="import-btn" name="importSubmit" value="IMPORT">
-        </form><br>
-        <!-- Deletes students from table -->
-        <form method="post" onsubmit="return confirm('Danger! This action removes all students from the database.')">
-            <input type="submit" value="Delete students" name="truncate">
+            <input type="file" name="file" /><br>
+        </div>
+            <button type="submit" name="importSubmit" class="import-btn"><span class="material-symbols-rounded">cloud_upload</span>&emsp;IMPORT</button>
         </form>
-        </table>
         <?php }
 }
     $editCourse = $db->query("SELECT * FROM courseinfo WHERE courseCode = '".$courseCode."'");
@@ -143,6 +147,7 @@ if(isset($_SESSION['courseTitle'])) {
             document.getElementById("overlay").style.display = "none";
         }
         </script>
+    </div>
 </body>
 
 </html>

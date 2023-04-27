@@ -5,6 +5,7 @@ html, body {
     height: 100%;
     background-color: #EBEBEE;
     font-family: 'Roboto';
+    scroll-behavior: smooth;
 }
 /* Navigation Bar */
 .nav {
@@ -61,7 +62,8 @@ html, body {
 /* General Container */
 .container {
 	padding: 0;
-	width: 100%;
+    margin: 0 1% 1% 1%;
+	width: auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -159,20 +161,28 @@ select::-ms-expand {
     pointer-events: none;
 }
 .select:hover::after {
-    color: #031D45;
+    color: #17345f;
 }
 /* Select course submit btn */
 #index-submit {
-    background-color: #34495e;
+    background-color: #354a5f;
     border: none;
     color: #EBEBEE;
-    padding: 1em 3em 1em 3em;
+    padding: 1vh 1vw;
     font-size: 1em;
-    border-radius: 2%;
+    font-weight: 600;
+    border-radius: 43px 43px 43px 43px;
+    -webkit-border-radius: 43px 43px 43px 43px;
+    -moz-border-radius: 43px 43px 43px 43px;
+    width: 40%;
+    letter-spacing: 0.12em;
 }
 #index-submit:hover {
     cursor: pointer;
-    background-color: #04347c;
+    background-color: #17345f;
+}
+#index-submit:hover:active {
+    font-size: 0.95em;
 }
 /* New course button */
 #newcourse-btn {
@@ -205,8 +215,6 @@ select::-ms-expand {
     position: fixed;
     right: 5%;
     font-size: 1.5em;
-    border: black;
-    border-radius: 100%;
     cursor: pointer;
 }
 #newcourse-form {
@@ -256,6 +264,9 @@ select::-ms-expand {
     font-size: 1em;
     border-radius: 5%;
     letter-spacing: 0.05em;
+    border-radius: 43px 43px 43px 43px;
+    -webkit-border-radius: 43px 43px 43px 43px;
+    -moz-border-radius: 43px 43px 43px 43px;
 }
 #cancel-btn {
     background-color: #858585;
@@ -269,9 +280,24 @@ select::-ms-expand {
     letter-spacing: 0.05em;
     margin: 0 0.5vw 0 0;
     border:none;
+    border-radius: 43px 43px 43px 43px;
+    -webkit-border-radius: 43px 43px 43px 43px;
+    -moz-border-radius: 43px 43px 43px 43px;
 }
-.index-form-btns input[type=submit], #cancel-btn {
+.index-form-btns input[type=submit]:hover, #cancel-btn:hover {
     cursor: pointer;
+    box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+    -webkit-box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+    -moz-box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+}
+.index-form-btns input[type=submit]:hover:active, #cancel-btn:hover:active {
+    font-size: 0.95em;
+}
+.courseTitle {
+    margin: 1% 1%;
+    font-size: 2em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
 }
 /* Table display */
 .students-table th,td {
@@ -283,7 +309,7 @@ select::-ms-expand {
     table-layout: fixed;
     box-shadow: 0px 0px 10px #858585;
     width: 80%;
-    margin: 2vh auto 5vh auto;
+    margin: 0 auto 2vh auto;
 }
 input[type=number] {
     width: 4em;
@@ -302,4 +328,102 @@ textarea {
     width: 30vw;
     padding: 1vh 2vw 0vh;
     border-radius: 2%;
+}
+#edit-btn {
+    background-color: #031d45;
+    border: none;
+    font-size: 0.9em;
+    padding: 1vh;
+    color: #EBEBEE;
+    width: 7vw;
+    height: 4vh;
+    border-radius: 43px 43px 43px 43px;
+    -webkit-border-radius: 43px 43px 43px 43px;
+    -moz-border-radius: 43px 43px 43px 43px;
+}
+#edit-btn:hover {
+    cursor: pointer;
+    box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+    -webkit-box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+    -moz-box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+}
+#edit-btn:hover:active {
+    font-size: 0.85em;
+}
+/* Delete Button */
+.delete-list {
+    display: flex;
+    justify-content: end;
+    width: 90%;
+}
+.delete-list input[type="submit"] {
+    border: none;
+    border-radius: 43px 43px 43px 43px;
+    -webkit-border-radius: 43px 43px 43px 43px;
+    -moz-border-radius: 43px 43px 43px 43px;
+    background-color: #a8101d;
+    height: 4vh;
+    width: 8vw;
+    padding: 1vh;
+    color: #EBEBEE;
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+    margin: 0vh 0vw 0vh 1vw;
+}
+.delete-list input[type="submit"]:hover {
+    cursor: pointer;
+    box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+    -webkit-box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+    -moz-box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+}
+.delete-list input[type="submit"]:hover:active {
+    font-size: 0.85em;
+}
+/* Select file btn */
+.upload-list {
+    margin: 0 10% 1vh;
+    padding: 1vh 1vw 0;
+    width: 78%;
+    box-shadow: 0px 0px 65px -18px rgba(0,0,0,0.59) inset;
+    -webkit-box-shadow: 1px 1px 65px -18px rgba(0,0,0,0.59) inset;
+    -moz-box-shadow: 1px 1px 65px -18px rgba(0,0,0,0.59) inset;
+}
+.custom-file-input {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+/* Import btn */
+.import-btn {
+    width: 9vw;
+    margin: 0vh 0px 1vh 10%;
+    border: none;
+    background-color: #57912b;
+    line-height: 3em;
+    font-weight: 600;
+    font-size: 0.8em;
+    letter-spacing: 0.07em;
+    color: #EBEBEE;
+    border-radius: 43px 43px 43px 43px;
+    -webkit-border-radius: 43px 43px 43px 43px;
+    -moz-border-radius: 43px 43px 43px 43px;
+}
+.import-btn:hover {
+    cursor: pointer;
+    box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+    -webkit-box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+    -moz-box-shadow: -5px -2px 67px -10px rgba(0,0,0,0.48) inset;
+}
+.import-btn:hover:active {
+    font-size: 0.75em;
+}
+.material-symbols-rounded {
+    vertical-align: middle;
+    transform: scale(1.2);
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 200,
+    'opsz' 40
 }

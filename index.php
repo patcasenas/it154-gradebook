@@ -38,7 +38,7 @@
                     </select>
                 </div>
             </div><br>
-            <input type="submit" name="submit" value="Login" id="index-submit">
+            <input type="submit" name="submit" value="LOGIN" id="index-submit">
         </form>
         <p>Can't find your course? <button onclick="on()" id="newcourse-btn">Create a new course</button></p>
         </div>

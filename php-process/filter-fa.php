@@ -38,7 +38,6 @@ if(isset($_SESSION['filter'])) {
     // echo $modID;
     if ($section == 0) {
         echo "<script>alert('Select a section from the dropdown')</script>";
-        // echo "<script>javascript:history.go(-1);</script>";
     } else {
         echo $section;
     }
@@ -58,27 +57,24 @@ if(isset($_SESSION['filter'])) {
         <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th>FA 2</th>
-                    <th>FA 3</th>
-                    <th>FA 4</th>
-                    <th>FA 5</th>
-                    <th>FA 6</th>
-                    <th>FA 7</th>
-                    <th>FA 8</th>
-                    <th>FA 9</th>
-                    <th>FA 10</th>
-                    <th></th>
-                    <th></th>
+                    <th width="5%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="5%">FA 1</th>
+                    <th width="5%">FA 2</th>
+                    <th width="5%">FA 3</th>
+                    <th width="5%">FA 4</th>
+                    <th width="5%">FA 5</th>
+                    <th width="5%">FA 6</th>
+                    <th width="5%">FA 7</th>
+                    <th width="5%">FA 8</th>
+                    <th width="5%">FA 9</th>
+                    <th width="5%">FA 10</th>
+                    <th width="5%" rowspan="2">Average</th>
+                    <th width="5%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
                     <th><?php echo $row['FA2max']?></th>
                     <th><?php echo $row['FA3max']?></th>
@@ -89,8 +85,6 @@ if(isset($_SESSION['filter'])) {
                     <th><?php echo $row['FA8max']?></th>
                     <th><?php echo $row['FA9max']?></th>
                     <th><?php echo $row['FA10max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
@@ -120,26 +114,23 @@ if(isset($_SESSION['filter'])) {
         <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th>FA 2</th>
-                    <th>FA 3</th>
-                    <th>FA 4</th>
-                    <th>FA 5</th>
-                    <th>FA 6</th>
-                    <th>FA 7</th>
-                    <th>FA 8</th>
-                    <th>FA 9</th>
-                    <th></th>
-                    <th></th>
+                    <th width="5%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="5%">FA 1</th>
+                    <th width="5%">FA 2</th>
+                    <th width="5%">FA 3</th>
+                    <th width="5%">FA 4</th>
+                    <th width="5%">FA 5</th>
+                    <th width="5%">FA 6</th>
+                    <th width="5%">FA 7</th>
+                    <th width="5%">FA 8</th>
+                    <th width="5%">FA 9</th>
+                    <th width="5%" rowspan="2">Average</th>
+                    <th width="5%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
                     <th><?php echo $row['FA2max']?></th>
                     <th><?php echo $row['FA3max']?></th>
@@ -149,8 +140,6 @@ if(isset($_SESSION['filter'])) {
                     <th><?php echo $row['FA7max']?></th>
                     <th><?php echo $row['FA8max']?></th>
                     <th><?php echo $row['FA9max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
@@ -178,25 +167,22 @@ if(isset($_SESSION['filter'])) {
         <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th>FA 2</th>
-                    <th>FA 3</th>
-                    <th>FA 4</th>
-                    <th>FA 5</th>
-                    <th>FA 6</th>
-                    <th>FA 7</th>
-                    <th>FA 8</th>
-                    <th></th>
-                    <th></th>
+                <th width="5%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="5%">FA 1</th>
+                    <th width="5%">FA 2</th>
+                    <th width="5%">FA 3</th>
+                    <th width="5%">FA 4</th>
+                    <th width="5%">FA 5</th>
+                    <th width="5%">FA 6</th>
+                    <th width="5%">FA 7</th>
+                    <th width="5%">FA 8</th>
+                    <th width="10%" rowspan="2">Average</th>
+                    <th width="10%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
                     <th><?php echo $row['FA2max']?></th>
                     <th><?php echo $row['FA3max']?></th>
@@ -205,8 +191,6 @@ if(isset($_SESSION['filter'])) {
                     <th><?php echo $row['FA6max']?></th>
                     <th><?php echo $row['FA7max']?></th>
                     <th><?php echo $row['FA8max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
@@ -233,24 +217,21 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th>FA 2</th>
-                    <th>FA 3</th>
-                    <th>FA 4</th>
-                    <th>FA 5</th>
-                    <th>FA 6</th>
-                    <th>FA 7</th>
-                    <th></th>
-                    <th></th>
+                <th width="5%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="5%">FA 1</th>
+                    <th width="5%">FA 2</th>
+                    <th width="5%">FA 3</th>
+                    <th width="5%">FA 4</th>
+                    <th width="5%">FA 5</th>
+                    <th width="5%">FA 6</th>
+                    <th width="5%">FA 7</th>
+                    <th width="10%" rowspan="2">Average</th>
+                    <th width="10%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
                     <th><?php echo $row['FA2max']?></th>
                     <th><?php echo $row['FA3max']?></th>
@@ -258,8 +239,6 @@ if(isset($_SESSION['filter'])) {
                     <th><?php echo $row['FA5max']?></th>
                     <th><?php echo $row['FA6max']?></th>
                     <th><?php echo $row['FA7max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
@@ -285,31 +264,26 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th>FA 2</th>
-                    <th>FA 3</th>
-                    <th>FA 4</th>
-                    <th>FA 5</th>
-                    <th>FA 6</th>
-                    <th></th>
-                    <th></th>
+                    <th width="10%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="5%">FA 1</th>
+                    <th width="5%">FA 2</th>
+                    <th width="5%">FA 3</th>
+                    <th width="5%">FA 4</th>
+                    <th width="5%">FA 5</th>
+                    <th width="5%">FA 6</th>
+                    <th width="10%" rowspan="2">Average</th>
+                    <th width="10%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
                     <th><?php echo $row['FA2max']?></th>
                     <th><?php echo $row['FA3max']?></th>
                     <th><?php echo $row['FA4max']?></th>
                     <th><?php echo $row['FA5max']?></th>
                     <th><?php echo $row['FA6max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
@@ -334,29 +308,24 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th>FA 2</th>
-                    <th>FA 3</th>
-                    <th>FA 4</th>
-                    <th>FA 5</th>
-                    <th></th>
-                    <th></th>
+                    <th width="10%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="5%">FA 1</th>
+                    <th width="5%">FA 2</th>
+                    <th width="5%">FA 3</th>
+                    <th width="5%">FA 4</th>
+                    <th width="5%">FA 5</th>
+                    <th width="10%" rowspan="2">Average</th>
+                    <th width="10%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
                     <th><?php echo $row['FA2max']?></th>
                     <th><?php echo $row['FA3max']?></th>
                     <th><?php echo $row['FA4max']?></th>
                     <th><?php echo $row['FA5max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
@@ -380,27 +349,22 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th>FA 2</th>
-                    <th>FA 3</th>
-                    <th>FA 4</th>
-                    <th></th>
-                    <th></th>
+                <th width="10%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="5%">FA 1</th>
+                    <th width="5%">FA 2</th>
+                    <th width="5%">FA 3</th>
+                    <th width="5%">FA 4</th>
+                    <th width="10%" rowspan="2">Average</th>
+                    <th width="10%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
                     <th><?php echo $row['FA2max']?></th>
                     <th><?php echo $row['FA3max']?></th>
                     <th><?php echo $row['FA4max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
@@ -423,25 +387,20 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th>FA 2</th>
-                    <th>FA 3</th>
-                    <th></th>
-                    <th></th>
+                    <th width="10%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="10%">FA 1</th>
+                    <th width="10%">FA 2</th>
+                    <th width="10%">FA 3</th>
+                    <th width="10%" rowspan="2">Average</th>
+                    <th width="10%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
                     <th><?php echo $row['FA2max']?></th>
                     <th><?php echo $row['FA3max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
@@ -463,23 +422,18 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th>FA 2</th>
-                    <th></th>
-                    <th></th>
+                    <th width="10%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="10%">FA 1</th>
+                    <th width="10%">FA 2</th>
+                    <th width="10%" rowspan="2">Average</th>
+                    <th width="10%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
                     <th><?php echo $row['FA2max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
@@ -500,21 +454,16 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
             <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>FA 1</th>
-                    <th></th>
-                    <th></th>
+                <th width="10%" rowspan="2">Program</th>
+                    <th width="10%" rowspan="2">Student Number</th>
+                    <th rowspan="2">Student Name</th>
+                    <th width="20%">FA 1</th>
+                    <th width="10%" rowspan="2">Average</th>
+                    <th width="10%" rowspan="2">40%</th>
                 </tr>
             <?php $row = $maxscore->fetch_assoc() ?>
                 <tr>
-                    <th>Program</th>
-                    <th>Student Number</th>
-                    <th>Student Name</th>
                     <th><?php echo $row['FA1max']?></th>
-                    <th>Average</th>
-                    <th>40%</th>
                 </tr>
             </thead>
             <tbody>
