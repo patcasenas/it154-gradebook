@@ -34,89 +34,116 @@
                 $this->Cell(30,10,"Contribution to SO",1,0,'C');
                 $this->Cell(40,10,"Assessment Task",1,0,'C');
                 $this->Cell(40,10,"Min. Satisfactory(%)",1,0,'C');
-                $this->Cell(45,10,"Target No of Students Passed",1,0,'C');
+                $this->Cell(45,10,"Target No of Students Passed (%)",1,0,'C');
                 $this->Cell(25,10,"Freq",1,0,'C');
                 $this->Cell(25,10,"%",1,0,'C');
                 $this->Cell(20,10,"Remarks",1,0,'C');
                 $this->Cell(50,10,"Recommendation",1,1,'C');
             }
-            function CObody() {
+            function CO1() {
                 $CO1 = $_POST['CO1'];
                 $contribution1 = $_POST['contribution1'];
                 $task1 = $_POST['task1'];
                 $satisfactory1 = $_POST['satisfactory1'];
                 $target1 = $_POST['target1'];
                 $freq1 = 20;
-                $freqper1 = $_POST['freqper1'];
+                // $freqper1 = $_POST['freqper1'];
                 $recommendation1 = $_POST['recommendation1'];
-
-                $CO2 = $_POST['CO2'];
-                $contribution2 = $_POST['contribution2'];
-                $task2 = $_POST['task2'];
-                $satisfactory2 = $_POST['satisfactory2'];
-                $target2 = $_POST['target2'];
-                $freq2 = $_POST['freq2'];
-                $freqper2 = $_POST['freqper2'];
-                $recommendation2 = $_POST['recommendation2'];
-
-                $CO3 = $_POST['CO3'];
-                $contribution3 = $_POST['contribution3'];
-                $task3 = $_POST['task3'];
-                $satisfactory3 = $_POST['satisfactory3'];
-                $target3 = $_POST['target3'];
-                $freq3 = $_POST['freq3'];
-                $freqper3 = $_POST['freqper3'];
-                $recommendation3 = $_POST['recommendation3'];
-                $current_x = $this->GetX();
-                $current_y = $this->GetY();
+                $compute_x = $this->getX();
+                $compute_y = $this->getY();
 
                 $this->SetFont('Arial','',8);
                 $this->Cell(10,40,"CO1",1,0,'C');
-                $this->MultiCell(50,13.3,$CO1,1,'C');
-                $this->SetXY($current_x+60,$current_y);
+                $this->Cell(50,40,"",1,'C');
+                $this->SetXY($compute_x+10,$compute_y);
+                $this->MultiCell(50,13.3,$CO1,0,'L');
+                $this->SetXY($compute_x+60,$compute_y);
                 $this->Cell(30,40,$contribution1,1,0,'C');
                 $this->Cell(40,40,$task1,1,0,'C');
                 $this->Cell(40,40,$satisfactory1,1,0,'C');
                 $this->Cell(45,40,$target1,1,0,'C');
                 $this->Cell(25,40,$freq1,1,0,'C');
-                $this->Cell(25,40,$freqper1,1,0,'C');
+                $this->Cell(25,40,"",1,0,'C');
                     if($freq1>='21'){
                 $this->Cell(20,40,"Passed",1,0,'C');
                     } else {
                 $this->Cell(20,40,"Failed",1,0,'C');
                     }
-                $this->Cell(50,40,$recommendation1,1,1,'C');
-
+                $x = $this->GetX();
+                $y = $this->GetY();
+                $this->MultiCell(50,13.3,$recommendation1,0,'L');
+                $this->SetXY($x,$y);
+                $this->Cell(50,40,"",1,1);
+            }
+            function CO2() {
+                $CO2 = $_POST['CO2'];
+                $contribution2 = $_POST['contribution2'];
+                $task2 = $_POST['task2'];
+                $satisfactory2 = $_POST['satisfactory2'];
+                $target2 = $_POST['target2'];
+                // $freq2 = $_POST['freq2'];
+                // $freqper2 = $_POST['freqper2'];
+                $recommendation2 = $_POST['recommendation2'];
+                $compute_x = $this->GetX();
+                $compute_y = $this->GetY();
+                
                 $this->Cell(10,40,"CO2",1,0,'C');
-                $this->MultiCell(50,13.3,$CO2,1,'C');
-                $this->SetXY($current_x+60,$current_y+60);
+                $this->Cell(50,40,"",1);
+                $this->SetXY($compute_x+10,$compute_y);
+                $this->MultiCell(50,13.3,$CO2,0,'L');
+                $this->SetXY($compute_x+60,$compute_y);
                 $this->Cell(30,40,$contribution2,1,0,'C');
                 $this->Cell(40,40,$task2,1,0,'C');
                 $this->Cell(40,40,$satisfactory2,1,0,'C');
                 $this->Cell(45,40,$target2,1,0,'C');
-                $this->Cell(25,40,$freq2,1,0,'C');
-                $this->Cell(25,40,$freqper2,1,0,'C');
+                $this->Cell(25,40,"",1,0,'C');
+                $this->Cell(25,40,"",1,0,'C');
                 $this->Cell(20,40,"",1,0,'C');
-                $this->Cell(50,40,$recommendation2,1,1,'C');
+                $x = $this->GetX();
+                $y = $this->GetY();
+                $this->MultiCell(50,13.3,$recommendation2,0,'L');
+                $this->SetXY($x,$y);
+                $this->Cell(50,40,"",1,1);
+            }
+            function CO3(){
+                $CO3 = $_POST['CO3'];
+                $contribution3 = $_POST['contribution3'];
+                $task3 = $_POST['task3'];
+                $satisfactory3 = $_POST['satisfactory3'];
+                $target3 = $_POST['target3'];
+                // $freq3 = $_POST['freq3'];
+                // $freqper3 = $_POST['freqper3'];
+                $recommendation3 = $_POST['recommendation3'];
+                $compute_x = $this->getX();
+                $compute_y = $this->getY();
 
                 $this->Cell(10,40,"CO3",1,0,'C');
-                $this->Cell(50,40,$CO3,1,0,'C');
+                $this->Cell(50,40,"",1,'C');
+                $this->SetXY($compute_x+10,$compute_y);
+                $this->MultiCell(50,13.3,$CO3,0,'L');
+                $this->SetXY($compute_x+60,$compute_y);
                 $this->Cell(30,40,$contribution3,1,0,'C');
                 $this->Cell(40,40,$task3,1,0,'C');
                 $this->Cell(40,40,$satisfactory3,1,0,'C');
                 $this->Cell(45,40,$target3,1,0,'C');
-                $this->Cell(25,40,$freq3,1,0,'C');
-                $this->Cell(25,40,$freqper3,1,0,'C');
+                $this->Cell(25,40,"",1,0,'C');
+                $this->Cell(25,40,"",1,0,'C');
                 $this->Cell(20,40,"",1,0,'C');
-                $this->Cell(50,40,$recommendation3,1,1,'C');
+                $x = $this->GetX();
+                $y = $this->GetY();
+                $this->MultiCell(50,13.3,$recommendation3,0,'L');
+                $this->SetXY($x,$y);
+                $this->Cell(50,40,"",1,1);
             }
         }
         $pdf = new PDF();
         $pdf->AddPage('L','Legal');
         $pdf->CourseInfo();
         $pdf->COheader();
-        $pdf->CObody();
-        $pdf->Output();
+        $pdf->CO1();
+        $pdf->CO2();
+        $pdf->CO3();
+        $pdf->Output('I','OBE Course Assessment.pdf');
         ob_flush();
     }
 ?>

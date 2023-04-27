@@ -85,8 +85,8 @@ html, body {
     width: inherit;
 }
 .index-box {
-    width: 25vw;
-    height: 30vh;
+    width: 25%;
+    height: 30%;
     background-color: rgba(0, 0, 0, 0.404);
     display: flex;
     flex-direction: column;
@@ -95,7 +95,7 @@ html, body {
 .index-text {
     font-weight: 500;
     align-self: flex-start;
-    font-size: 2em;
+    font-size: 1.5em;
     letter-spacing: 0.05em;
 }
 /* Index logo size */
@@ -216,8 +216,8 @@ select::-ms-expand {
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     background-color: #EBEBEE;
-    width: 25vw;
-    height: 51vh;
+    width: 25%;
+    height: 51%;
     color: #1b1b1b;
     padding: 10 20 5;
     border-radius: 3%;

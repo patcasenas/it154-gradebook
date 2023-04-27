@@ -21,7 +21,7 @@
 </head>
 <body>
     <h1>Setup OBE Course Assessment</h1>
-    <form action="../php-process/obe-print.php" method="post">
+    <form action="../php-process/obe-print.php" method="post" target='_blank'>
         <fieldset>
             <legend>Setup Course</legend>
             <label>Program:&emsp;<select name="program[]">
