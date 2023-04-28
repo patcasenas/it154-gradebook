@@ -97,12 +97,13 @@ if(isset($_SESSION['courseTitle'])) {
             <?php } ?>
         </tbody>
     </table>
+    </div>
     <!-- Import link -->
     <div class="upload-list">
         <form action="php-process/importStud.php" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" /><br>
-        </div>
+            <input type="file" name="file" />
             <button type="submit" name="importSubmit" class="import-btn"><span class="material-symbols-rounded">cloud_upload</span>&emsp;IMPORT</button>
+        </div>
         </form>
         <?php }
 }
@@ -147,7 +148,5 @@ if(isset($_SESSION['courseTitle'])) {
             document.getElementById("overlay").style.display = "none";
         }
         </script>
-    </div>
 </body>
-
 </html>
