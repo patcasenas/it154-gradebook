@@ -13,17 +13,19 @@ if(mysqli_num_rows($result)>0){
 <html>
 
 <body>
-    <form method="get">
-        <select name="section[]">
-            <option value="0" selected="selected" hidden>Filter Sections</option>
-            <?php
-                foreach($sections as $key => $value) {
-                    echo '<option value='.$sections[$key]['section'] . '>' . 
-                    $sections[$key]['section'] . '</option>';
-                }?>
-        </select>
-        <input type="submit" name="submit" value="Filter">
-    </form> 
+    <div class="select-section">
+        <form method="get">
+            <select name="section[]">
+                <option value="0" selected="selected" hidden>Filter Sections</option>
+                <?php
+                    foreach($sections as $key => $value) {
+                        echo '<option value='.$sections[$key]['section'] . '>' . '&#160;'.
+                        $sections[$key]['section'] . '</option>';
+                    }?>
+            </select>
+            <input type="submit" name="submit" value="Filter">
+        </form>
+    </div>
 </body>
 
 </html>

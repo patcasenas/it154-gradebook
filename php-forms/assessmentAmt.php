@@ -1,7 +1,7 @@
 <?php
-    require ("../php/navbar.php");
-    require_once("../php/dbConfig.php");
     include("../php/session_start.php");
+    require_once("../php/dbConfig.php");
+    require ("../php/navbar.php");
 
     $modNum = session_id();
 ?>

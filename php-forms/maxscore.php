@@ -1,7 +1,8 @@
 <?php
-    require("../php/dbConfig.php");
-    include("../php/navbar.php");
     require_once("../php/session_start.php");
+    require("../php/dbConfig.php");
+    $courseCode = implode($_SESSION['courseTitle']);
+    include("../php/navbar.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,6 @@
 <body>
     <?php $modNum = session_id();?>
         <?php
-            $courseCode = implode($_SESSION['courseTitle']);
             $modTitle = $db->query("SELECT modName FROM moduleinfo WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
             $tblamt = $db->query("SELECT * FROM tblamt WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
             $row = $modTitle->fetch_assoc();

@@ -1,9 +1,9 @@
 <?php
     require_once("php/dbConfig.php");
     include("php-compute/grades.php");
-    include("php/navbar.php");
     include("php/session_start.php");
     $courseCode = implode($_SESSION['courseTitle']);
+    include("php/navbar.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="container">
     <h1>View Module Grades</h1>
     <button onclick="window.location.href='php-forms/setup-obe.php'">Setup OBE Course Assessment</button>
     <?php

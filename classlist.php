@@ -1,18 +1,13 @@
 <?php
 session_start();
 require_once("php/dbConfig.php");
-include("php/navbar.php");
 if(isset($_POST['submit'])) {
     $_SESSION['courseTitle'] = $_POST['courseTitle'] ;
 }
 if(isset($_SESSION['courseTitle'])) {
     // Displays course title
     $courseCode = implode($_SESSION['courseTitle']);
-    $title = $db->query("SELECT courseTitle FROM courseinfo WHERE courseCode = '".$courseCode."'");
-    $row = mysqli_fetch_assoc($title);
-    echo '<div class="courseTitle">';
-    echo $row['courseTitle'];
-    echo '</div>';
+    include("php/navbar.php");
     // If user does not choose course, show this
     if ($courseCode == 0) {
         echo "<script>alert('Select an option from the dropdown')</script>";
@@ -56,55 +51,56 @@ if(isset($_SESSION['courseTitle'])) {
 </head>
 
 <body>
-    <div class="container">
-    <?php if(!empty($statusMsg)) {
-                echo "<script>alert('$statusType! $statusMsg');</script>";
-            }?>
-    <!-- Deletes students from table -->
-    <div class="delete-list">
-        <button onclick="on()" id="edit-btn">Edit Course Info</button>
-        <form method="post" onsubmit="return confirm('Danger! This action removes all students from this course.')">
-            <input type="submit" value="Reset Class List" name="truncate">
-        </form>
-    </div>
-    <table class="students-table">
-        <thead>
-            <tr>
-                <th width=20%>Program</th>
-                <th>Student Name</th>
-                <th width=20%>Student Number</th>
-                <th width=10%>Section</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                // Display rows
-                $result = $db->query("SELECT * FROM studentinfo WHERE courseCode = '".$courseCode."' ORDER BY section ASC");
+    <div class="container" id="container">
+        <span class="title">Class List</span>
+        <?php if(!empty($statusMsg)) {
+            echo "<script>alert('$statusType! $statusMsg');</script>";
+        }?>
+        <!-- Deletes students from table -->
+        <div class="delete-list" id="delete-list">
+            <button onclick="on()" id="edit-btn">Edit Course Info</button>
+            <form method="post" onsubmit="return confirm('Danger! This action removes all students from this course.')">
+                <input type="submit" value="Empty Class List" name="truncate">
+            </form>
+        </div>
+        <table class="students-table" id="students-table">
+            <thead>
+                <tr>
+                    <th width=20%>Program</th>
+                    <th>Student Name</th>
+                    <th width=20%>Student Number</th>
+                    <th width=10%>Section</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    // Display rows
+                    $result = $db->query("SELECT * FROM studentinfo WHERE courseCode = '".$courseCode."' ORDER BY section ASC");
 
-                if($result != false && $result->num_rows > 0){
-                    while($row = $result->fetch_assoc()){
-                ?>
-            <tr>
-                <td><?php echo $row['studProg']; ?></td>
-                <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
-                <td><?php echo $row['studNum']; ?></td>
-                <td><?php echo $row['section']; ?></td>
-            </tr>
-            <?php } }else{ ?>
-            <tr>
-                <td colspan="4">No member(s) found...</td>
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-    </div>
+                    if($result != false && $result->num_rows > 0){
+                        while($row = $result->fetch_assoc()){
+                    ?>
+                <tr>
+                    <td><?php echo $row['studProg']; ?></td>
+                    <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+                    <td><?php echo $row['studNum']; ?></td>
+                    <td><?php echo $row['section']; ?></td>
+                </tr>
+                <?php } }else{ ?>
+                <tr>
+                    <td colspan="4">No member(s) found...</td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     <!-- Import link -->
-    <div class="upload-list">
+    <div class="upload-list" id="upload-list">
         <form action="php-process/importStud.php" method="post" enctype="multipart/form-data">
             <input type="file" name="file" />
             <button type="submit" name="importSubmit" class="import-btn"><span class="material-symbols-rounded">cloud_upload</span>&emsp;IMPORT</button>
         </div>
         </form>
+    </div>
         <?php }
 }
     $editCourse = $db->query("SELECT * FROM courseinfo WHERE courseCode = '".$courseCode."'");
