@@ -39,11 +39,8 @@ if(isset($_SESSION['filter'])) {
     $modNum = session_id();
     if ($section == 0) {
         echo "<script>alert('Select a section from the dropdown')</script>";
-    } else {
-        echo $section;
-    }
-
-        $studData = $db->query("SELECT s.sumID, s.modNum, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg 
+    } 
+        $studData = $db->query("SELECT s.sumID, s.section, s.modNum, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg 
                                 FROM summative AS s 
                                 LEFT JOIN studentinfo AS si ON s.studNum = si.studNum 
                                 WHERE si.section IN ('$section') AND s.modNum = $modNum AND s.courseCode = '".$courseCode."'
@@ -60,6 +57,7 @@ if(isset($_SESSION['filter'])) {
                 <thead>
                     <tr>
                         <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Section</th>
                         <th width="10%" rowspan="2">Student Number</th>
                         <th rowspan="2">Student Name</th>
                         <th width="10%">SA 1</th>
@@ -79,6 +77,7 @@ if(isset($_SESSION['filter'])) {
                 <?php while($row = $studData->fetch_assoc()) {?>
                     <tr>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
+                        <td class="student-data-module"><?php echo $row['section'];?></td>
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>
                         <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
                         <td class="student-data-module"><?php echo $row['SA1'];?></td>
@@ -89,6 +88,7 @@ if(isset($_SESSION['filter'])) {
                     </tr>
                     <?php }?>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <th>Total passed</th>
@@ -138,6 +138,7 @@ if(isset($_SESSION['filter'])) {
                 <thead>
                     <tr>
                         <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Section</th>
                         <th width="10%" rowspan="2">Student Number</th>
                         <th rowspan="2">Student Name</th>
                         <th width="10%">SA 1</th>
@@ -155,6 +156,7 @@ if(isset($_SESSION['filter'])) {
                 <?php while($row = $studData->fetch_assoc()) {?>
                     <tr>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
+                        <td class="student-data-module"><?php echo $row['section'];?></td>
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>
                         <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
                         <td class="student-data-module"><?php echo $row['SA1'];?></td>
@@ -164,6 +166,7 @@ if(isset($_SESSION['filter'])) {
                     </tr>
                     <?php }?>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <th>Total passed</th>
@@ -202,7 +205,8 @@ if(isset($_SESSION['filter'])) {
             <table class="students-table">
                 <thead>
                     <tr>
-                    <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Section</th>
                         <th width="10%" rowspan="2">Student Number</th>
                         <th rowspan="2">Student Name</th>
                         <th width="20%">SA 1</th>
@@ -218,6 +222,7 @@ if(isset($_SESSION['filter'])) {
                 <?php while($row = $studData->fetch_assoc()) {?>
                     <tr>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
+                        <td class="student-data-module"><?php echo $row['section'];?></td>
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>
                         <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
                         <td class="student-data-module"><?php echo $row['SA1'];?></td>
@@ -226,6 +231,7 @@ if(isset($_SESSION['filter'])) {
                     </tr>
                     <?php }?>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <th>Total passed</th>

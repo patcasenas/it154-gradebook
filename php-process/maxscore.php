@@ -127,6 +127,6 @@
         }
 
             echo "<script>alert('Successfully set')</script>";
-            echo "<script>javascript:history.go(-2);</script>";
+            echo "<script>javascript:history.go(-1);</script>";
     }
 ?>

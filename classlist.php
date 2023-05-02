@@ -58,7 +58,7 @@ if(isset($_SESSION['courseTitle'])) {
         }?>
         <!-- Deletes students from table -->
         <div class="delete-list" id="delete-list">
-            <button onclick="on()" id="edit-btn">Edit Course Info</button>
+            <button onclick="on()" id="edit-btn" class="rad">Edit Course Info</button>
             <form method="post" onsubmit="return confirm('Danger! This action removes all students from this course.')">
                 <input type="submit" value="Empty Class List" name="truncate">
             </form>
@@ -97,7 +97,7 @@ if(isset($_SESSION['courseTitle'])) {
     <div class="upload-list" id="upload-list">
         <form action="php-process/importStud.php" method="post" enctype="multipart/form-data">
             <input type="file" name="file" />
-            <button type="submit" name="importSubmit" class="import-btn"><span class="material-symbols-rounded">cloud_upload</span>&emsp;IMPORT</button>
+            <button type="submit" name="importSubmit" class="import-btn sh rad"><span class="material-symbols-rounded">cloud_upload</span>&emsp;IMPORT</button>
         </div>
         </form>
     </div>

@@ -19,27 +19,27 @@
     </head>
     <div class="container" id="container">
         <!-- Module Name -->
-        <?php 
-            $row = $modName->fetch_assoc();
-        ?>
+        <?php $row = $modName->fetch_assoc(); ?>
         <span class="title"><?php echo "Module 1 - " . $row['modName']?></span>
         <div class="btn-section">
-            <button onclick="window.location='fa-mod1.php'" id="formative">Formative Assessment</button>
+            <button onclick="window.location='fa-mod1.php'" id="formative" class="sh rad">Formative Assessment</button>
             <form action="php-forms/updateSA.php" method="post">
-            <input type="submit" value="Update Grades" name="updateGrade" id="updateGrade">
+                <input type="submit" value="Update Grades" name="updateGrade" id="updateGrade" class="sh rad">
             </form>
             <span class="dropdown">
-                <button class="dropbtn"><span class="material-symbols-outlined dropbtn">settings</span></button>
+                <button class="dropbtn"><i class="fa-solid fa-gear" style="color: #121212;"></i></button>
                 <div class="dropdown-content">
-                    <a href="php-forms/maxscore.php">Assign Max Scores</a>
-                    <a href="php-forms/assessmentAmt.php">Set Amount of Assessments</a>
+                    <button onclick="onMax()">Assign Max Scores</button>
+                    <button onclick="onSet()">Set Amount of Assessments</button>
                 </div>
             </span>
         </div>
         <!-- Section Filter & Update Grades Button -->
-        <?php 
-            include("php-process/filter-sa.php");
-        ?>
+        <?php include("php-process/filter-sa.php"); ?>
     </div>
+        <?php
+            include("php-forms/maxscore.php");
+            include("php-forms/assessmentAmt.php");
+        ?>
 </body>
 </html>
