@@ -22,7 +22,7 @@
         ?>
         <span class="title"><?php echo "Module 2 - " . $row['modName']?></span>
         <div class="btn-section">
-            <button onclick="window.location='fa-mod2.php'" id="formative" class="sh rad">Formative Assessment</button>
+            <button onclick="window.location='fa-mod2.php'" id="formative" class="sh rad">Switch to Formative Assessment</button>
             <form action="php-forms/updateSA.php" method="post">
                 <input type="submit" value="Update Grades" name="updateGrade" id="updateGrade" class="sh rad">
             </form>
