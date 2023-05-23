@@ -1,5 +1,4 @@
-html,
-body {
+html,body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -401,16 +400,14 @@ select::-ms-expand {
   border: solid #707070 0.5px;
 }
 
-.index-form-btns input[type="submit"]:hover,
-#cancel-btn:hover {
+.index-form-btns input[type="submit"]:hover,#cancel-btn:hover {
   cursor: pointer;
   box-shadow: -5px -2px 67px -10px rgba(0, 0, 0, 0.48) inset;
   -webkit-box-shadow: -5px -2px 67px -10px rgba(0, 0, 0, 0.48) inset;
   -moz-box-shadow: -5px -2px 67px -10px rgba(0, 0, 0, 0.48) inset;
 }
 
-.index-form-btns input[type="submit"]:hover:active,
-#cancel-btn:hover:active {
+.index-form-btns input[type="submit"]:hover:active,#cancel-btn:hover:active {
   font-size: 0.95em;
 }
 
@@ -437,9 +434,6 @@ td {
   margin: 0 auto 2vh auto;
   transition: width 0.5s;
 }
-
-.tableFA {}
-
 .tableFA tbody tr * {
 
   height: 100%;
@@ -513,9 +507,7 @@ textarea {
   margin: 0vh 0vw 0vh 1vw;
 }
 
-.delete-list input[type="submit"]:hover,
-#edit-btn:hover,
-.import-btn:hover {
+.delete-list input[type="submit"]:hover,#edit-btn:hover,.import-btn:hover {
   cursor: pointer;
   box-shadow: -5px -2px 67px -10px rgba(0, 0, 0, 0.48) inset;
   -webkit-box-shadow: -5px -2px 67px -10px rgba(0, 0, 0, 0.48) inset;
@@ -649,8 +641,7 @@ textarea {
   padding: 10%;
 }
 
-#formative,
-#updateGrade {
+#formative,#updateGrade {
   border: none;
   background-color: #450320;
   font-size: 0.9em;
@@ -746,8 +737,7 @@ textarea {
   padding-bottom: 2vh;
 }
 
-.SAedit,
-.FAedit {
+.SAedit,.FAedit {
   display: flex;
   row-gap: 4vh;
   line-height: 4vh;
@@ -780,8 +770,7 @@ textarea {
   color: #121212;
 }
 
-.SAedit input[type="number"]:focus,
-.FAedit input[type="number"]:focus {
+.SAedit input[type="number"]:focus,.FAedit input[type="number"]:focus {
   border: solid #121212;
   outline: 0 none;
   border-width: thin;
@@ -878,27 +867,19 @@ textarea {
   margin-top: 1vh;
 }
 
-
 .table {
   border-collapse: collapse;
-
 }
 
 .table thead tr th {
-  border-width: 1px;
-  border-style: solid;
-  border-color: black;
+  border: 1px solid black;
 }
-
-.table thead tr th {}
 
 .table tbody tr td * {
   width: 100%;
   height: 5vh;
-
 }
 
 .table tbody tr {
-
   text-align: center;
 }
