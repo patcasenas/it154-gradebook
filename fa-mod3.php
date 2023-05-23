@@ -20,7 +20,7 @@
         <?php $row = $modTitle->fetch_assoc(); ?>
         <span class="title"><?php echo "Module 3 - " . $row["modName"];?></span>
         <div class="btn-section">
-            <button onclick="window.location='sa-mod3.php'" id="formative" class="sh rad">Summative Assessment</button>
+            <button onclick="window.location='sa-mod3.php'" id="formative" class="sh rad">Switch to Summative Assessment</button>
             <form action="php-forms/updateFA.php" method="post">
                 <input type="submit" value="Update Grades" name="updateGrade" id="updateGrade" class="sh rad">
             </form>

@@ -14,7 +14,7 @@
 <?php 
     $data = implode($_SESSION['filter']);
     $courseCode = implode($_SESSION['courseTitle']);
-    echo $data;
+    // echo $data;
     $modNum = session_id();
 
     $studData = $db->query("SELECT f.formID, f.modNum, f.studNum, f.section, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.FAavg, f.40per, si.lastName, si.firstName, si.studProg 
@@ -171,6 +171,7 @@
                     <td><input type="number" name='FA8_<?= $formID?>' value='<?= $FA8 ?>'></td>
                     <td><input type="number" name='FA9_<?= $formID?>' value='<?= $FA9 ?>'></td>
                     <td><?php echo $row['FAavg']?></td>
+                    <td><?php echo $row['40per']?></td>
                 </tr>
                 </tbody>
                 <?php }?>
@@ -237,11 +238,12 @@
                         <td><input type="number" name='FA7_<?= $formID?>' value='<?= $FA7 ?>'></td>
                         <td><input type="number" name='FA8_<?= $formID?>' value='<?= $FA8 ?>'></td>
                         <td><?php echo $row['FAavg']?></td>
+                        <td><?php echo $row['40per']?></td>
                     </tr>
                 </tbody>
                     <?php }?>
             </table>
-            <?php } else if($FAamt == 7) { ?>
+        <?php } else if ($FAamt == 7) { ?>
                 <table class="students-table tableFA">
                     <thead>
                         <tr>
@@ -255,13 +257,11 @@
                         <th width="5%">FA 4</th>
                         <th width="5%">FA 5</th>
                         <th width="5%">FA 6</th>
-                        <th width="5%">FA 7</th>
-       
+                        <th width="5%">FA 7</th>       
                         <th width="10%" rowspan="2">Average</th>
                         <th width="10%" rowspan="2">40%</th>
                         </tr>
                         <tr>
-                
                             <?php $row = $maxscore->fetch_assoc()?>
                             <th><?php echo $row['FA1max']?></th>
                             <th><?php echo $row['FA2max']?></th>
@@ -301,12 +301,13 @@
                             <td><input type="number" name='FA6_<?= $formID?>' value='<?= $FA6 ?>'></td>
                             <td><input type="number" name='FA7_<?= $formID?>' value='<?= $FA7 ?>'></td>
                             <td><?php echo $row['FAavg']?></td>
+                            <td><?php echo $row['40per']?></td>
                         </tr>
                     </tbody>
                         <?php }?>
             </table>
 
-            <?php } else if ($FAamt == 6) { ?>
+        <?php } else if ($FAamt == 6) { ?>
                 <table class="students-table tableFA">
                 <thead>
                     <tr>
@@ -319,9 +320,7 @@
                         <th width="5%">FA 3</th>
                         <th width="5%">FA 4</th>
                         <th width="5%">FA 5</th>
-                        <th width="5%">FA 6</th>
-
-       
+                        <th width="5%">FA 6</th>       
                         <th width="10%" rowspan="2">Average</th>
                         <th width="10%" rowspan="2">40%</th>
                     </tr>
@@ -363,11 +362,12 @@
                         <td><input type="number" name='FA5_<?= $formID?>' value='<?= $FA5 ?>'></td>
                         <td><input type="number" name='FA6_<?= $formID?>' value='<?= $FA6 ?>'></td>
                         <td><?php echo $row['FAavg']?></td>
+                        <td><?php echo $row['40per']?></td>
                     </tr>
                 </tbody>
                 <?php }?>
             </table>
-            <?php } else if($FAamt == 5) {?>
+        <?php } else if ($FAamt == 5) {?>
                 <table class="students-table tableFA">
                 <thead>
                     <tr>
@@ -379,13 +379,11 @@
                         <th width="5%">FA 2</th>
                         <th width="5%">FA 3</th>
                         <th width="5%">FA 4</th>
-                        <th width="5%">FA 5</th>
-     
+                        <th width="5%">FA 5</th>     
                         <th width="10%" rowspan="2">Average</th>
                         <th width="10%" rowspan="2">40%</th>
                     </tr>
                     <tr>
-
                         <?php $row = $maxscore->fetch_assoc()?>
                         <th><?php echo $row['FA1max']?></th>
                         <th><?php echo $row['FA2max']?></th>
@@ -419,9 +417,10 @@
                         <td><input type="number" name='FA4_<?= $formID?>' value='<?= $FA4 ?>'></td>
                         <td><input type="number" name='FA5_<?= $formID?>' value='<?= $FA5 ?>'></td>
                         <td><?php echo $row['FAavg']?></td>
+                        <td><?php echo $row['40per']?></td>
                     </tr>
-                </tbody>
                     <?php }?>
+                    </tbody>
                 </table>
             
             
@@ -429,7 +428,7 @@
             
  
 
-                <?php } else if($FAamt == 4) {?>
+        <?php } else if ($FAamt == 4) {?>
                 <table class="students-table tableFA">
                 <thead>
                     <tr>
@@ -440,19 +439,16 @@
                         <th width="5%">FA 1</th>
                         <th width="5%">FA 2</th>
                         <th width="5%">FA 3</th>
-                        <th width="5%">FA 4</th>
- 
+                        <th width="5%">FA 4</th> 
                         <th width="10%" rowspan="2">Average</th>
                         <th width="10%" rowspan="2">40%</th>
                     </tr>
-                    <tr>
-     
+                    <tr>     
                         <?php $row = $maxscore->fetch_assoc()?>
                         <th><?php echo $row['FA1max']?></th>
                         <th><?php echo $row['FA2max']?></th>
                         <th><?php echo $row['FA3max']?></th>
-                        <th><?php echo $row['FA4max']?></th>
-      
+                        <th><?php echo $row['FA4max']?></th>      
                     </tr>
                 </thead>
                 <tbody>
@@ -476,9 +472,9 @@
                         <td><input type="number" name='FA1_<?= $formID?>' value='<?= $FA1 ?>'></td>
                         <td><input type="number" name='FA2_<?= $formID?>' value='<?= $FA2 ?>'></td>
                         <td><input type="number" name='FA3_<?= $formID?>' value='<?= $FA3 ?>'></td>
-                        <td><input type="number" name='FA4_<?= $formID?>' value='<?= $FA4 ?>'></td>
-                  
+                        <td><input type="number" name='FA4_<?= $formID?>' value='<?= $FA4 ?>'></td>                
                         <td><?php echo $row['FAavg']?></td>
+                        <td><?php echo $row['40per']?></td>
                     </tr>
                 </tbody>
                     <?php }?>
@@ -488,7 +484,7 @@
             
             
 
-                <?php } else if($FAamt == 3) {?>
+        <?php } else if ($FAamt == 3) {?>
                 <table class="students-table tableFA">
                 <thead>
                     <tr>
@@ -503,13 +499,11 @@
                         <th width="10%" rowspan="2">Average</th>
                         <th width="10%" rowspan="2">40%</th>
                     </tr>
-                    <tr>
-                
+                    <tr>                
                         <?php $row = $maxscore->fetch_assoc()?>
                         <th><?php echo $row['FA1max']?></th>
                         <th><?php echo $row['FA2max']?></th>
-                        <th><?php echo $row['FA3max']?></th>
-            
+                        <th><?php echo $row['FA3max']?></th>            
                     </tr>
                 </thead>
                 <tbody>
@@ -527,14 +521,13 @@
                         <input type="checkbox" name="update[]" value='<?= $formID?>'>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
                         <td> <?php echo $row['section'];?>  </td>
-
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>
                         <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
                         <td><input type="number" name='FA1_<?= $formID?>' value='<?= $FA1 ?>'></td>
                         <td><input type="number" name='FA2_<?= $formID?>' value='<?= $FA2 ?>'></td>
-                        <td><input type="number" name='FA3_<?= $formID?>' value='<?= $FA3 ?>'></td>
-           
+                        <td><input type="number" name='FA3_<?= $formID?>' value='<?= $FA3 ?>'></td>           
                         <td><?php echo $row['FAavg']?></td>
+                        <td><?php echo $row['40per']?></td>
                     </tr>
                 </tbody>
                     <?php }?>
@@ -544,58 +537,54 @@
             
             
   
-                <?php } else if($FAamt == 2) {?>
-                <table class="students-table tableFA">
-                <thead>
-                    <tr>
-                    <th width="5%" rowspan="2">Program</th>
-                        <th width="5%" rowspan="2">Section</th>
-                        <th width="8%" rowspan="2">Student Number</th>
-                        <th width="10%" rowspan="2">Student Name</th>
-                        <th width="5%">FA 1</th>
-                        <th width="5%">FA 2</th>
-             
-                        <th width="10%" rowspan="2">Average</th>
-                        <th width="10%" rowspan="2">40%</th>
-                    </tr>
-                    <tr>
-           
-                        <?php $row = $maxscore->fetch_assoc()?>
-                        <th><?php echo $row['FA1max']?></th>
-                        <th><?php echo $row['FA2max']?></th>
-   
-                    </tr>
-                </thead>
-                <tbody>
-                        <?php
-                        while($row = mysqli_fetch_array($studData)) {
-                            $formID = $row['formID'];
-                            $studNum = $row['studNum'];
-                            $FA1 = $row['FA1'];
-                            $FA2 = $row['FA2'];
-               
-                            $FAavg = $row['FAavg'];
-                        ?>
-                    <tr>
-                        <input type="checkbox" name="update[]" value='<?= $formID?>'>
-                        <td class="student-data-module"><?php echo $row['studProg'];?></td>
-                        <td> <?php echo $row['section'];?>  </td>
+        <?php } else if ($FAamt == 2) {?>
+        <table class="students-table tableFA">
+        <thead>
+            <tr>
+            <th width="5%" rowspan="2">Program</th>
+                <th width="5%" rowspan="2">Section</th>
+                <th width="8%" rowspan="2">Student Number</th>
+                <th width="10%" rowspan="2">Student Name</th>
+                <th width="5%">FA 1</th>
+                <th width="5%">FA 2</th>             
+                <th width="10%" rowspan="2">Average</th>
+                <th width="10%" rowspan="2">40%</th>
+            </tr>
+            <tr>           
+                <?php $row = $maxscore->fetch_assoc()?>
+                <th><?php echo $row['FA1max']?></th>
+                <th><?php echo $row['FA2max']?></th>   
+            </tr>
+        </thead>
+        <tbody>
+                <?php
+                while($row = mysqli_fetch_array($studData)) {
+                    $formID = $row['formID'];
+                    $studNum = $row['studNum'];
+                    $FA1 = $row['FA1'];
+                    $FA2 = $row['FA2'];               
+                    $FAavg = $row['FAavg'];
+                ?>
+            <tr>
+                <input type="checkbox" name="update[]" value='<?= $formID?>'>
+                <td class="student-data-module"><?php echo $row['studProg'];?></td>
+                <td> <?php echo $row['section'];?>  </td>
 
-                        <td class="student-data-module"><?php echo $row['studNum'];?></td>
-                        <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
-                        <td><input type="number" name='FA1_<?= $formID?>' value='<?= $FA1 ?>'></td>
-                        <td><input type="number" name='FA2_<?= $formID?>' value='<?= $FA2 ?>'></td>
-              
-                        <td><?php echo $row['FAavg']?></td>
-                    </tr>
-                </tbody>
-                    <?php }?>
-                </table>
-            
-            
-            
-            
-                <?php } else if($FAamt == 1) {?>
+                <td class="student-data-module"><?php echo $row['studNum'];?></td>
+                <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+                <td><input type="number" name='FA1_<?= $formID?>' value='<?= $FA1 ?>'></td>
+                <td><input type="number" name='FA2_<?= $formID?>' value='<?= $FA2 ?>'></td>              
+                <td><?php echo $row['FAavg']?></td>
+                <td><?php echo $row['40per']?></td>
+            </tr>
+        </tbody>
+            <?php }?>
+        </table>
+    
+    
+    
+    
+        <?php } else if ($FAamt == 1) {?>
                 <table class="students-table tableFA">
                 <thead>
                     <tr>
@@ -620,20 +609,17 @@
                         while($row = mysqli_fetch_array($studData)) {
                             $formID = $row['formID'];
                             $studNum = $row['studNum'];
-                            $FA1 = $row['FA1'];
-                 
-                            $FAavg = $row['FAavg'];
+                            $FA1 = $row['FA1'];                 
                         ?>
                     <tr>
                         <input type="checkbox" name="update[]" value='<?= $formID?>'>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
                         <td> <?php echo $row['section'];?>  </td>
-
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>
                         <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
-                        <td><input type="number" name='FA1_<?= $formID?>' value='<?= $FA1 ?>'></td>
-                     
+                        <td><input type="number" name='FA1_<?= $formID?>' value='<?= $FA1 ?>'></td>                     
                         <td><?php echo $row['FAavg']?></td>
+                        <td><?php echo $row['40per']?></td>
                     </tr>
                 </tbody>
                     <?php }?>
