@@ -11,12 +11,10 @@
         include("php/navbar.php");
         $modName = $db->query ("SELECT modName FROM moduleinfo WHERE modNum = '2' AND courseCode = '".$courseCode."'");
     ?>
+    <title>Summative Assessment</title>
 </head>
 
 <body>
-    <head>
-        <title>Summative Assessment</title>
-    </head>
     <div class="container" id="container">
         <!-- Module Name -->
         <?php 

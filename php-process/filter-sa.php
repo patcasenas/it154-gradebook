@@ -53,46 +53,46 @@ if(isset($_SESSION['filter'])) {
             echo mysqli_error($db);
         } 
         else if ($SA == 3){ ?>
-            <table class="students-table">
-                <thead>
-                    <tr>
-                        <th width="10%" rowspan="2">Program</th>
-                        <th width="10%" rowspan="2">Section</th>
-                        <th width="10%" rowspan="2">Student Number</th>
-                        <th rowspan="2">Student Name</th>
-                        <th width="10%">SA 1</th>
-                        <th width="10%">SA 2</th>
-                        <th width="10%">SA 3</th>
-                        <th width="10%" rowspan="2">Average</th>
-                        <th width="10%" rowspan="2">60%</th>
-                    </tr>
-                    <?php $row = $maxscore->fetch_assoc() ?>
-                    <tr>
-                        <th><?php echo $row['SA1max'];?></th>
-                        <th><?php echo $row['SA2max']; ?></th>
-                        <th><?php echo $row['SA3max'];?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php while($row = $studData->fetch_assoc()) {?>
-                    <tr>
-                        <td class="student-data-module"><?php echo $row['studProg'];?></td>
-                        <td class="student-data-module"><?php echo $row['section'];?></td>
-                        <td class="student-data-module"><?php echo $row['studNum'];?></td>
-                        <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
-                        <td class="student-data-module"><?php echo $row['SA1'];?></td>
-                        <td class="student-data-module"><?php echo $row['SA2']; ?></td>
-                        <td class="student-data-module"><?php echo $row['SA3'];?></td>
-                        <td class="student-data-module"><?php echo $row['SAavg'];?></td>
-                        <td class="student-data-module"><?php echo $row['60per'];?>%</td>
-                    </tr>
-                    <?php }?>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th>Total passed</th>
-                        <?php 
+<table class="students-table">
+    <thead>
+        <tr>
+            <th width="10%" rowspan="2">Program</th>
+            <th width="10%" rowspan="2">Section</th>
+            <th width="10%" rowspan="2">Student Number</th>
+            <th rowspan="2">Student Name</th>
+            <th width="10%">SA 1</th>
+            <th width="10%">SA 2</th>
+            <th width="10%">SA 3</th>
+            <th width="10%" rowspan="2">Average</th>
+            <th width="10%" rowspan="2">60%</th>
+        </tr>
+        <?php $row = $maxscore->fetch_assoc() ?>
+        <tr>
+            <th><?php echo $row['SA1max'];?></th>
+            <th><?php echo $row['SA2max']; ?></th>
+            <th><?php echo $row['SA3max'];?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while($row = $studData->fetch_assoc()) {?>
+        <tr>
+            <td><?php echo $row['studProg'];?></td>
+            <td><?php echo $row['section'];?></td>
+            <td><?php echo $row['studNum'];?></td>
+            <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+            <td><?php echo $row['SA1'];?></td>
+            <td><?php echo $row['SA2']; ?></td>
+            <td><?php echo $row['SA3'];?></td>
+            <td><?php echo $row['SAavg'];?></td>
+            <td><?php echo $row['60per'];?>%</td>
+        </tr>
+        <?php }?>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th>Total passed</th>
+            <?php 
                             $sql = $db->query("SELECT SA1max, SA2max, SA3max FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
                             $row = $sql->fetch_assoc();
                             $totalPass1 = $row['SA1max'] * 0.70;
@@ -125,52 +125,52 @@ if(isset($_SESSION['filter'])) {
                                     }
                                 }
                             }?>
-                        <td><?php echo $count; ?></td>
-                        <td><?php echo $count2; ?></td>
-                        <td><?php echo $count3; ?></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        <?php } else if ($SA == 2) { ?>
-            <table class="students-table">
-                <thead>
-                    <tr>
-                        <th width="10%" rowspan="2">Program</th>
-                        <th width="10%" rowspan="2">Section</th>
-                        <th width="10%" rowspan="2">Student Number</th>
-                        <th rowspan="2">Student Name</th>
-                        <th width="10%">SA 1</th>
-                        <th width="10%">SA 2</th>
-                        <th width="10%" rowspan="2">Average</th>
-                        <th width="10%" rowspan="2">60%</th>
-                    </tr>
-                    <?php $row = $maxscore->fetch_assoc() ?>
-                    <tr>
-                        <th><?php echo $row['SA1max'];?></th>
-                        <th><?php echo $row['SA2max']; ?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php while($row = $studData->fetch_assoc()) {?>
-                    <tr>
-                        <td class="student-data-module"><?php echo $row['studProg'];?></td>
-                        <td class="student-data-module"><?php echo $row['section'];?></td>
-                        <td class="student-data-module"><?php echo $row['studNum'];?></td>
-                        <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
-                        <td class="student-data-module"><?php echo $row['SA1'];?></td>
-                        <td class="student-data-module"><?php echo $row['SA2']; ?></td>
-                        <td class="student-data-module"><?php echo $row['SAavg'];?></td>
-                        <td class="student-data-module"><?php echo $row['60per'];?>%</td>
-                    </tr>
-                    <?php }?>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th>Total passed</th>
-                        <?php 
+            <td><?php echo $count; ?></td>
+            <td><?php echo $count2; ?></td>
+            <td><?php echo $count3; ?></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<?php } else if ($SA == 2) { ?>
+<table class="students-table">
+    <thead>
+        <tr>
+            <th width="10%" rowspan="2">Program</th>
+            <th width="10%" rowspan="2">Section</th>
+            <th width="10%" rowspan="2">Student Number</th>
+            <th rowspan="2">Student Name</th>
+            <th width="10%">SA 1</th>
+            <th width="10%">SA 2</th>
+            <th width="10%" rowspan="2">Average</th>
+            <th width="10%" rowspan="2">60%</th>
+        </tr>
+        <?php $row = $maxscore->fetch_assoc() ?>
+        <tr>
+            <th><?php echo $row['SA1max'];?></th>
+            <th><?php echo $row['SA2max']; ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while($row = $studData->fetch_assoc()) {?>
+        <tr>
+            <td><?php echo $row['studProg'];?></td>
+            <td><?php echo $row['section'];?></td>
+            <td><?php echo $row['studNum'];?></td>
+            <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+            <td><?php echo $row['SA1'];?></td>
+            <td><?php echo $row['SA2']; ?></td>
+            <td><?php echo $row['SAavg'];?></td>
+            <td><?php echo $row['60per'];?>%</td>
+        </tr>
+        <?php }?>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th>Total passed</th>
+            <?php 
                             $sql = $db->query("SELECT SA1max, SA2max FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
                             $row = $sql->fetch_assoc();
                             $totalPass1 = $row['SA1max'] * 0.70;
@@ -194,48 +194,48 @@ if(isset($_SESSION['filter'])) {
                                     }
                                 }
                             }?>
-                        <td><?php echo $count; ?></td>
-                        <td><?php echo $count2; ?></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        <?php } else if ($SA == 1) { ?>
-            <table class="students-table">
-                <thead>
-                    <tr>
-                        <th width="10%" rowspan="2">Program</th>
-                        <th width="10%" rowspan="2">Section</th>
-                        <th width="10%" rowspan="2">Student Number</th>
-                        <th rowspan="2">Student Name</th>
-                        <th width="20%">SA 1</th>
-                        <th width="10%" rowspan="2">Average</th>
-                        <th width="10%" rowspan="2">60%</th>
-                    </tr>
-                    <?php $row = $maxscore->fetch_assoc() ?>
-                    <tr>
-                        <th><?php echo $row['SA1max'];?></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php while($row = $studData->fetch_assoc()) {?>
-                    <tr>
-                        <td class="student-data-module"><?php echo $row['studProg'];?></td>
-                        <td class="student-data-module"><?php echo $row['section'];?></td>
-                        <td class="student-data-module"><?php echo $row['studNum'];?></td>
-                        <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
-                        <td class="student-data-module"><?php echo $row['SA1'];?></td>
-                        <td class="student-data-module"><?php echo $row['SAavg'];?></td>
-                        <td class="student-data-module"><?php echo $row['60per'];?>%</td>
-                    </tr>
-                    <?php }?>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <th>Total passed</th>
-                        <td><?php 
+            <td><?php echo $count; ?></td>
+            <td><?php echo $count2; ?></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<?php } else if ($SA == 1) { ?>
+<table class="students-table">
+    <thead>
+        <tr>
+            <th width="10%" rowspan="2">Program</th>
+            <th width="10%" rowspan="2">Section</th>
+            <th width="10%" rowspan="2">Student Number</th>
+            <th rowspan="2">Student Name</th>
+            <th width="20%">SA 1</th>
+            <th width="10%" rowspan="2">Average</th>
+            <th width="10%" rowspan="2">60%</th>
+        </tr>
+        <?php $row = $maxscore->fetch_assoc() ?>
+        <tr>
+            <th><?php echo $row['SA1max'];?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while($row = $studData->fetch_assoc()) {?>
+        <tr>
+            <td><?php echo $row['studProg'];?></td>
+            <td><?php echo $row['section'];?></td>
+            <td><?php echo $row['studNum'];?></td>
+            <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+            <td><?php echo $row['SA1'];?></td>
+            <td><?php echo $row['SAavg'];?></td>
+            <td><?php echo $row['60per'];?>%</td>
+        </tr>
+        <?php }?>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th>Total passed</th>
+            <td><?php 
                             $sql = $db->query("SELECT SA1max FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
                             $row = $sql->fetch_assoc();
                             $totalPass = $row['SA1max'] * 0.70;
@@ -252,10 +252,10 @@ if(isset($_SESSION['filter'])) {
                             }
                             echo $count;
                             ?></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-    <?php }
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<?php }
 } ?>

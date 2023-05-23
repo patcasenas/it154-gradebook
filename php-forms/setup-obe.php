@@ -1,6 +1,5 @@
 <?php
     require("../php/dbConfig.php");
-    include("../php/navbar.php");
     require("../php/session_start.php");
     $program = $db->query("SELECT DISTINCT studProg FROM soitprogram ORDER BY studProg ASC");
     $studProg = array();
@@ -9,6 +8,7 @@
             $studProg[] = $row;
         }
     }
+    include("../php/navbar.php");
     $courseCode = implode($_SESSION['courseTitle']);
     $sql = $db->query("SELECT courseTitle FROM courseinfo WHERE courseCode = '".$courseCode."'");
     $row = $sql->fetch_assoc();

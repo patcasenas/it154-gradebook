@@ -14,8 +14,10 @@
 
 <body>
     <div class="container" id="container">
-    <h1>View Module Grades</h1>
-    <button onclick="window.location.href='php-forms/setup-obe.php'">Setup OBE Course Assessment</button>
+    <span class="title">View Module Grades</span>
+    <div class="obe-setup">
+        <button onclick="window.location.href='php-forms/setup-obe.php'" class="sh rad">Setup OBE Course Assessment</button>
+    </div>
     <?php
         $section = $db->query("SELECT DISTINCT section FROM runavg WHERE courseCode = '".$courseCode."' ORDER BY section ASC");
         $sections = array();
@@ -26,6 +28,7 @@
         }
         // echo '<pre>' . print_r($sections) . '</pre>';
     ?>
+    <div class="select-section-obe">
     <form method="get">
         <select name="section[]">
             <option value="0" selected="selected" hidden> Filter Sections</option>
@@ -39,6 +42,7 @@
         <button name="modbtn" value="2" type="submit">Module 2 Grades</button>
         <button name="modbtn" value="3" type="submit">Module 3 Grades</button>
     </form>
+    </div>
     </div>
 </body>
 </html>
@@ -57,7 +61,7 @@
         $studData = $db->query("SELECT r.studNum, r.section, r.studProg, r.modNum, r.grade, r.transmutation, si.lastName, si.firstName
         FROM runavg AS r
         LEFT JOIN studentinfo AS si ON si.studNum = r.studNum
-        WHERE r.section IN ('$section') AND modNum = $modNum AND R.courseCode = '".$courseCode."'
+        WHERE r.section IN ('$section') AND modNum = $modNum AND r.courseCode = '".$courseCode."'
         ORDER BY si.lastName ASC");?>
         <table class="students-table">
         <thead>

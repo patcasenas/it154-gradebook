@@ -6,34 +6,38 @@
         session_id("3");
         require("php/session_start.php");
         require_once("php/dbConfig.php");
-        include("php/navbar.php");
         include("php-compute/computeFA.php");
-        $data = implode($_SESSION['filter']);
+        $courseCode = implode($_SESSION['courseTitle']);
+        include("php/navbar.php");
+        $modTitle = $db->query ("SELECT modName FROM moduleinfo WHERE modNum = '3' AND courseCode = '".$courseCode."'");
     ?>
+    <title>Formative Assessment</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <!-- Module Name -->
-        <?php
-            $courseCode = implode($_SESSION['courseTitle']);
-            $modTitle = $db->query ("SELECT modName FROM moduleinfo WHERE modNum = '3' AND courseCode = '".$courseCode."'");
-            $row = $modTitle->fetch_assoc();
-        ?>
-        <h1><?php echo $courseCode . " Module 3 - " . $row["modName"];?></h1>
-        <div class="btn">
-        <button onclick="window.location='sa-mod3.php'">Summative Assessment</button>
-        <button onclick="window.location='php-forms/maxscore.php'">Set Maximum Score</button>
-        <button onclick="window.location='php-forms/assessmentAmt.php'">Set Amount of FA and SA</button>
+        <?php $row = $modTitle->fetch_assoc(); ?>
+        <span class="title"><?php echo "Module 3 - " . $row["modName"];?></span>
+        <div class="btn-section">
+            <button onclick="window.location='sa-mod3.php'" id="formative" class="sh rad">Summative Assessment</button>
+            <form action="php-forms/updateFA.php" method="post">
+                <input type="submit" value="Update Grades" name="updateGrade" id="updateGrade" class="sh rad">
+            </form>
+            <span class="dropdown">
+                <button class="dropbtn"><i class="fa-solid fa-gear" style="color: #121212;"></i></button>
+                <div class="dropdown-content">
+                    <button onclick="onMax()">Assign Max Scores</button>
+                    <button onclick="onSet()">Set Amount of Assessments</button>
+                </div>
+            </span>
         </div>
-        
         <!-- Section Filter & Update Grades Button -->
-        <?php 
-            include("php-process/filter-fa.php"); 
-        ?>
-        <form action="php-forms/updateFA.php" method="post">
-            <input type="submit" value="Update Grades" name="updateGrade">
-        </form>
+        <?php include("php-process/filter-fa.php"); ?>
     </div>
+        <?php
+            include("php-forms/maxscore.php");
+            include("php-forms/assessmentAmt.php");
+        ?>
 </body>
 </html>

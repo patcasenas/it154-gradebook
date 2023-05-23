@@ -1,6 +1,6 @@
 <?php
-    require("../fpdf185/fpdf.php");
     require("../php/session_start.php");
+    require("../fpdf185/fpdf.php");
     if(isset($_POST['save'])) {
         ob_start();
         class PDF extends FPDF {

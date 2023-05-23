@@ -93,6 +93,7 @@ if(isset($_SESSION['courseTitle'])) {
                 <?php } ?>
             </tbody>
         </table>
+        <span class="bottom-cont"><button class="bottom" onclick="document.getElementById('upload-list').scrollIntoView();"><i class="fa-solid fa-chevron-down"></i></button></span>
     <!-- Import link -->
     <div class="upload-list" id="upload-list">
         <form action="php-process/importStud.php" method="post" enctype="multipart/form-data">

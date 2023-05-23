@@ -7,7 +7,7 @@
 </style>
 <nav>
     <div class="top-nav">
-        <span id="hamburger-menu" onclick="openNav()">&#9776;</span>
+        <span id="hamburger-menu" onclick="openNav()"><i class="fa-solid fa-bars" style="color: #ebebee;"></i></span>
         <div class="logo-container">
             <img src="/it154-gradebook/img/igrade-white@1x.png" id="nav-logo" alt="iGradebook">
         </div>
@@ -17,7 +17,7 @@
         </div>
     </div>
     <div id="sidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark" style="color: #ebebee;"></i></a>
             <a href="/it154-gradebook/classlist.php" class="nav-link">Class List</a>
             <a href="/it154-gradebook/sa-mod1.php" class="nav-link">Module 1</a>
             <a href="/it154-gradebook/sa-mod2.php" class="nav-link">Module 2</a>

@@ -8,15 +8,15 @@
     <?php
             require("../php/dbConfig.php");
             include("../php/navbar.php");
-        ?>
+    ?>
+    <title>Update Grades</title>
 </head>
 <?php
         $data = implode($_SESSION['filter']);
         $courseCode = implode($_SESSION['courseTitle']);
-        echo $data;
         $modNum = session_id();
 
-        $studData = $db->query("SELECT s.sumID, s.modNum, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, si.lastName, si.firstName, si.studProg 
+        $studData = $db->query("SELECT s.sumID, s.modNum, s.studNum, s.section, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg 
                                 FROM summative AS s
                                 LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
                                 WHERE si.section IN ('$data') AND modNum = $modNum AND s.courseCode = '".$courseCode."'
@@ -28,34 +28,26 @@
   ?>
 
 <body>
-    <div class="container">
+    <div class="container" id="container">
         <form action="../php-process/sa-updateGrade.php" method="post">
-            <input type="button" value="Back" onclick="history.go(-1)" />
-            <input type="submit" value="Update Records" name="btn-update"><br><br>
-
             <?php if ($SAamt == 3) { ?>
-                <table class="stud-tbl">
+                <table class="students-table">
                     <tr>
-                        <th></th>
+                        <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Section</th>
+                        <th width="10%" rowspan="2">Student Number</th>
+                        <th rowspan="2">Student Name</th>
+                        <th width="10%">SA 1</th>
+                        <th width="10%">SA 2</th>
+                        <th width="10%">SA 3</th>
+                        <th width="10%" rowspan="2">Average</th>
+                        <th width="10%" rowspan="2">60%</th>
                     </tr>
+                    <?php $row = $maxscore->fetch_assoc() ?>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>SA 1</th>
-                        <th>SA 2</th>
-                        <th>SA 3</th>
-                        <th>Average</th>
-                    </tr>
-                    <tr>
-                        <th>Program</th>
-                        <th>Student Number</th>
-                        <th>Student Name</th>
-                        <?php $row = $maxscore->fetch_assoc()?>
                         <th><?php echo $row['SA1max'];?></th>
                         <th><?php echo $row['SA2max']; ?></th>
                         <th><?php echo $row['SA3max'];?></th>
-                        <th></th>
                     </tr>
                     <?php
                         while($row = $studData->fetch_assoc()) {
@@ -64,41 +56,37 @@
                             $SA1 = $row['SA1'];
                             $SA2 = $row['SA2'];
                             $SA3 = $row['SA3'];
-                            $SAavg = $row['SAavg'];
                     ?>
                     <tr>
                         <input type="checkbox" name="update[]" value='<?= $sumID?>' checked hidden/>
-                        <td class="student-data-module"><?php echo $row['studProg'];?></td>
-                        <td class="student-data-module"><?php echo $row['studNum'];?></td>
-                        <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+                        <td><?php echo $row['studProg'];?></td>
+                        <td><?php echo $row['section'];?></td>
+                        <td><?php echo $row['studNum'];?></td>
+                        <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
                         <td><input type="number" name='SA1_<?= $sumID?>' value='<?= $SA1 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
                         <td><input type="number" name='SA2_<?= $sumID?>' value='<?= $SA2 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
                         <td><input type="number" name='SA3_<?= $sumID?>' value='<?= $SA3 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
                         <td><?php echo $row['SAavg']?></td>
+                        <td><?php echo $row['60per']?></td>
                     </tr>
                     <?php }?>
                 </table>
             <?php } else if ($SAamt == 2) {?>
-                <table class="stud-tbl">
+                <table class="students-table">
                     <tr>
-                        <th></th>
+                        <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Section</th>
+                        <th width="10%" rowspan="2">Student Number</th>
+                        <th rowspan="2">Student Name</th>
+                        <th width="10%">SA 1</th>
+                        <th width="10%">SA 2</th>
+                        <th width="10%" rowspan="2">Average</th>
+                        <th width="10%" rowspan="2">60%</th>
                     </tr>
+                    <?php $row = $maxscore->fetch_assoc() ?>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>SA 1</th>
-                        <th>SA 2</th>
-                        <th>Average</th>
-                    </tr>
-                    <tr>
-                        <th>Program</th>
-                        <th>Student Number</th>
-                        <th>Student Name</th>
-                        <?php $row = $maxscore->fetch_assoc()?>
                         <th><?php echo $row['SA1max'];?></th>
                         <th><?php echo $row['SA2max']; ?></th>
-                        <th></th>
                     </tr>
                     <?php
                         while($row = $studData->fetch_assoc()) {
@@ -106,58 +94,58 @@
                             $studNum = $row['studNum'];
                             $SA1 = $row['SA1'];
                             $SA2 = $row['SA2'];
-                            $SAavg = $row['SAavg'];
                     ?>
                     <tr>
                         <input type="checkbox" name="update[]" value='<?= $sumID?>' checked hidden/>
-                        <td class="student-data-module"><?php echo $row['studProg'];?></td>
-                        <td class="student-data-module"><?php echo $row['studNum'];?></td>
-                        <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+                        <td><?php echo $row['studProg'];?></td>
+                        <td><?php echo $row['section'];?></td>
+                        <td><?php echo $row['studNum'];?></td>
+                        <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
                         <td><input type="number" name='SA1_<?= $sumID?>' value='<?= $SA1 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
                         <td><input type="number" name='SA2_<?= $sumID?>' value='<?= $SA2 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
                         <td><?php echo $row['SAavg']?></td>
+                        <td><?php echo $row['60per']?></td>
                     </tr>
                     <?php }?>
-            </table>
+                </table>
             <?php } else if ($SAamt == 1) {?>
-                <table class="stud-tbl">
+                <table class="students-table">
                     <tr>
-                        <th></th>
+                        <th width="10%" rowspan="2">Program</th>
+                        <th width="10%" rowspan="2">Section</th>
+                        <th width="10%" rowspan="2">Student Number</th>
+                        <th rowspan="2">Student Name</th>
+                        <th width="10%">SA 1</th>
+                        <th width="10%" rowspan="2">Average</th>
+                        <th width="10%" rowspan="2">60%</th>
                     </tr>
+                    <?php $row = $maxscore->fetch_assoc() ?>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>SA 1</th>
-                        <th>Average</th>
-                    </tr>
-                    <tr>
-                        <th>Program</th>
-                        <th>Student Number</th>
-                        <th>Student Name</th>
-                        <?php $row = $maxscore->fetch_assoc()?>
                         <th><?php echo $row['SA1max'];?></th>
-                        <th></th>
                     </tr>
                     <?php
                         while($row = $studData->fetch_assoc()) {
                             $sumID = $row['sumID'];
                             $studNum = $row['studNum'];
                             $SA1 = $row['SA1'];
-
-                            $SAavg = $row['SAavg'];
                     ?>
                     <tr>
                         <input type="checkbox" name="update[]" value='<?= $sumID?>' checked hidden/>
-                        <td class="student-data-module"><?php echo $row['studProg'];?></td>
-                        <td class="student-data-module"><?php echo $row['studNum'];?></td>
-                        <td class="student-data-module"><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
-                        <td><input type="number" name='SA1_<?= $sumID?>' value='<?= $SA1 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
-                     <td><?php echo $row['SAavg']?></td>
+                        <td><?php echo $row['studProg'];?></td>
+                        <td><?php echo $row['section'];?></td>
+                        <td><?php echo $row['studNum'];?></td>
+                        <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
+                        <td><input type="number" class="edit-grade" name='SA1_<?= $sumID?>' value='<?= $SA1 ?>' maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"></td>
+                        <td><?php echo $row['SAavg']?></td>
+                        <td><?php echo $row['60per']?></td>
                     </tr>
-                <?php }?>
+                    <?php }?>
                 </table>
             <?php }?>
+            <div class="updategrades-cont">
+                <input type="button" value="Cancel" onclick="history.go(-1)" id="cancel-btn"/>
+                <input type="submit" value="Update Records" name="btn-update" class="sh rad">
+            </div>            
         </form>
     </div>
 </body>
