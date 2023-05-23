@@ -7,7 +7,7 @@
     $FAamt = $rows['FAamt'];
 ?>
 <div id="overlay">
-    <div id="editcourse-form">
+    <div id="editcourse-form" style="height:auto; padding-bottom:2vh;">
         <div id="close-btn" onclick="offMax()">&times;</div>
         <h2>Assign Max Scores</h2>
         <form action="php-process/maxscore.php" method="post">
@@ -15,15 +15,15 @@
             <fieldset class="SAedit">
             <legend>Summative Assessment</legend>
             <?php if($SAamt == 3) { ?>
-                <label for="SA1max">SA 1<input type="number" name="SA1max" min="1" placeholder="Enter valu"></label>
-                <label for="SA2max">SA 2<input type="number" name="SA2max" min="1" placeholder="Enter valu"></label>
-                <label for="SA3max">SA 3<input type="number" name="SA3max" min="1" placeholder="Enter valu"></label>
+                <label for="SA1max">SA 1<input type="number" name="SA1max" min="1" placeholder="Enter value"></label>
+                <label for="SA2max">SA 2<input type="number" name="SA2max" min="1" placeholder="Enter value"></label>
+                <label for="SA3max">SA 3<input type="number" name="SA3max" min="1" placeholder="Enter value"></label>
                 
             <?php } else if($SAamt == 2) { ?>
-                <label for="SA1max">SA 1 <input type="number" name="SA1max" min="1" placeholder="Enter valu"></label>
-                <label for="SA2max">SA 2 <input type="number" name="SA2max" min="1" placeholder="Enter valu"></label>
+                <label for="SA1max">SA 1 <input type="number" name="SA1max" min="1" placeholder="Enter value"></label>
+                <label for="SA2max">SA 2 <input type="number" name="SA2max" min="1" placeholder="Enter value"></label>
             <?php } else if($SAamt == 1) { ?>
-                <label for="SA1max">SA 1 <input type="number" name="SA1max" min="1" placeholder="Enter valu"></label>
+                <label for="SA1max">SA 1 <input type="number" name="SA1max" min="1" placeholder="Enter value"></label>
             <?php } ?>
             </fieldset><br>
 

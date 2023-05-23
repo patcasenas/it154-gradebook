@@ -9,9 +9,11 @@ body {
   scroll-behavior: smooth;
   color: #1b1b1b;
 }
+
 button:hover {
   cursor: pointer;
 }
+
 /* Navigation Bar */
 .top-nav {
   background-color: #031d45;
@@ -22,6 +24,7 @@ button:hover {
   z-index: 1;
   position: relative;
 }
+
 .top-nav-container {
   display: flex;
   flex-grow: 1;
@@ -29,21 +32,26 @@ button:hover {
   align-self: center;
   margin-right: 10%;
 }
+
 .logo-container {
   flex-grow: 0;
   transition: margin-left 0.5s;
 }
+
 #nav-logo {
   max-width: 12vw;
 }
+
 .nav-courseCode {
   color: #ebebee;
   font-weight: 100;
   letter-spacing: 0.05em;
 }
+
 .nav-courseCode:hover {
   cursor: default;
 }
+
 /* Side nav */
 #hamburger-menu {
   border: none;
@@ -55,6 +63,7 @@ button:hover {
   top: 0.5vh;
   position: relative;
 }
+
 .sidenav {
   margin-top: 2.5%;
   height: 100%;
@@ -67,6 +76,7 @@ button:hover {
   transition: 0.5s;
   padding-top: 3%;
 }
+
 .nav-link {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
@@ -75,13 +85,16 @@ button:hover {
   display: block;
   transition: 0.3s;
 }
+
 .nav-link:hover {
   color: #f1f1f1;
   background-color: #031d45;
 }
+
 .nav-link:hover:active {
   transform: scale(1.1);
 }
+
 .sidenav .closebtn {
   position: absolute;
   top: 1vh;
@@ -89,6 +102,7 @@ button:hover {
   font-size: 1.5em;
   margin-left: 50px;
 }
+
 .closebtn {
   text-decoration: none;
   color: #ebebee;
@@ -97,6 +111,7 @@ button:hover {
   display: block;
   padding: 2% 2%;
 }
+
 /* logout */
 .logout-link {
   right: 4%;
@@ -106,14 +121,17 @@ button:hover {
   font-weight: 400;
   text-decoration: none;
 }
+
 .logout-link:hover {
   transform: scale(1.2);
   font-weight: 500;
 }
+
 .logout-link:hover:active {
   transform: scale(1);
   font-weight: 500;
 }
+
 /* General Container */
 .container {
   padding: 0;
@@ -124,6 +142,7 @@ button:hover {
   flex-direction: column;
   transition: margin-left 0.5s;
 }
+
 /* Index */
 .index {
   background-image: url(../img/bg-index.png);
@@ -131,6 +150,7 @@ button:hover {
   width: inherit;
   background-size: cover;
 }
+
 .index-cont {
   position: relative;
   display: flex;
@@ -142,6 +162,7 @@ button:hover {
   height: inherit;
   width: inherit;
 }
+
 .index-box {
   width: 25%;
   height: 30%;
@@ -150,12 +171,14 @@ button:hover {
   flex-direction: column;
   justify-content: center;
 }
+
 .index-text {
   font-weight: 500;
   align-self: flex-start;
   font-size: 1.5em;
   letter-spacing: 0.05em;
 }
+
 /* Index logo size */
 .index-logo {
   display: flex;
@@ -163,18 +186,22 @@ button:hover {
   align-items: center;
   flex-direction: column;
 }
+
 #soitlogo {
   max-width: 8%;
   height: auto;
 }
+
 #soit {
   max-width: 20%;
   height: auto;
 }
+
 #igradebook {
   max-width: 25%;
   height: auto;
 }
+
 .select select {
   appearance: none;
   outline: 0;
@@ -188,16 +215,19 @@ button:hover {
   cursor: pointer;
   font-size: 1em;
 }
+
 /* Remove IE arrow */
 select::-ms-expand {
   display: none;
 }
+
 /* Custom Select wrapper */
 .select-cont {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .select {
   position: relative;
   display: flex;
@@ -206,6 +236,7 @@ select::-ms-expand {
   border-radius: 0.25em;
   overflow: hidden;
 }
+
 .select::after {
   content: "\25BC";
   position: absolute;
@@ -216,9 +247,11 @@ select::-ms-expand {
   transition: 0.25s all ease;
   pointer-events: none;
 }
+
 .select:hover::after {
   color: #17345f;
 }
+
 /* Select course submit btn */
 #index-submit {
   background-color: #354a5f;
@@ -233,13 +266,16 @@ select::-ms-expand {
   width: 40%;
   letter-spacing: 0.12em;
 }
+
 #index-submit:hover {
   cursor: pointer;
   background-color: #17345f;
 }
+
 #index-submit:hover:active {
   font-size: 0.95em;
 }
+
 /* New course button */
 #newcourse-btn {
   border: none;
@@ -250,10 +286,12 @@ select::-ms-expand {
   color: antiquewhite;
   letter-spacing: 0.05em;
 }
+
 #newcourse-btn:hover {
   cursor: pointer;
   font-weight: 550;
 }
+
 /* New course overlay */
 #overlay {
   position: fixed;
@@ -267,6 +305,7 @@ select::-ms-expand {
   background-color: #1b1b1b4b;
   z-index: 2;
 }
+
 #overlay1 {
   position: fixed;
   display: none;
@@ -279,12 +318,14 @@ select::-ms-expand {
   background-color: #1b1b1b4b;
   z-index: 2;
 }
+
 #close-btn {
   position: fixed;
   right: 5%;
   font-size: 1.5em;
   cursor: pointer;
 }
+
 #newcourse-form {
   position: absolute;
   top: 50%;
@@ -299,28 +340,35 @@ select::-ms-expand {
   border-radius: 3%;
   text-align: start;
 }
+
 #newcourse-form p {
   margin: -3% 1% 5%;
 }
+
 #newcourse-form fieldset {
   position: relative;
 }
+
 #newcourse-form legend {
   font-weight: 600;
   letter-spacing: 0.12em;
 }
+
 #newcourse-form label {
   font-weight: 500;
 }
+
 #newcourse-form input[type="text"] {
   float: right;
   width: 75%;
   font-size: 0.9em;
 }
+
 /* Save and cancel button */
 .index-form-btns {
   float: right;
 }
+
 .index-form-btns input[type="submit"] {
   background-color: #57912b;
   border: solid #465a37 0.5px;
@@ -335,6 +383,7 @@ select::-ms-expand {
   -webkit-border-radius: 43px 43px 43px 43px;
   -moz-border-radius: 43px 43px 43px 43px;
 }
+
 #cancel-btn {
   background-color: #9d9d9d;
   color: #ebebee;
@@ -351,6 +400,7 @@ select::-ms-expand {
   -moz-border-radius: 43px 43px 43px 43px;
   border: solid #707070 0.5px;
 }
+
 .index-form-btns input[type="submit"]:hover,
 #cancel-btn:hover {
   cursor: pointer;
@@ -358,19 +408,24 @@ select::-ms-expand {
   -webkit-box-shadow: -5px -2px 67px -10px rgba(0, 0, 0, 0.48) inset;
   -moz-box-shadow: -5px -2px 67px -10px rgba(0, 0, 0, 0.48) inset;
 }
+
 .index-form-btns input[type="submit"]:hover:active,
 #cancel-btn:hover:active {
   font-size: 0.95em;
 }
+
 .title {
   font-size: 2em;
   font-weight: 600;
   letter-spacing: 0.06em;
 }
+
 /* Table display */
-.students-table th,td {
+.students-table th,
+td {
   border: 1px solid;
 }
+
 .students-table {
   position: relative;
   top: 2vh;
@@ -382,6 +437,16 @@ select::-ms-expand {
   margin: 0 auto 2vh auto;
   transition: width 0.5s;
 }
+
+.tableFA{}
+.tableFA tbody tr *{
+
+  height: 100%;
+  width: 80%;
+  padding: 3px;
+
+}
+
 .edit-grade {
   border: none;
   text-align: center;
@@ -389,9 +454,11 @@ select::-ms-expand {
   font-size: 1em;
   width: 5em;
 }
+
 textarea {
   resize: none;
 }
+
 /* Edit course form */
 #editcourse-form {
   position: absolute;
@@ -405,6 +472,7 @@ textarea {
   padding: 1vh 2vw 0vh;
   border-radius: 2%;
 }
+
 #edit-btn {
   background-color: #031d45;
   border: none;
@@ -414,9 +482,11 @@ textarea {
   width: 7vw;
   height: 4vh;
 }
+
 #edit-btn:hover:active {
   font-size: 0.85em;
 }
+
 /* Delete Button */
 .delete-list {
   display: flex;
@@ -426,6 +496,7 @@ textarea {
   width: 90%;
   transition: width 0.5s;
 }
+
 .delete-list input[type="submit"] {
   border: none;
   border-radius: 43px 43px 43px 43px;
@@ -440,6 +511,7 @@ textarea {
   letter-spacing: 0.05em;
   margin: 0vh 0vw 0vh 1vw;
 }
+
 .delete-list input[type="submit"]:hover,
 #edit-btn:hover,
 .import-btn:hover {
@@ -448,9 +520,11 @@ textarea {
   -webkit-box-shadow: -5px -2px 67px -10px rgba(0, 0, 0, 0.48) inset;
   -moz-box-shadow: -5px -2px 67px -10px rgba(0, 0, 0, 0.48) inset;
 }
+
 .delete-list input[type="submit"]:hover:active {
   font-size: 0.85em;
 }
+
 /* Select file btn */
 .upload-list {
   margin: 0% 9% 1vh;
@@ -461,6 +535,7 @@ textarea {
   right: 0;
   bottom: -9vh;
 }
+
 /* Import btn */
 .import-btn {
   width: 9vw;
@@ -473,14 +548,17 @@ textarea {
   letter-spacing: 0.07em;
   color: #ebebee;
 }
+
 .import-btn:hover:active {
   font-size: 0.75em;
 }
+
 .material-symbols-rounded {
   vertical-align: middle;
   transform: scale(1.2);
   font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 200, "opsz" 40;
 }
+
 .bottom-cont {
   background-color: #ee7c0a;
   position: fixed;
@@ -492,6 +570,7 @@ textarea {
   -webkit-border-radius: 200px 200px 200px 200px;
   -moz-border-radius: 200px 200px 200px 200px;
 }
+
 .bottom {
   text-align: center;
   font-size: 2em;
@@ -503,6 +582,7 @@ textarea {
   background: transparent;
   padding: 0;
 }
+
 /* select section SA/FA */
 .select-section {
   position: relative;
@@ -510,6 +590,7 @@ textarea {
   width: 20%;
   top: 0;
 }
+
 .select-section select {
   background-color: #17345f;
   padding: 2.5% 3%;
@@ -524,9 +605,11 @@ textarea {
   -webkit-appearance: button;
   appearance: button;
 }
+
 .select-section select:hover:active {
   font-size: 0.98em;
 }
+
 .select-section input[type="submit"] {
   border: none;
   width: 25%;
@@ -544,9 +627,11 @@ textarea {
   box-shadow: 0px 0px 5px 0px #000000bf;
   -webkit-box-shadow: 0px 0px 5px 0px #000000bf;
 }
+
 .select-section input[type="submit"]:hover:active {
   font-size: 0.9em;
 }
+
 .btn-section {
   display: flex;
   position: relative;
@@ -554,12 +639,15 @@ textarea {
   top: 4vh;
   width: 50%;
 }
+
 #formative {
   padding: 1%;
 }
+
 #updateGrade {
   padding: 10%;
 }
+
 #formative,
 #updateGrade {
   border: none;
@@ -570,6 +658,7 @@ textarea {
   margin-right: 1%;
   letter-spacing: 0.06em;
 }
+
 .updategrades-cont input[type="submit"]:hover,
 #formative:hover,
 #updateGrade:hover,
@@ -579,6 +668,7 @@ textarea {
 .bottom:hover {
   cursor: pointer;
 }
+
 .dropdown {
   position: relative;
   display: inline-block;
@@ -586,12 +676,14 @@ textarea {
   left: 2vw;
   top: 0.5vh;
 }
+
 .dropbtn {
   border: none;
   position: relative;
   background: transparent;
   font-size: 1.5em;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -601,6 +693,7 @@ textarea {
   -webkit-box-shadow: 0px 0px 5px 0px #000000bf;
   z-index: 1;
 }
+
 .dropdown-content button {
   border: none;
   font-size: 1em;
@@ -611,23 +704,28 @@ textarea {
   display: block;
   width: 13vw;
 }
+
 .dropdown-content button:hover {
   background-color: #ddd;
 }
+
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 /* Shadow and radius for buttons */
 .sh {
   -moz-box-shadow: 0px 0px 5px 0px #000000bf;
   box-shadow: 0px 0px 5px 0px #000000bf;
   -webkit-box-shadow: 0px 0px 5px 0px #000000bf;
 }
+
 .rad {
   border-radius: 43px 43px 43px 43px;
   -webkit-border-radius: 43px 43px 43px 43px;
   -moz-border-radius: 43px 43px 43px 43px;
 }
+
 /* Set Assessment amount form */
 #assessment-form {
   position: absolute;
@@ -641,23 +739,30 @@ textarea {
   padding: 1vh 2vw 0;
   border-radius: 2%;
 }
+
 #assessment-form form {
   line-height: 3em;
   padding-bottom: 2vh;
 }
+
 .SAedit,
 .FAedit {
   display: flex;
   row-gap: 4vh;
   line-height: 4vh;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box; /* Opera/IE 8+ */
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
 }
+
 .FAedit {
   margin-bottom: 2vh;
   flex-wrap: wrap;
 }
+
 .SAedit input[type="number"] {
   padding: 5%;
   border: none;
@@ -665,6 +770,7 @@ textarea {
   margin-left: 0.5vw;
   color: #121212;
 }
+
 .FAedit input[type="number"] {
   padding: 5%;
   border: none;
@@ -672,12 +778,14 @@ textarea {
   margin-left: 0.5vw;
   color: #121212;
 }
+
 .SAedit input[type="number"]:focus,
 .FAedit input[type="number"]:focus {
   border: solid #121212;
   outline: 0 none;
   border-width: thin;
 }
+
 /* Update grades display */
 .updategrades-cont {
   top: 2vh;
@@ -685,6 +793,7 @@ textarea {
   width: 20vw;
   position: relative;
 }
+
 .updategrades-cont input[type="submit"] {
   border: none;
   background-color: #57912b;
@@ -694,9 +803,11 @@ textarea {
   font-weight: 700;
   letter-spacing: 0.05em;
 }
+
 .updategrades-cont input[type="submit"]:hover:active {
   font-size: 0.8em;
 }
+
 /* View module grades */
 .obe-setup {
   position: relative;
@@ -704,6 +815,7 @@ textarea {
   left: 9%;
   width: 15vw;
 }
+
 .obe-setup button {
   border: none;
   padding: 1vh 0.5vw;
@@ -714,16 +826,19 @@ textarea {
   color: #121212;
   letter-spacing: 0.05em;
 }
+
 .obe-setup button:hover:active {
   cursor: pointer;
   font-size: 0.98em;
 }
+
 .select-section-obe {
   position: relative;
   left: 73%;
   width: 20%;
   top: 0;
 }
+
 .select-section-obe select {
   background-color: #17345f;
   padding: 2.5% 3%;
@@ -738,6 +853,40 @@ textarea {
   -webkit-appearance: button;
   appearance: button;
 }
+
 .select-section-obe select:hover:active {
   font-size: 0.88em;
+}
+
+
+
+
+
+
+
+
+
+.table {
+  border-collapse: collapse;
+
+}
+
+.table thead tr th {
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+}
+.table thead tr th {
+
+}
+
+.table tbody tr td * {
+  width: 100%;
+  height: 5vh;
+
+}
+
+.table tbody tr {
+
+  text-align: center;
 }
