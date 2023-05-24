@@ -40,7 +40,7 @@ include("php/navbar.php");
                     } ?>
                 </select>
                 <div>
-                    <p>text here</p>
+                    <p>Select a module below to view summarized grades</p>
                     <button name="modbtn" value="1" type="submit">Module 1 Grades</button>
                     <button name="modbtn" value="2" type="submit">Module 2 Grades</button>
                     <button name="modbtn" value="3" type="submit">Module 3 Grades</button>
@@ -63,13 +63,14 @@ if (isset($_GET['modbtn'])) {
         <h4>Module
             <?php echo $modNum; ?>
         </h4>
-        <?php echo $section;
+        <?php
     }
     $studData = $db->query("SELECT r.studNum, r.section, r.studProg, r.modNum, r.grade, r.transmutation, si.lastName, si.firstName
         FROM runavg AS r
         LEFT JOIN studentinfo AS si ON si.studNum = r.studNum
         WHERE r.section IN ('$section') AND modNum = $modNum AND r.courseCode = '" . $courseCode . "'
         ORDER BY si.lastName ASC"); ?>
+        <div class="container" id="container">
     <table class="students-table">
         <thead>
             <tr>
@@ -115,5 +116,6 @@ if (isset($_GET['modbtn'])) {
             </tbody>
         <?php } ?>
     </table>
+        </div>
 <?php }
 ?>
