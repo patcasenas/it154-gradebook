@@ -41,13 +41,16 @@
                 $this->Cell(50,10,"Recommendation",1,1,'C');
             }
             function CO1() {
+                $db = new mysqli("localhost","root","","soit-gradebook");
                 $CO1 = $_POST['CO1'];
                 $contribution1 = $_POST['contribution1'];
                 $task1 = $_POST['task1'];
                 $satisfactory1 = $_POST['satisfactory1'];
                 $target1 = $_POST['target1'];
-                $freq1 = 20;
-                // $freqper1 = $_POST['freqper1'];
+                //count frequency
+                $studProg = implode($_POST['program']);
+                $courseCode = implode($_SESSION['courseTitle']);
+                
                 $recommendation1 = $_POST['recommendation1'];
                 $compute_x = $this->getX();
                 $compute_y = $this->getY();
@@ -62,13 +65,15 @@
                 $this->Cell(40,40,$task1,1,0,'C');
                 $this->Cell(40,40,$satisfactory1,1,0,'C');
                 $this->Cell(45,40,$target1,1,0,'C');
-                $this->Cell(25,40,$freq1,1,0,'C');
+                for($x=0; $x <= $count; $x++) {
+                    $this->Cell(25,40,$x,1,0,'C');
+                }
                 $this->Cell(25,40,"",1,0,'C');
-                    if($freq1>='21'){
+                    // if($>='21'){
                 $this->Cell(20,40,"Passed",1,0,'C');
-                    } else {
-                $this->Cell(20,40,"Failed",1,0,'C');
-                    }
+                //     } else {
+                // $this->Cell(20,40,"Failed",1,0,'C');
+                //     }
                 $x = $this->GetX();
                 $y = $this->GetY();
                 $this->MultiCell(50,13.3,$recommendation1,0,'L');

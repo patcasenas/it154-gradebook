@@ -6,10 +6,15 @@
     $studData = $db->query("SELECT f.formID, f.modNum, f.studNum, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.FAavg, f.40per, ta.FAamt, FA1max, FA2max, FA3max, FA4max, FA5max, FA6max, FA7max, FA8max, FA9max, FA10max 
                             FROM formative AS f 
                             LEFT JOIN studentinfo AS si ON f.studNum = si.studNum 
-                            LEFT JOIN tblamt AS ta ON f.modNum = ta.modNum 
-                            LEFT JOIN maxscore AS ms ON f.modNum = ms.modNum 
-                            WHERE f.modNum = $modNum AND f.courseCode = '".$courseCode."'
-                            ORDER BY si.lastName ASC");
+                            LEFT JOIN 
+                            (SELECT * FROM tblamt 
+                            where modNum = '".$modNum."' and courseCode = '".$courseCode."') AS ta ON f.modNum = ta.modNum
+                            LEFT JOIN 
+                            (SELECT * FROM maxscore 
+                            where modNum = '".$modNum."' and courseCode = '".$courseCode."')
+                            AS ms ON f.modNum = ms.modNum
+                            WHERE f.modNum = 1 AND ta.courseCode = '".$courseCode."' AND ta.modNum = '".$modNum."'
+                            ORDER BY si.lastName ASC;");
     
     if(!$studData) {
         mysqli_error($db);

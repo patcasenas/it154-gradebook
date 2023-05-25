@@ -405,7 +405,7 @@
                             $FAavg = $row['FAavg'];
                         ?>
                     <tr>
-                        <input type="checkbox" name="update[]" value='<?= $formID?>'>
+                        <input type="checkbox" name="update[]" value='<?= $formID?>' checked hidden>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
                         <td> <?php echo $row['section'];?>  </td>
 
@@ -463,7 +463,7 @@
                             $FAavg = $row['FAavg'];
                         ?>
                     <tr>
-                        <input type="checkbox" name="update[]" value='<?= $formID?>'>
+                        <input type="checkbox" name="update[]" value='<?= $formID?>' checked hidden>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
                         <td> <?php echo $row['section'];?>  </td>
 
@@ -518,7 +518,7 @@
                             $FAavg = $row['FAavg'];
                         ?>
                     <tr>
-                        <input type="checkbox" name="update[]" value='<?= $formID?>'>
+                        <input type="checkbox" name="update[]" value='<?= $formID?>' checked hidden>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
                         <td> <?php echo $row['section'];?>  </td>
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>
@@ -566,7 +566,7 @@
                     $FAavg = $row['FAavg'];
                 ?>
             <tr>
-                <input type="checkbox" name="update[]" value='<?= $formID?>'>
+                <input type="checkbox" name="update[]" value='<?= $formID?>' checked hidden>
                 <td class="student-data-module"><?php echo $row['studProg'];?></td>
                 <td> <?php echo $row['section'];?>  </td>
 
@@ -612,7 +612,7 @@
                             $FA1 = $row['FA1'];                 
                         ?>
                     <tr>
-                        <input type="checkbox" name="update[]" value='<?= $formID?>'>
+                        <input type="checkbox" name="update[]" value='<?= $formID?>' checked hidden>
                         <td class="student-data-module"><?php echo $row['studProg'];?></td>
                         <td> <?php echo $row['section'];?>  </td>
                         <td class="student-data-module"><?php echo $row['studNum'];?></td>

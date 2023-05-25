@@ -88,10 +88,7 @@ if(isset($_SESSION['filter'])) {
         </tr>
         <?php }?>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <th>Total passed</th>
+            <th colspan="4">Total passed</th>
             <?php 
                             $sql = $db->query("SELECT SA1max, SA2max, SA3max FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
                             $row = $sql->fetch_assoc();
