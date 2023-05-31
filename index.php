@@ -25,7 +25,7 @@
         $courseCode = implode($_POST['courseCode']);
         $_SESSION['courseCode'] = $courseCode;
         // Generate the URL with the course code
-        $url = 'classlist.php?coursecode=' . urlencode($courseCode);
+        $url = 'classlist.php?courseCode=' . urlencode($courseCode);
 
         // Redirect to the generated URL
         header('Location: ' . $url);
