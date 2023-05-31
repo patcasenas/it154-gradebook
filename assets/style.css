@@ -225,6 +225,7 @@ select::-ms-expand {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .select {
@@ -264,6 +265,7 @@ select::-ms-expand {
   -moz-border-radius: 43px 43px 43px 43px;
   width: 40%;
   letter-spacing: 0.12em;
+  margin-top: 2vh;
 }
 
 #index-submit:hover {
@@ -295,8 +297,8 @@ select::-ms-expand {
 #overlay {
   position: fixed;
   display: none;
-  width: inherit;
-  height: inherit;
+  width: auto;
+  height: auto;
   top: 0;
   left: 0;
   right: 0;
@@ -333,7 +335,7 @@ select::-ms-expand {
   -ms-transform: translate(-50%, -50%);
   background-color: #ebebee;
   width: 25%;
-  height: 51%;
+  height: auto;
   color: #1b1b1b;
   padding: 10 20 5;
   border-radius: 3%;
@@ -366,6 +368,7 @@ select::-ms-expand {
 /* Save and cancel button */
 .index-form-btns {
   float: right;
+  margin: 2vh 0;
 }
 
 .index-form-btns input[type="submit"] {
@@ -434,6 +437,9 @@ td {
   margin: 0 auto 2vh auto;
   transition: width 0.5s;
 }
+.student-cont {
+  padding-top: 5vh;
+}
 .tableFA tbody tr * {
 
   height: 100%;
@@ -462,8 +468,8 @@ textarea {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #ebebee;
-  height: 49vh;
-  width: 30vw;
+  height: auto;
+  width: 35vw;
   padding: 1vh 2vw 0vh;
   border-radius: 2%;
 }
@@ -522,17 +528,17 @@ textarea {
 .upload-list {
   margin: 0% 9% 1vh;
   padding: 0 1vw 0;
-  width: 26%;
-  -moz-box-shadow: 1px 1px 65px -18px rgba(0, 0, 0, 0.59) inset;
+  width: 26vw;
   position: absolute;
   right: 0;
   bottom: -9vh;
+  transition: 0.5s;
 }
 
 /* Import btn */
 .import-btn {
   width: 9vw;
-  margin: 0vh 0px 1vh 10%;
+  margin: 0vh 0px 0vh 10%;
   border: none;
   background-color: #57912b;
   line-height: 3em;
@@ -631,14 +637,31 @@ textarea {
   left: 10%;
   top: 4vh;
   width: 50%;
+  height: 4vh;
 }
 
 #formative {
-  padding: 1%;
+  padding: 0 2%;
 }
 
 #updateGrade {
-  padding: 10%;
+  padding: 0 3%;
+}
+
+#uploadGrade {
+  padding: .5% .7%;
+  background-color: #57912b;
+  border: solid #465a37 0.5px;
+  font-size: 0.9em;
+  color: #ebebee;
+  font-weight: 600;
+  margin-right: 1%;
+  letter-spacing: 0.06em;
+}
+
+.upload-form{
+  margin-left: 10%;
+  width: auto;
 }
 
 #formative,#updateGrade {
@@ -665,8 +688,7 @@ textarea {
   position: relative;
   display: inline-block;
   position: relative;
-  left: 2vw;
-  top: 0.5vh;
+  top: 1vh;
 }
 
 .dropbtn {
@@ -684,6 +706,7 @@ textarea {
   box-shadow: 0px 0px 5px 0px #000000bf;
   -webkit-box-shadow: 0px 0px 5px 0px #000000bf;
   z-index: 1;
+  top: 4vh;
 }
 
 .dropdown-content button {
@@ -726,7 +749,7 @@ textarea {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #ebebee;
-  height: 46vh;
+  height: auto;
   width: 30vw;
   padding: 1vh 2vw 0;
   border-radius: 2%;
@@ -739,7 +762,7 @@ textarea {
 
 .SAedit,.FAedit {
   display: flex;
-  row-gap: 4vh;
+  row-gap: 2vh;
   line-height: 4vh;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
@@ -750,22 +773,13 @@ textarea {
 }
 
 .FAedit {
-  margin-bottom: 2vh;
   flex-wrap: wrap;
 }
 
-.SAedit input[type="number"] {
+.SAedit input[type="number"], .FAedit input[type="number"] {
   padding: 5%;
   border: none;
   width: 55%;
-  margin-left: 0.5vw;
-  color: #121212;
-}
-
-.FAedit input[type="number"] {
-  padding: 5%;
-  border: none;
-  width: 36%;
   margin-left: 0.5vw;
   color: #121212;
 }
@@ -801,14 +815,14 @@ textarea {
 /* View module grades */
 .obe-setup {
   position: relative;
-  top: 3.7vh;
-  left: 9%;
+  top: 9.7vh;
+  left: 10%;
   width: 15vw;
 }
 
 .obe-setup button {
   border: none;
-  padding: 1vh 0.5vw;
+  padding: .9vh 0.5vw;
   background-color: #c0b020;
   font-family: "Roboto";
   font-size: 1em;
@@ -852,19 +866,22 @@ textarea {
   width: 11vw;
   display: flex;
   flex-direction: column;
+  margin-top: -8vh;
 }
 
 .select-section-obe form div button {
   border: none;
-  padding: 1vh 0.5vw;
-  background-color: #c02020;
+  padding: .5vh .5vw;
+  background-color: #57912b;
   font-family: "Roboto";
   font-size: 1em;
-  font-weight: 600;
-  color: #121212;
+  font-weight: 500;
+  color: #ebebee;
   letter-spacing: 0.05em;
-  border-radius: 5px;
   margin-top: 1vh;
+}
+.select-section-obe button:hover:active {
+  font-size: .95em;
 }
 
 .table {

@@ -16,7 +16,7 @@ if(isset($_POST['importSubmit'])){
         fgetcsv($csvFile); 
 
         // Displays course title
-        $courseCode = implode($_SESSION['courseTitle']);
+        $courseCode = $_SESSION['courseCode'];
         // Parse data from CSV file line by line
         while(($line = fgetcsv($csvFile)) !== FALSE){
             $lastName   = $line[0];

@@ -1,5 +1,6 @@
 <?php
 include_once("../php/dbConfig.php");
+$modNum = $_GET['modNum'];
 
 if(isset($_POST['btn-update'])){
   if(isset($_POST['update'])){
@@ -25,7 +26,7 @@ if(isset($_POST['btn-update'])){
         echo "error" . mysqli_error($db);
       } else {
         echo "<script>alert('Grades have been updated successfully.');</script>";
-        echo "<script>javascript:history.go(-2);</script>";
+        header("Location:../formative.php?modNum=$modNum");
       }
     } 
   }

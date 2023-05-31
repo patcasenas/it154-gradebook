@@ -15,7 +15,7 @@
                 $SYstart = $_POST['SYstart'];
                 $SYend = $_POST['SYend'];
                 $term = $_POST['term'];
-                $courseCode = implode($_SESSION['courseTitle']);
+                $courseCode = $_SESSION['courseCode'];
                 $sql = $db->query("SELECT DISTINCT studNum FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
                 $count = mysqli_num_rows($sql);
                 $this->SetFont('Arial','B',10);
@@ -42,16 +42,31 @@
             }
             function CO1() {
                 $db = new mysqli("localhost","root","","soit-gradebook");
+                $recommendation1 = $_POST['recommendation1'];
                 $CO1 = $_POST['CO1'];
                 $contribution1 = $_POST['contribution1'];
                 $task1 = $_POST['task1'];
                 $satisfactory1 = $_POST['satisfactory1'];
                 $target1 = $_POST['target1'];
                 //count frequency
+                $courseCode = $_SESSION['courseCode'];
                 $studProg = implode($_POST['program']);
-                $courseCode = implode($_SESSION['courseTitle']);
-                
-                $recommendation1 = $_POST['recommendation1'];
+                $sql = $db->query("SELECT studNum, grade FROM runavg WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."' AND modNum = 1");
+                $freq = 0;
+                while($row = $sql->fetch_assoc()) {
+                    $grade = $row['grade'];
+                    for($x=0;$x<mysqli_num_rows($sql);$x++) {
+                        if($grade >= 70) {
+                            $freq++;
+                            break;
+                        }
+                    }
+                }
+                //compute % of students passed
+                $sql = $db->query("SELECT DISTINCT studNum FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
+                $count = mysqli_num_rows($sql);
+                    $freqper = ($freq*100)/$count;
+
                 $compute_x = $this->getX();
                 $compute_y = $this->getY();
 
@@ -65,15 +80,13 @@
                 $this->Cell(40,40,$task1,1,0,'C');
                 $this->Cell(40,40,$satisfactory1,1,0,'C');
                 $this->Cell(45,40,$target1,1,0,'C');
-                for($x=0; $x <= $count; $x++) {
-                    $this->Cell(25,40,$x,1,0,'C');
-                }
-                $this->Cell(25,40,"",1,0,'C');
-                    // if($>='21'){
+                $this->Cell(25,40,$freq,1,0,'C');
+                $this->Cell(25,40,number_format($freqper,2),1,0,'C');
+                    if($target1<=$freqper){
                 $this->Cell(20,40,"Passed",1,0,'C');
-                //     } else {
-                // $this->Cell(20,40,"Failed",1,0,'C');
-                //     }
+                    } else {
+                $this->Cell(20,40,"Failed",1,0,'C');
+                    }
                 $x = $this->GetX();
                 $y = $this->GetY();
                 $this->MultiCell(50,13.3,$recommendation1,0,'L');
@@ -81,14 +94,31 @@
                 $this->Cell(50,40,"",1,1);
             }
             function CO2() {
+                $db = new mysqli("localhost","root","","soit-gradebook");
                 $CO2 = $_POST['CO2'];
                 $contribution2 = $_POST['contribution2'];
                 $task2 = $_POST['task2'];
                 $satisfactory2 = $_POST['satisfactory2'];
                 $target2 = $_POST['target2'];
-                // $freq2 = $_POST['freq2'];
-                // $freqper2 = $_POST['freqper2'];
                 $recommendation2 = $_POST['recommendation2'];
+                //count frequency
+                $courseCode = $_SESSION['courseCode'];
+                $studProg = implode($_POST['program']);
+                $sql = $db->query("SELECT studNum, grade FROM runavg WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."' AND modNum = 2");
+                $freq = 0;
+                while($row = $sql->fetch_assoc()) {
+                    $grade = $row['grade'];
+                    for($x=0;$x<mysqli_num_rows($sql);$x++) {
+                        if($grade >= 70) {
+                            $freq++;
+                            break;
+                        }
+                    }
+                }
+                //compute % of students passed
+                $sql = $db->query("SELECT DISTINCT studNum FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
+                $count = mysqli_num_rows($sql);
+                $freqper = ($freq*100)/$count;
                 $compute_x = $this->GetX();
                 $compute_y = $this->GetY();
                 
@@ -101,9 +131,13 @@
                 $this->Cell(40,40,$task2,1,0,'C');
                 $this->Cell(40,40,$satisfactory2,1,0,'C');
                 $this->Cell(45,40,$target2,1,0,'C');
-                $this->Cell(25,40,"",1,0,'C');
-                $this->Cell(25,40,"",1,0,'C');
-                $this->Cell(20,40,"",1,0,'C');
+                $this->Cell(25,40,$freq,1,0,'C');
+                $this->Cell(25,40,number_format($freqper,2),1,0,'C');
+                    if($target2<=$freqper){
+                $this->Cell(20,40,"Passed",1,0,'C');
+                    } else {
+                $this->Cell(20,40,"Failed",1,0,'C');
+                    }
                 $x = $this->GetX();
                 $y = $this->GetY();
                 $this->MultiCell(50,13.3,$recommendation2,0,'L');
@@ -111,14 +145,33 @@
                 $this->Cell(50,40,"",1,1);
             }
             function CO3(){
+                $db = new mysqli("localhost","root","","soit-gradebook");
                 $CO3 = $_POST['CO3'];
                 $contribution3 = $_POST['contribution3'];
                 $task3 = $_POST['task3'];
                 $satisfactory3 = $_POST['satisfactory3'];
                 $target3 = $_POST['target3'];
-                // $freq3 = $_POST['freq3'];
-                // $freqper3 = $_POST['freqper3'];
                 $recommendation3 = $_POST['recommendation3'];
+                //count frequency
+                $courseCode = $_SESSION['courseCode'];
+                $studProg = implode($_POST['program']);
+                $sql = $db->query("SELECT studNum, grade FROM runavg WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."' AND modNum = 2");
+                $freq = 0;
+                while($row = $sql->fetch_assoc()) {
+                    $grade = $row['grade'];
+                    for($x=0;$x<mysqli_num_rows($sql);$x++) {
+                        if($grade >= 70) {
+                            $freq++;
+                            break;
+                        }
+                    }
+                }
+                //compute % of students passed
+                $sql = $db->query("SELECT DISTINCT studNum FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
+                $count = mysqli_num_rows($sql);
+                $freqper = ($freq*100)/$count;
+                $compute_x = $this->GetX();
+                $compute_y = $this->GetY();
                 $compute_x = $this->getX();
                 $compute_y = $this->getY();
 
@@ -131,9 +184,13 @@
                 $this->Cell(40,40,$task3,1,0,'C');
                 $this->Cell(40,40,$satisfactory3,1,0,'C');
                 $this->Cell(45,40,$target3,1,0,'C');
-                $this->Cell(25,40,"",1,0,'C');
-                $this->Cell(25,40,"",1,0,'C');
-                $this->Cell(20,40,"",1,0,'C');
+                $this->Cell(25,40,$freq,1,0,'C');
+                $this->Cell(25,40,number_format($freqper,2),1,0,'C');
+                    if($target3<=$freqper){
+                $this->Cell(20,40,"Passed",1,0,'C');
+                    } else {
+                $this->Cell(20,40,"Failed",1,0,'C');
+                    }
                 $x = $this->GetX();
                 $y = $this->GetY();
                 $this->MultiCell(50,13.3,$recommendation3,0,'L');

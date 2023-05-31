@@ -1,6 +1,7 @@
 <?php
     include("php/head.php");
     require("php/dbConfig.php");
+    require_once("php/session_start.php");
     $sql = "SELECT * FROM courseinfo ORDER BY courseCode ASC";
     $result = mysqli_query($db,$sql);
     // echo $result or trigger_error("Query Failed! SQL: $sql - Error: ".mysqli_error($db), E_USER_ERROR);
@@ -12,11 +13,25 @@
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Create Course</title>
+    <title>SOIT iGradebook</title>
 </head>
 <body class="index">
+<?php
+    // Check if the form is submitted
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Retrieve the course code from the form
+        $courseCode = implode($_POST['courseCode']);
+        $_SESSION['courseCode'] = $courseCode;
+        // Generate the URL with the course code
+        $url = 'classlist.php?coursecode=' . urlencode($courseCode);
+
+        // Redirect to the generated URL
+        header('Location: ' . $url);
+        exit;
+    }
+?>
     <div class="index-cont">
     <div class="index-logo">
         <img src="img/soit-logo.png" alt="SOIT logo" id="soitlogo">
@@ -24,11 +39,11 @@
         <img src="img/igrade-white@1x.png" alt="SOIT iGradebook" id="igradebook">
     </div>
         <div class="index-box">
-        <form action="classlist.php" method="post">
+        <form method="POST" action="">
             <h1 class="index-text">Select a course to continue</h1>
             <div class="select-cont">
                 <div class="select">
-                    <select name="courseTitle[]">
+                    <select name="courseCode[]">
                         <option value="0" selected="selected" hidden>Select Course</option>
                         <?php
                             foreach($coursetitles as $key => $value) {
@@ -37,12 +52,10 @@
                             }?>
                     </select>
                 </div>
-            </div><br>
-            <input type="submit" name="submit" value="LOGIN" id="index-submit">
+            <button type="submit" id="index-submit">Login</button>
         </form>
-        <p>Can't find your course? <button onclick="on()" id="newcourse-btn">Create a new course</button></p>
+            <p>Can't find your course? <button type="button" onclick="on()" id="newcourse-btn" name="createCourse">Create a new course</button></p>
         </div>
-
         <div id="overlay">
             <div id="newcourse-form">
                 <div id="close-btn" onclick="off()">&times;</div>
@@ -66,6 +79,7 @@
                     </fieldset><br>
                     <div class="index-form-btns">
                         <button onClick="off()" id="cancel-btn">Cancel</button>
+                        <!-- <input type="submit" value="Save" name="submit"> -->
                         <input type="submit" value="Save" name="submit">
                     </div>
                 </form>

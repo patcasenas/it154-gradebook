@@ -1,6 +1,6 @@
 <?php 
     require $_SERVER["DOCUMENT_ROOT"] . "/it154-gradebook/php/head.php";
-    $courseCode = implode($_SESSION['courseTitle']);
+    $courseCode = $_SESSION['courseCode'];
     $sql = $db->query("SELECT courseTitle FROM courseinfo WHERE courseCode = '".$courseCode."'");
     $row = mysqli_fetch_assoc($sql);
 ?>
@@ -9,20 +9,24 @@
     <div class="top-nav">
         <span id="hamburger-menu" onclick="openNav()"><i class="fa-solid fa-bars" style="color: #ebebee;"></i></span>
         <div class="logo-container">
-            <img src="/it154-gradebook/img/igrade-white@1x.png" id="nav-logo" alt="iGradebook">
+            <img src="/as/img/igrade-white@1x.png" id="nav-logo" alt="iGradebook">
         </div>
         <div class="top-nav-container">
             <span class="nav-courseCode"><?php echo $courseCode . " - " . $row['courseTitle']?></span>
-            <a href="/it154-gradebook/php/logout.php" class="logout-link">Logout</a>
+            <a href="/as/php/logout.php" class="logout-link">Logout</a>
         </div>
     </div>
     <div id="sidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark" style="color: #ebebee;"></i></a>
-            <a href="/it154-gradebook/classlist.php" class="nav-link">Class List</a>
-            <a href="/it154-gradebook/sa-mod1.php" class="nav-link">Module 1</a>
-            <a href="/it154-gradebook/sa-mod2.php" class="nav-link">Module 2</a>
-            <a href="/it154-gradebook/sa-mod3.php" class="nav-link">Module 3</a>
-            <a href="/it154-gradebook/viewmodulegrades.php" class="nav-link">View Module Grades</a>
+            <a href="/as/classlist.php" class="nav-link">Class List</a>
+            <?php
+                $mod = $db->query("SELECT modNum FROM moduleinfo WHERE courseCode = '".$courseCode."'");
+                while ($row = $mod->fetch_assoc()) {
+                    $modNum = $row['modNum'];
+                    echo '<a href="summative.php?modNum='.$modNum.'" class="nav-link">' . 'Module ' . $modNum . '</a>';
+                }
+            ?>
+            <a href="/as/viewmodulegrades.php" class="nav-link">View Module Grades</a>
     </div>
 </nav>
 <script>

@@ -1,102 +1,35 @@
 <?php
-    $modTitle = $db->query("SELECT modName FROM moduleinfo WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
+    $modNum = $_GET['modNum'];
     $tblamt = $db->query("SELECT * FROM tblamt WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
-    $row = $modTitle->fetch_assoc();
-    $rows = $tblamt->fetch_assoc();
-    $SAamt = $rows['SAamt'];
-    $FAamt = $rows['FAamt'];
+    $row = $tblamt->fetch_assoc();
+    $SAamt = $row['SAamt'];
+    $FAamt = $row['FAamt'];
+    $query = $db->query("SELECT modNum FROM moduleinfo WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
+    $roww = $query->fetch_assoc();
+    $modURL = $roww['modNum'];
 ?>
 <div id="overlay">
-    <div id="editcourse-form" style="height:auto; padding-bottom:2vh;">
+    <div id="editcourse-form">
         <div id="close-btn" onclick="offMax()">&times;</div>
         <h2>Assign Max Scores</h2>
-        <form action="php-process/maxscore.php" method="post">
+        <form action="php-process/maxscore.php?modNum=<?php echo $modURL?>" method="post">
             <!-- Summative Assessment max score -->
             <fieldset class="SAedit">
             <legend>Summative Assessment</legend>
-            <?php if($SAamt == 3) { ?>
-                <label for="SA1max">SA 1<input type="number" name="SA1max" min="1" placeholder="Enter value"></label>
-                <label for="SA2max">SA 2<input type="number" name="SA2max" min="1" placeholder="Enter value"></label>
-                <label for="SA3max">SA 3<input type="number" name="SA3max" min="1" placeholder="Enter value"></label>
-                
-            <?php } else if($SAamt == 2) { ?>
-                <label for="SA1max">SA 1 <input type="number" name="SA1max" min="1" placeholder="Enter value"></label>
-                <label for="SA2max">SA 2 <input type="number" name="SA2max" min="1" placeholder="Enter value"></label>
-            <?php } else if($SAamt == 1) { ?>
-                <label for="SA1max">SA 1 <input type="number" name="SA1max" min="1" placeholder="Enter value"></label>
+            <?php 
+                for($i = 1; $i <= $SAamt; $i++) {?>
+                    <label for="SA<?php echo $i?>max"><?php echo "SA ". $i?><input type="number" name="SA<?php echo $i?>max" min="1" required></label>
             <?php } ?>
             </fieldset><br>
-
             <!-- Formative Assessment max score -->
             <fieldset class="FAedit">
             <legend>Formative Assessment</legend>
-            <?php if ($FAamt == 10) {?>
-                <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label>
-                <label for="FA2max">FA 2<input type="number" name="FA2max" min="1"></label>
-                <label for="FA3max">FA 3<input type="number" name="FA3max" min="1"></label>
-                <label for="FA4max">FA 4<input type="number" name="FA4max" min="1"></label>
-                <label for="FA5max">FA 5<input type="number" name="FA5max" min="1"></label>
-                <label for="FA6max">FA 6<input type="number" name="FA6max" min="1"></label>
-                <label for="FA7max">FA 7<input type="number" name="FA7max" min="1"></label>
-                <label for="FA8max">FA 8<input type="number" name="FA8max" min="1"></label>
-                <label for="FA9max">FA 9<input type="number" name="FA9max" min="1"></label>
-                <label for="FA10max">FA 10<input type="number" name="FA10max" min="1"></label>
-            <?php } else if ($FAamt == 9) {?>
-                <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label>
-                <label for="FA2max">FA 2<input type="number" name="FA2max" min="1"></label>
-                <label for="FA3max">FA 3<input type="number" name="FA3max" min="1"></label>
-                <label for="FA4max">FA 4<input type="number" name="FA4max" min="1"></label>
-                <label for="FA5max">FA 5<input type="number" name="FA5max" min="1"></label>
-                <label for="FA6max">FA 6<input type="number" name="FA6max" min="1"></label>
-                <label for="FA7max">FA 7<input type="number" name="FA7max" min="1"></label>
-                <label for="FA8max">FA 8<input type="number" name="FA8max" min="1"></label>
-                <label for="FA9max">FA 9<input type="number" name="FA9max" min="1"></label>
-            <?php } else if ($FAamt == 8) {?>
-                <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label>
-                <label for="FA2max">FA 2<input type="number" name="FA2max" min="1"></label>
-                <label for="FA3max">FA 3<input type="number" name="FA3max" min="1"></label>
-                <label for="FA4max">FA 4<input type="number" name="FA4max" min="1"></label>
-                <label for="FA5max">FA 5<input type="number" name="FA5max" min="1"></label>
-                <label for="FA6max">FA 6<input type="number" name="FA6max" min="1"></label>
-                <label for="FA7max">FA 7<input type="number" name="FA7max" min="1"></label>
-                <label for="FA8max">FA 8<input type="number" name="FA8max" min="1"></label>
-            <?php } else if ($FAamt == 7) {?>
-                <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label>
-                <label for="FA2max">FA 2<input type="number" name="FA2max" min="1"></label>
-                <label for="FA3max">FA 3<input type="number" name="FA3max" min="1"></label>
-                <label for="FA4max">FA 4<input type="number" name="FA4max" min="1"></label>
-                <label for="FA5max">FA 5<input type="number" name="FA5max" min="1"></label>
-                <label for="FA6max">FA 6<input type="number" name="FA6max" min="1"></label>
-                <label for="FA7max">FA 7<input type="number" name="FA7max" min="1"></label>
-            <?php } else if ($FAamt == 6) {?>
-                <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label>
-                <label for="FA2max">FA 2<input type="number" name="FA2max" min="1"></label>
-                <label for="FA3max">FA 3<input type="number" name="FA3max" min="1"></label>
-                <label for="FA4max">FA 4<input type="number" name="FA4max" min="1"></label>
-                <label for="FA5max">FA 5<input type="number" name="FA5max" min="1"></label>
-                <label for="FA6max">FA 6<input type="number" name="FA6max" min="1"></label>
-            <?php } else if ($FAamt == 5) {?>
-                <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label>
-                <label for="FA2max">FA 2<input type="number" name="FA2max" min="1"></label>
-                <label for="FA3max">FA 3<input type="number" name="FA3max" min="1"></label>
-                <label for="FA4max">FA 4<input type="number" name="FA4max" min="1"></label>
-                <label for="FA5max">FA 5<input type="number" name="FA5max" min="1"></label>
-            <?php } else if ($FAamt == 4) {?>
-                <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label>
-                <label for="FA2max">FA 2<input type="number" name="FA2max" min="1"></label>
-                <label for="FA3max">FA 3<input type="number" name="FA3max" min="1"></label>
-                <label for="FA4max">FA 4<input type="number" name="FA4max" min="1"></label>
-            <?php } else if ($FAamt == 3) {?>
-                <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label>
-                <label for="FA2max">FA 2<input type="number" name="FA2max" min="1"></label>
-                <label for="FA3max">FA 3<input type="number" name="FA3max" min="1"></label>
-            <?php } else if ($FAamt == 2) {?>
-                <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label>
-                <label for="FA2max">FA 2<input type="number" name="FA2max" min="1"></label>
-            <?php } else if ($FAamt == 1) {?>
-            <label for="FA1max">FA 1<input type="number" name="FA1max" min="1"></label> 
-            <?php }?>
-        </fieldset><br>
+            <?php 
+                for($i = 1; $i <= $FAamt; $i++) {?>
+                    <label for="FA<?php echo $i?>max"><?php echo "FA ". $i?><input type="number" name="FA<?php echo $i?>max" min="1" required></label>
+            <?php } ?>
+            </fieldset>
+            <!-- Submit/Cancel buttons -->
             <div class="index-form-btns">
                 <input type="button" value="Cancel" onclick="offMax()" id="cancel-btn"/>
                 <input type="submit" value="Save" name="submit">
