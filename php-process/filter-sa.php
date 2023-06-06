@@ -160,10 +160,14 @@ $SA = $row['SAamt'];
                                     }
                                 }
                                 ?>
-                                <td><?php echo $count; ?></td>
-                                <td><?php echo $count2; ?></td>
-                                <td><?php echo $count3; ?></td>
-                                <?php
+                                <?php if ($SA >= 1) {?>
+                                    <td><?php echo $count; ?></td>
+                                <?php } if ($SA >= 2) {?>
+                                    <td><?php echo $count2; ?></td>
+                                <?php } if ($SA >= 3) {?>
+                                    <td><?php echo $count3; ?></td>
+                                <?php }
+
                                 if ($SA == 3) {
                                     echo '<td></td>
                                         <td></td>';
