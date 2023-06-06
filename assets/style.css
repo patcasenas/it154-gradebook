@@ -509,6 +509,7 @@ textarea {
   justify-content: end;
   width: 95%;
   transition: width 0.5s;
+  top: 2vh;
 }
 
 .delete-list input[type="submit"] {
