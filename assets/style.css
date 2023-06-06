@@ -74,6 +74,7 @@ button:hover {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 3%;
+  height: 140vh;
 }
 
 .nav-link {
@@ -448,8 +449,9 @@ td {
   table-layout: fixed;
   box-shadow: 0px 0px 10px #858585;
   width: 90%;
-  margin: 0 auto 2vh auto;
+  margin: 0 auto 2vh;
   transition: width 0.5s;
+  top: 2vh;
 }
 .student-cont {
   padding-top: 5vh;
