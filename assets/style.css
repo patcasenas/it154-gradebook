@@ -140,7 +140,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   transition: margin-left 0.5s;
-  height: auto;
+  height: 80%;
 }
 
 /* Index */
@@ -541,10 +541,10 @@ textarea {
 .upload-list {
   margin: 0% 9% 1vh;
   padding: 0 1vw 0;
-  width: 26vw;
-  position: absolute;
-  right: 0;
-  bottom: -9vh;
+  width: 25vw;
+  position: relative;
+  left: 60%;
+  bottom: 0vh;
   transition: 0.5s;
 }
 
@@ -575,12 +575,13 @@ textarea {
   background-color: #ee7c0a;
   position: fixed;
   left: 95%;
-  top: 91%;
+  top: 92%;
   width: 3vw;
   height: 6vh;
   border-radius: 200px 200px 200px 200px;
   -webkit-border-radius: 200px 200px 200px 200px;
   -moz-border-radius: 200px 200px 200px 200px;
+  z-index: 1;
 }
 
 .bottom {
