@@ -1,9 +1,9 @@
 <?php
     require_once("php/dbConfig.php");
 
-    $data = $db->query("SELECT s.modNum, s.studNum, s.SAavg, s.60per, f.FAavg, f.40per
+    $data = $db->query("SELECT s.modNum, s.username, s.SAavg, s.60per, f.FAavg, f.40per
                         FROM summative AS s
-                        RIGHT JOIN formative AS f ON s.studNum = f.studNum");
+                        RIGHT JOIN formative AS f ON s.username = f.username");
     
     while($row = $data->fetch_assoc()) {
         $fortyper = $row['40per'];
@@ -11,17 +11,17 @@
         $SAavg = $row['SAavg'];
         $FAavg = $row['FAavg'];
 
-        $update = $db->query("UPDATE runavg SET 60per = (SELECT 60per FROM summative WHERE runavg.modNum = summative.modNum AND runavg.studNum = summative.studNum), 
-                            SAavg = (SELECT SAavg FROM summative WHERE runavg.modNum = summative.modNum AND runavg.studNum = summative.studNum),
-                            40per = (SELECT 40per FROM formative WHERE runavg.modNum = formative.modNum AND runavg.studNum = formative.studNum),
-                            FAavg = (SELECT FAavg FROM formative WHERE runavg.modNum = formative.modNum AND runavg.studNum = formative.studNum)");
+        $update = $db->query("UPDATE runavg SET 60per = (SELECT 60per FROM summative WHERE runavg.modNum = summative.modNum AND runavg.username = summative.username), 
+                            SAavg = (SELECT SAavg FROM summative WHERE runavg.modNum = summative.modNum AND runavg.username = summative.username),
+                            40per = (SELECT 40per FROM formative WHERE runavg.modNum = formative.modNum AND runavg.username = formative.username),
+                            FAavg = (SELECT FAavg FROM formative WHERE runavg.modNum = formative.modNum AND runavg.username = formative.username)");
     }
 
     $runAvg = $db->query("SELECT * FROM runavg");
     while($row = $runAvg->fetch_assoc()) {
         $fortyper = $row['40per'];
         $sixtyper = $row['60per'];
-        $studNum = $row['studNum'];
+        $username = $row['username'];
         $raID = $row['raID'];
 
         $compute = $fortyper+$sixtyper;

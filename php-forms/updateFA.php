@@ -6,9 +6,9 @@
     $section = implode($_SESSION['section']);
     $courseCode = $_SESSION['courseCode'];
 
-    $studData = $db->query("SELECT f.formID, f.modNum, f.studNum, f.section, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.FAavg, f.40per, si.lastName, si.firstName, si.studProg 
+    $studData = $db->query("SELECT f.formID, f.modNum, f.username, f.section, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.FAavg, f.40per, si.lastName, si.firstName, si.studProg 
     FROM formative AS f
-    LEFT JOIN studentinfo AS si ON f.studNum = si.studNum
+    LEFT JOIN studentinfo AS si ON f.username = si.username
     WHERE si.section IN ('$section') AND modNum = $modNum AND f.courseCode = '".$courseCode."'
     ORDER BY si.lastName ASC");
     $maxscore = $db->query("SELECT FA1max, FA2max, FA3max, FA4max, FA5max, FA6max, FA7max, FA8max, FA9max, FA10max FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
@@ -28,7 +28,7 @@
         <span class="title">Update Formative Assessment Grades</span>
             <div class="student-cont">
                 <div class="upload-form">
-                    <form action="php-process/uploadGrade.php" method="post" enctype="multipart/form-data">
+                    <form action="../php-process/uploadGrade.php?modNum=<?php echo $roww['modNum']?>" method="post" enctype="multipart/form-data">
                         <input type="file" name="file"/>
                         <button type="submit" name="upload" id="uploadGrade" class="sh rad"><span class="material-symbols-rounded">cloud_upload</span>&emsp;Upload Grades</button>
                     </form>
@@ -55,8 +55,8 @@
                 <tr>
                     <th width="5%" rowspan="2">Program</th>
                     <th width="5%" rowspan="2">Section</th>
-                    <th width="8%" rowspan="2">Student Number</th>
-                    <th width="10%" rowspan="2">Student Name</th>
+                    <th width="16%" rowspan="2">Email Address</th>
+                    <th rowspan="2">Student Name</th>
                     <?php foreach ($headers as $header) { ?>
                         <th width="5%"><?php echo $header?></th>
                     <?php }?>
@@ -70,12 +70,12 @@
                 </tr>
                 <?php while ($row = $studData->fetch_assoc()) {
                     $formID = $row['formID'];
-                    $studNum = $row['studNum'];?>
+                    $username = $row['username'];?>
                     <tr>
                     <input type="checkbox" name="update[]" value='<?= $formID ?>' checked hidden />
                     <td><?php echo $row['studProg']; ?></td>
                     <td><?php echo $row['section']; ?></td>
-                    <td><?php echo $row['studNum']; ?></td>
+                    <td><?php echo $row['username']; ?></td>
                     <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
                     <?php foreach ($headers as $header) {
                         $grade = $row[$header];

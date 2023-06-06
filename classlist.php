@@ -38,7 +38,7 @@ if ($_SESSION['courseCode'] == '0') {
                 <tr>
                     <th width=20%>Program</th>
                     <th>Student Name</th>
-                    <th width=20%>Student Number</th>
+                    <th width=30%>Email Address</th>
                     <th width=10%>Section</th>
                 </tr>
             </thead>
@@ -58,7 +58,7 @@ if ($_SESSION['courseCode'] == '0') {
                             <?php echo $row['lastName'] . ", " . $row['firstName'] ?>
                             </td>
                             <td>
-                            <?php echo $row['studNum']; ?>
+                            <?php echo $row['username']; ?>
                             </td>
                             <td>
                             <?php echo $row['section']; ?>

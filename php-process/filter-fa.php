@@ -1,12 +1,13 @@
 <?php 
     require("php/dbConfig.php");
-    $sql = $db->query("SELECT DISTINCT section FROM studentinfo ORDER BY section ASC");
+    $sql = $db->query("SELECT DISTINCT section FROM formative  WHERE courseCode='".$courseCode."' ORDER BY section ASC");
     $sections = array();
     if(mysqli_num_rows($sql)>0){
         while($row = mysqli_fetch_assoc($sql)) {
             $sections[] = $row;
         }
     }
+    // echo '<pre>'; print_r($sections); echo '</pre>';
     $maxscore = $db->query("SELECT * FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
     $tblamt = $db->query("SELECT * FROM tblamt WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
     $row = $tblamt->fetch_assoc();
@@ -28,10 +29,7 @@
     </div>
 <?php
 if(isset($_POST['submit'])) {
-    $_SESSION['section'] = $_POST['section'];
-}
-if(isset($_SESSION['section'])) {
-    $section = implode($_SESSION['section']);
+    $section = implode($_POST['section']);
 
     if ($section == 0) {
         echo "<script>alert('Select a section from the dropdown')</script>";?>
@@ -40,7 +38,7 @@ if(isset($_SESSION['section'])) {
                     <tr>
                         <th width="5%" rowspan="2">Program</th>
                         <th width="5%" rowspan="2">Section</th>
-                        <th width="10%" rowspan="2">Student Number</th>
+                        <th width="16%%" rowspan="2">Email Address</th>
                         <th rowspan="2">Student Name</th>
 
                         <?php 
@@ -69,9 +67,9 @@ if(isset($_SESSION['section'])) {
                 </tbody>
             </table>
     <?php } else {
-            $studData = $db->query("SELECT f.formID, f.section, f.modNum, f.studNum, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.40per, f.FAavg, si.lastName, si.firstName, si.studProg 
+            $studData = $db->query("SELECT f.formID, f.section, f.modNum, f.username, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.40per, f.FAavg, si.lastName, si.firstName, si.studProg 
                         FROM formative AS f 
-                        LEFT JOIN studentinfo AS si ON f.studNum = si.studNum 
+                        LEFT JOIN studentinfo AS si ON f.username = si.username 
                         WHERE si.section IN ('$section') AND modNum = $modNum AND f.courseCode = '".$courseCode."'
                         ORDER BY si.lastName ASC");
 
@@ -85,7 +83,7 @@ if(isset($_SESSION['section'])) {
                     <tr>
                         <th width="5%" rowspan="2">Program</th>
                         <th width="5%" rowspan="2">Section</th>
-                        <th width="10%" rowspan="2">Student Number</th>
+                        <th width="16%" rowspan="2">Email Address</th>
                         <th rowspan="2">Student Name</th>
 
                         <?php 
@@ -113,7 +111,7 @@ if(isset($_SESSION['section'])) {
                         echo "<tr>";
                         echo "<td>{$row['studProg']}</td>";
                         echo "<td>{$row['section']}</td>";
-                        echo "<td>{$row['studNum']}</td>";
+                        echo "<td>{$row['username']}</td>";
                         echo "<td>{$row['lastName']}, {$row['firstName']}</td>";
                         
                         for ($i = 1; $i <= $faColumns; $i++) {
@@ -123,8 +121,7 @@ if(isset($_SESSION['section'])) {
                         echo "<td>{$row['FAavg']}</td>";
                         echo "<td>{$row['40per']}</td>";
                         echo "</tr>";
-                    }
-                    ?>
+                    }?>
                 </tbody>
             </table>
 <?php

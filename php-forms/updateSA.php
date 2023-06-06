@@ -6,9 +6,9 @@
     $section = implode($_SESSION['section']);
     $courseCode = $_SESSION['courseCode'];
 
-    $studData = $db->query("SELECT s.sumID, s.modNum, s.studNum, s.section, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg 
+    $studData = $db->query("SELECT s.sumID, s.modNum, s.username, s.section, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg 
                             FROM summative AS s
-                            LEFT JOIN studentinfo AS si ON s.studNum = si.studNum
+                            LEFT JOIN studentinfo AS si ON s.username = si.username
                             WHERE si.section IN ('$section') AND modNum = $modNum AND s.courseCode = '".$courseCode."'
                             ORDER BY si.lastName ASC");  
     $maxscore = $db->query("SELECT SA1max, SA2max, SA3max FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
@@ -28,9 +28,9 @@
     <span class="title">Update Summative Assessment Grades</span>
         <div class="student-cont">
                 <div class="upload-form">
-                <form action="../php-process/uploadGrade.php" method="post" enctype="multipart/form-data">
+                <form action="../php-process/uploadGrade.php?modNum=<?php echo $roww['modNum']?>" method="post" enctype="multipart/form-data">
                     <input type="file" name="file"/>
-                    <button type="submit" name="upload" id="uploadGrade" class="sh rad"><span class="material-symbols-rounded">cloud_upload</span>&emsp;Upload Grades</button>
+                    <button type="submit" id="uploadGrade" class="sh rad"><span class="material-symbols-rounded">cloud_upload</span>&emsp;Upload Grades</button>
                 </form>
         </div>
     <form action="../php-process/sa-updateGrade.php?modNum=<?php echo $roww['modNum'] . "&&courseCode=" . $courseCode?>" method="post">
@@ -55,7 +55,7 @@
             <tr>
                 <th width="10%" rowspan="2">Program</th>
                 <th width="10%" rowspan="2">Section</th>
-                <th width="10%" rowspan="2">Student Number</th>
+                <th width="16%" rowspan="2">Email Address</th>
                 <th rowspan="2">Student Name</th>
                 <?php foreach ($headers as $header) { ?>
                     <th width="10%"><?php echo $header; ?></th>
@@ -70,13 +70,13 @@
             </tr>
             <?php while ($row = $studData->fetch_assoc()) {
                 $sumID = $row['sumID'];
-                $studNum = $row['studNum'];
+                $username = $row['username'];
                 ?>
                 <tr>
                     <input type="checkbox" name="update[]" value='<?= $sumID ?>' checked hidden />
                     <td><?php echo $row['studProg']; ?></td>
                     <td><?php echo $row['section']; ?></td>
-                    <td><?php echo $row['studNum']; ?></td>
+                    <td><?php echo $row['username']; ?></td>
                     <td><?php echo $row['lastName'] . ", " . $row['firstName'] ?></td>
                     <?php foreach ($headers as $header) {
                         $grade = $row[$header];

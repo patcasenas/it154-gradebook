@@ -86,6 +86,13 @@
             </div>
         </div>
     </div>
+    <div class="orImport">
+        <hr/><span>or</span><hr/>
+    </div>
+    <form action="php-process/uploadGrade.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="csv">
+        <button type="submit" id="importSG" class="sh rad"><span class="material-symbols-rounded">cloud_upload</span>&emsp;Upload Grades</button>
+    </form>
     <script>
         function on() {
             document.getElementById("overlay").style.display = "block";

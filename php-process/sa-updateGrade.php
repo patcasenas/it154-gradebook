@@ -1,6 +1,6 @@
 <?php
 include_once("../php/dbConfig.php");
-
+$modNum = $_GET['modNum'];
 if(isset($_POST['btn-update'])){
   if(isset($_POST['update'])){
     foreach($_POST['update'] as $updateid){
@@ -18,7 +18,7 @@ if(isset($_POST['btn-update'])){
         echo "error" . mysqli_error($db);
       } else {
         echo "<script>alert('Grades have been updated successfully.');</script>";
-        echo "<script>javascript:history.go(-2);</script>";
+        header ("Location: ../summative.php?modNum=$modNum");
       }
     } 
   }

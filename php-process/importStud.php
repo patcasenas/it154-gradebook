@@ -21,15 +21,21 @@ if(isset($_POST['importSubmit'])){
         while(($line = fgetcsv($csvFile)) !== FALSE){
             $lastName   = $line[0];
             $firstName  = $line[1];
-            $studNum  = $line[2];
-            $studProg = $line[3];
-            $section = $line[4];
-            $username = $line[5];
+            $studProg = $line[2];
+            $section = $line[3];
+            $username  = $line[4];
             
-            $db->query("INSERT INTO studentinfo (lastName, firstName, studNum, studProg, section, username, courseCode) VALUES ('".$lastName."', '".$firstName."', '".$studNum."', '".$studProg."', '".$section."', '".$username."', '".$courseCode."')");    
-            $db->query("UPDATE studentinfo SET studProg = UPPER(studProg), section = UPPER(section), lastName = UPPER(lastName)");
+            $db->query("INSERT INTO studentinfo (lastName, firstName, username, studProg, section, courseCode) VALUES (UPPER('".$lastName."'), '".$firstName."', '".$username."', UPPER('".$studProg."'), UPPER('".$section."'), UPPER('".$courseCode."'))");    
+            
+            for ($i=1; $i<=3; $i++) {
+                $db->query("INSERT INTO summative (username, modNum, courseCode, section) VALUES ('".$username."', $i, '".$courseCode."', '".$section."')");
+                $db->query("INSERT INTO formative (username, modNum, courseCode, section) VALUES ('".$username."', $i, '".$courseCode."', '".$section."')");
+            }
+
+            for ($i = 1; $i <= 3; $i++) {
+                $db->query("INSERT INTO runavg (username, section, studProg, modNum, courseCode) VALUES ('".$username."', '".$section."', '".$studProg."', $i, '".$courseCode."')");
+            }            
         }
-            
         // Close opened CSV file
         fclose($csvFile);
             
@@ -41,29 +47,6 @@ if(isset($_POST['importSubmit'])){
         $qstring = '?status=invalid_file';
     }
 
-}
-$query=$db->query("SELECT studNum, section FROM studentinfo");
-while($row = $query->fetch_assoc()){
-    $db->query("INSERT INTO summative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 1, '".$courseCode."', '".$row['section']."')");
-    $db->query("INSERT INTO summative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 2, '".$courseCode."', '".$row['section']."')");
-    $db->query("INSERT INTO summative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 3, '".$courseCode."', '".$row['section']."')");
-
-    $db->query("INSERT INTO formative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 1, '".$courseCode."', '".$row['section']."')");
-    $db->query("INSERT INTO formative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 2, '".$courseCode."', '".$row['section']."')");
-    $db->query("INSERT INTO formative (studNum, modNum, courseCode, section) VALUES ($row[studNum], 3, '".$courseCode."', '".$row['section']."')");
-}
-
-$runAvg = $db->query("SELECT si.studNum, si.courseCode, si.section, si.studProg, s.modNum
-                    FROM studentinfo AS si
-                    LEFT JOIN summative AS s ON s.studNum = si.studNum
-                    WHERE si.courseCode = '".$courseCode."'");
-while($row = $runAvg->fetch_assoc()) {
-    $studNum = $row['studNum'];
-    $studProg = $row['studProg'];
-    $modNum = $row['modNum'];
-    $section = $row['section'];
-    
-    $insertinto = $db->query("INSERT INTO runavg (studNum, section, studProg, modNum, courseCode) VALUES ('".$studNum."', '".$section."', '".$studProg."', $modNum, '".$courseCode."')");
 }
 // Redirect to the listing page
 header("Location: ../classlist.php".$qstring);

@@ -73,9 +73,9 @@ $SA = $row['SAamt'];
                 </tbody>
             </table>
         <?php } else {
-            $studData = $db->query("SELECT s.sumID, s.section, s.modNum, s.studNum, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg 
+            $studData = $db->query("SELECT s.sumID, s.section, s.modNum, s.username, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg 
             FROM summative AS s 
-            LEFT JOIN studentinfo AS si ON s.studNum = si.studNum 
+            LEFT JOIN studentinfo AS si ON s.username = si.username 
             WHERE si.section IN ('$section') AND s.modNum = $modNum AND s.courseCode = '".$courseCode."'
             ORDER BY si.lastName ASC");  
             if (!$studData && !$maxscore && !$tblamt) {
@@ -84,9 +84,9 @@ $SA = $row['SAamt'];
                 <table class="students-table">
                     <thead>
                         <tr>
-                            <th width="10%" rowspan="2">Program</th>
-                            <th width="10%" rowspan="2">Section</th>
-                            <th width="10%" rowspan="2">Student Number</th>
+                            <th width="5%" rowspan="2">Program</th>
+                            <th width="5%" rowspan="2">Section</th>
+                            <th width="20%" rowspan="2">Email Address</th>
                             <th rowspan="2">Student Name</th>
                             <?php if ($SA >= 1) {
                                 $row = $maxscore->fetch_assoc(); ?>
@@ -118,7 +118,7 @@ $SA = $row['SAamt'];
                             <tr>
                                 <td><?php echo $row['studProg']; ?></td>
                                 <td><?php echo $row['section']; ?></td>
-                                <td><?php echo $row['studNum']; ?></td>
+                                <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['lastName'] . ", " . $row['firstName']; ?></td>
                                 <?php if ($SA >= 1) { ?>
                                     <td><?php echo $row['SA1']; ?></td>

@@ -16,7 +16,7 @@
                 $SYend = $_POST['SYend'];
                 $term = $_POST['term'];
                 $courseCode = $_SESSION['courseCode'];
-                $sql = $db->query("SELECT DISTINCT studNum FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
+                $sql = $db->query("SELECT DISTINCT username FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
                 $count = mysqli_num_rows($sql);
                 $this->SetFont('Arial','B',10);
                 $this->Ln(10);
@@ -51,7 +51,7 @@
                 //count frequency
                 $courseCode = $_SESSION['courseCode'];
                 $studProg = implode($_POST['program']);
-                $sql = $db->query("SELECT studNum, grade FROM runavg WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."' AND modNum = 1");
+                $sql = $db->query("SELECT username, grade FROM runavg WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."' AND modNum = 1");
                 $freq = 0;
                 while($row = $sql->fetch_assoc()) {
                     $grade = $row['grade'];
@@ -63,7 +63,7 @@
                     }
                 }
                 //compute % of students passed
-                $sql = $db->query("SELECT DISTINCT studNum FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
+                $sql = $db->query("SELECT DISTINCT username FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
                 $count = mysqli_num_rows($sql);
                     $freqper = ($freq*100)/$count;
 
@@ -104,7 +104,7 @@
                 //count frequency
                 $courseCode = $_SESSION['courseCode'];
                 $studProg = implode($_POST['program']);
-                $sql = $db->query("SELECT studNum, grade FROM runavg WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."' AND modNum = 2");
+                $sql = $db->query("SELECT username, grade FROM runavg WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."' AND modNum = 2");
                 $freq = 0;
                 while($row = $sql->fetch_assoc()) {
                     $grade = $row['grade'];
@@ -116,7 +116,7 @@
                     }
                 }
                 //compute % of students passed
-                $sql = $db->query("SELECT DISTINCT studNum FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
+                $sql = $db->query("SELECT DISTINCT username FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
                 $count = mysqli_num_rows($sql);
                 $freqper = ($freq*100)/$count;
                 $compute_x = $this->GetX();
@@ -155,7 +155,7 @@
                 //count frequency
                 $courseCode = $_SESSION['courseCode'];
                 $studProg = implode($_POST['program']);
-                $sql = $db->query("SELECT studNum, grade FROM runavg WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."' AND modNum = 2");
+                $sql = $db->query("SELECT username, grade FROM runavg WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."' AND modNum = 2");
                 $freq = 0;
                 while($row = $sql->fetch_assoc()) {
                     $grade = $row['grade'];
@@ -167,7 +167,7 @@
                     }
                 }
                 //compute % of students passed
-                $sql = $db->query("SELECT DISTINCT studNum FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
+                $sql = $db->query("SELECT DISTINCT username FROM studentinfo WHERE courseCode = '".$courseCode."' AND studProg = '".$studProg."'");
                 $count = mysqli_num_rows($sql);
                 $freqper = ($freq*100)/$count;
                 $compute_x = $this->GetX();

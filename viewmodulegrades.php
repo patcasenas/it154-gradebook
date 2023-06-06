@@ -53,9 +53,9 @@
             echo "<script>alert('Select a section from the dropdown')</script>";
             echo "<script>window.location.href='viewmodulegrades.php'</script>";
         } else {
-            $studData = $db->query("SELECT r.studNum, r.section, r.studProg, r.modNum, r.grade, r.transmutation, si.lastName, si.firstName
+            $studData = $db->query("SELECT r.username, r.section, r.studProg, r.modNum, r.grade, r.transmutation, si.lastName, si.firstName
             FROM runavg AS r
-            LEFT JOIN studentinfo AS si ON si.studNum = r.studNum
+            LEFT JOIN studentinfo AS si ON si.username = r.username
             WHERE r.section IN ('$section') AND modNum = $modNum AND r.courseCode = '" . $courseCode . "'
             ORDER BY si.lastName ASC"); ?>
             <table class="students-table">
@@ -66,7 +66,7 @@
                     <tr>
                         <th>Program</th>
                         <th>Section</th>
-                        <th>Student Number</th>
+                        <th>Email Address</th>
                         <th>Name</th>
                         <th>Grade Total</th>
                         <th>Module Grade</th>
@@ -74,7 +74,7 @@
                 </thead>
                 <?php
                 while ($row = $studData->fetch_assoc()) {
-                    $studNum = $row['studNum'];
+                    $username = $row['username'];
                     $section = $row['section'];
                     $studProg = $row['studProg'];
                     $lastName = $row['lastName'];
@@ -85,7 +85,7 @@
                         <tr>
                             <td class="student-data-module"><?php echo $studProg ?></td>
                             <td class="student-data-module"><?php echo $section ?></td>
-                            <td class="student-data-module"><?php echo $studNum ?></td>
+                            <td class="student-data-module"><?php echo $username ?></td>
                             <td class="student-data-module"><?php echo $lastName . ", " . $firstName ?></td>
                             <td class="student-data-module"><?php echo $grade ?></td>
                             <td class="student-data-module"><?php echo $transmutation ?></td>
