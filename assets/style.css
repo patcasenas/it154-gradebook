@@ -145,20 +145,18 @@ button:hover {
 /* Index */
 .index {
   background-image: url(../img/bg-index.png);
-  height: inherit;
-  width: inherit;
-  background-size: cover;
-}
-
-.index-cont {
-  position: relative;
+  height: 100%;
+  width: 100%;
   display: flex;
+  background-size: cover;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+}
+
+.index > div:first-child {
+  position: relative;
   text-align: center;
   color: #ebebee;
-  height: inherit;
   width: inherit;
 }
 
@@ -169,6 +167,8 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+  left: 37%;
 }
 
 .index-text {

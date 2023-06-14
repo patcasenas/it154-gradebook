@@ -17,7 +17,8 @@
 <head>
     <title>SOIT iGradebook</title>
 </head>
-<body class="index">
+<body>
+<div class="index">
 <?php
     // Check if the form is submitted
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -32,7 +33,7 @@
         exit;
     }
 ?>
-    <div class="index-cont">
+    <div>
     <div class="index-logo">
         <img src="img/soit-logo.png" alt="SOIT logo" id="soitlogo">
         <img src="img/soit-white@1x.png" alt="School of Information Technology" id="soit">
@@ -94,5 +95,6 @@
             document.getElementById("overlay").style.display = "none";
         }
     </script>
+</div>
 </body>
 </html>

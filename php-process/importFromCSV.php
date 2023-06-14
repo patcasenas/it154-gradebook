@@ -54,7 +54,13 @@
             }
         }
     }
-            
         }
+    $deleteTable = $db->query("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE 'gc%'");
+
+    while ($row = $deleteTable->fetch_assoc()) {
+        $tableName = $row['TABLE_NAME'];
+        $db->query("DROP TABLE IF EXISTS `$tableName`");
+    }        
+    header("Location:../summative.php?modNum=$modNum");
 }
 ?>
