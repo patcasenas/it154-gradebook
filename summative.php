@@ -17,8 +17,7 @@
         <?php $row = $modName->fetch_assoc();?>
         <span class="title"><?php echo "Module " . $modNum . " - " . $row['modName'];?></span>
         <div class="btn-section">
-            <?php echo '<button id="formative" class="sh rad" onclick="redirectToPage(' . $modNum . ', \'formative.php\')">Switch to Formative Assessment</button>';
-                  echo '<button id="updateGrade" class="sh rad" onclick="window.location.href = \'php-forms/updateSA.php?modNum=' . $modNum . '\'")">Update Grades</button>';?>
+            <?php echo '<button id="updateGrade" class="sh rad" onclick="window.location.href = \'updateSA.php?modNum=' . $modNum . '\'")">Update Grades</button>';?>
             <span class="dropdown">
                 <button class="dropbtn"><i class="fa-solid fa-gear" style="color: #121212;"></i></button>
                 <div class="dropdown-content">
@@ -43,3 +42,4 @@
     </script>
 </body>
 </html>
+<?php mysqli_close($db)?>

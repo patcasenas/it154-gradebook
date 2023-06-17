@@ -2,7 +2,7 @@
     require("php/dbConfig.php");
     require_once("php/session_start.php");
     include("php/navbar.php");
-    include("php-process/computeGrade.php");
+    // include("php-process/computeGrade.php");
     $modNum = $_GET['modNum'];
     $courseCode = $_SESSION['courseCode'];
     $modName = $db->query("SELECT modName FROM moduleinfo WHERE modNum = '".$modNum."' AND courseCode = '".$courseCode."'");
@@ -17,8 +17,7 @@
         <?php $row = $modName->fetch_assoc();?>
         <span class="title"><?php echo "Module " . $modNum . " - " . $row['modName'];?></span>
         <div class="btn-section">
-            <?php echo '<button id="formative" class="sh rad" onclick="redirectToPage(' . $modNum . ', \'summative.php\')">Switch to Summative Assessment</button>';
-                  echo '<button id="updateGrade" class="sh rad" onclick="window.location.href = \'php-forms/updateFA.php?modNum=' . $modNum . '\'")">Update Grades</button>';?>
+            <?php echo '<button id="updateGrade" class="sh rad" onclick="window.location.href = \'updateFA.php?modNum=' . $modNum . '\'")">Update Grades</button>';?>
             <span class="dropdown">
                 <button class="dropbtn"><i class="fa-solid fa-gear" style="color: #121212;"></i></button>
                 <div class="dropdown-content">
@@ -43,3 +42,4 @@
     </script>
 </body>
 </html>
+<?php mysqli_close($db)?>

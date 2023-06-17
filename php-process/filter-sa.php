@@ -7,7 +7,6 @@
             $sections[] = $row;
         }
     }
-    $modNum = $_GET['modNum'];
 $maxscore = $db->query("SELECT * FROM maxscore WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
 $tblamt = $db->query("SELECT * FROM tblamt WHERE modNum = $modNum AND courseCode = '".$courseCode."'");
 $row = $tblamt->fetch_assoc();
@@ -41,7 +40,7 @@ $SA = $row['SAamt'];
                 <tr>
                     <th width="10%" rowspan="2">Program</th>
                     <th width="10%" rowspan="2">Section</th>
-                    <th width="10%" rowspan="2">Student Number</th>
+                    <th width="10%" rowspan="2">Email Address</th>
                     <th rowspan="2">Student Name</th>
                     <?php if ($SA >= 1) {
                         $row = $maxscore->fetch_assoc(); ?>
@@ -73,11 +72,11 @@ $SA = $row['SAamt'];
                 </tbody>
             </table>
         <?php } else {
-            $studData = $db->query("SELECT s.sumID, s.section, s.modNum, s.username, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg 
-            FROM summative AS s 
-            LEFT JOIN studentinfo AS si ON s.username = si.username 
-            WHERE si.section IN ('$section') AND s.modNum = $modNum AND s.courseCode = '".$courseCode."'
-            ORDER BY si.lastName ASC");  
+            $studData = $db->query("SELECT s.sumID, s.section, s.modNum, s.username, s.SA1, s.SA2, s.SA3, s.SAavg, s.60per, si.lastName, si.firstName, si.studProg, s.courseCode 
+                                    FROM studentinfo AS si
+                                    LEFT JOIN (SELECT * FROM summative WHERE section = '".$section."' AND modNum = '".$modNum."' AND courseCode = '".$courseCode."') AS s ON s.username = si.username
+                                    WHERE si.section = '".$section."' AND s.modNum = '".$modNum."' AND si.courseCode = '".$courseCode."'
+                                    ORDER BY si.lastName ASC;");  
             if (!$studData && !$maxscore && !$tblamt) {
                 echo mysqli_error($db);
             } else { ?>
@@ -86,7 +85,7 @@ $SA = $row['SAamt'];
                         <tr>
                             <th width="5%" rowspan="2">Program</th>
                             <th width="5%" rowspan="2">Section</th>
-                            <th width="20%" rowspan="2">Email Address</th>
+                            <th rowspan="2">Email Address</th>
                             <th rowspan="2">Student Name</th>
                             <?php if ($SA >= 1) {
                                 $row = $maxscore->fetch_assoc(); ?>

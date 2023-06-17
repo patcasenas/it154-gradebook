@@ -13,20 +13,28 @@
         </div>
         <div class="top-nav-container">
             <span class="nav-courseCode"><?php echo $courseCode . " - " . $row['courseTitle']?></span>
-            <a href="/it154-gradebook/php/logout.php" class="logout-link">Logout</a>
+            <a href="php/logout.php" class="logout-link">Logout</a>
         </div>
     </div>
     <div id="sidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark" style="color: #ebebee;"></i></a>
-            <a href="/it154-gradebook/classlist.php?courseCode=<?php echo $courseCode?>" class="nav-link">Class List</a>
+            <a href="classlist.php?courseCode=<?php echo $courseCode?>" class="nav-link">Class List</a>
             <?php
                 $mod = $db->query("SELECT modNum FROM moduleinfo WHERE courseCode = '".$courseCode."'");
                 while ($row = $mod->fetch_assoc()) {
                     $modNum = $row['modNum'];
-                    echo '<a href="summative.php?modNum='.$modNum.'" class="nav-link">' . 'Module ' . $modNum . '</a>';
+                    // echo '<a href="summative.php?modNum='.$modNum.'" class="nav-link">' . 'Module ' . $modNum . '</a>';
+                    echo '<ul style="padding:0; margin: 0">';
+                    echo '<li class="nav-link">Module '.$modNum.'</li>';
+                        echo '<ul>';
+                            echo '<a href="summative.php?modNum='.$modNum.'" class="nav-link">' . 'Summative</a>';
+                            echo '<a href="formative.php?modNum='.$modNum.'" class="nav-link">' . 'Formative</a>';
+                        echo '</ul>';
+                    echo '</ul>';
                 }
             ?>
-            <a href="/it154-gradebook/viewmodulegrades.php" class="nav-link">View Module Grades</a>
+            <a href="viewmodulegrades.php" class="nav-link">View Module Grades</a>
+            <a href="setup-obe.php" class="nav-link">OBE Setup</a>
     </div>
 </nav>
 <script>

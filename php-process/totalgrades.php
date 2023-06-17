@@ -1,9 +1,8 @@
 <?php
-    require_once("php/dbConfig.php");
-
     $data = $db->query("SELECT s.modNum, s.username, s.SAavg, s.60per, f.FAavg, f.40per
                         FROM summative AS s
-                        RIGHT JOIN formative AS f ON s.username = f.username");
+                        RIGHT JOIN formative AS f ON s.username = f.username
+                        WHERE s.courseCode = '".$courseCode."'");
     
     while($row = $data->fetch_assoc()) {
         $fortyper = $row['40per'];
@@ -11,10 +10,10 @@
         $SAavg = $row['SAavg'];
         $FAavg = $row['FAavg'];
 
-        $update = $db->query("UPDATE runavg SET 60per = (SELECT 60per FROM summative WHERE runavg.modNum = summative.modNum AND runavg.username = summative.username), 
-                            SAavg = (SELECT SAavg FROM summative WHERE runavg.modNum = summative.modNum AND runavg.username = summative.username),
-                            40per = (SELECT 40per FROM formative WHERE runavg.modNum = formative.modNum AND runavg.username = formative.username),
-                            FAavg = (SELECT FAavg FROM formative WHERE runavg.modNum = formative.modNum AND runavg.username = formative.username)");
+        $update = $db->query("UPDATE runavg SET 60per = $sixtyper, 
+                            SAavg = $SAavg,
+                            40per = $fortyper,
+                            FAavg = $FAavg");
     }
 
     $runAvg = $db->query("SELECT * FROM runavg");

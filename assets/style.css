@@ -454,14 +454,12 @@ td {
 .student-cont {
   padding-top: 5vh;
 }
-.tableFA tbody tr * {
-
-  height: 100%;
-  width: 80%;
-  padding: 3px;
-
+.program, .section {
+  width: 5%;
 }
-
+.grade-total, .module-grade {
+  width: 10%;
+}
 .edit-grade {
   border: none;
   text-align: center;
@@ -656,10 +654,6 @@ textarea {
   height: 4vh;
 }
 
-#formative {
-  padding: 0 2%;
-}
-
 #updateGrade {
   padding: 0 3%;
 }
@@ -680,7 +674,7 @@ textarea {
   width: auto;
 }
 
-#formative,#updateGrade {
+#updateGrade {
   border: none;
   background-color: #450320;
   font-size: 0.9em;
@@ -691,13 +685,7 @@ textarea {
   letter-spacing: 0.06em;
 }
 
-.updategrades-cont input[type="submit"]:hover,
-#formative:hover,
-#updateGrade:hover,
-.select-section select:hover,
-#hamburger-menu:hover,
-.select-section input[type="submit"]:hover,
-.bottom:hover {
+.updategrades-cont input[type="submit"]:hover, #updateGrade:hover, .select-section select:hover, #hamburger-menu:hover, .select-section input[type="submit"]:hover, .bottom:hover {
   cursor: pointer;
 }
 
@@ -830,33 +818,11 @@ textarea {
 }
 
 /* View module grades */
-.obe-setup {
-  position: relative;
-  top: 9.7vh;
-  left: 5%;
-  width: 15vw;
-}
-
-.obe-setup button {
-  border: none;
-  padding: .9vh 0.5vw;
-  background-color: #c0b020;
-  font-family: "Roboto";
-  font-size: 1em;
-  font-weight: 600;
-  color: #121212;
-  letter-spacing: 0.05em;
-}
-
-.obe-setup button:hover:active {
-  cursor: pointer;
-  font-size: 0.98em;
-}
-
 .select-section-obe {
   position: relative;
   left: 75%;
   width: 20%;
+  top: 3vh;
 }
 
 .select-section-obe select {

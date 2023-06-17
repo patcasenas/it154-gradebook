@@ -29,28 +29,31 @@
     </div>
 <?php
 if(isset($_POST['submit'])) {
-    $section = implode($_POST['section']);
+    $_SESSION['section'] = $_POST['section'];
+}
 
+    if (isset($_SESSION['section'])) {
+        $section = implode($_SESSION['section']);
     if ($section == 0) {
         echo "<script>alert('Select a section from the dropdown')</script>";?>
             <table class="students-table">
                 <thead>
                     <tr>
-                        <th width="5%" rowspan="2">Program</th>
-                        <th width="5%" rowspan="2">Section</th>
-                        <th width="16%%" rowspan="2">Email Address</th>
+                        <th rowspan="2">Program</th>
+                        <th rowspan="2">Section</th>
+                        <th rowspan="2">Email Address</th>
                         <th rowspan="2">Student Name</th>
 
                         <?php 
                         $row = $maxscore->fetch_assoc();
                         $faColumns = min($FAamt, 10);
                         for ($i = 1; $i <= $faColumns; $i++) {
-                            echo "<th width='5%'>FA $i</th>";
+                            echo "<th>FA $i</th>";
                         }
                         ?>
 
-                        <th width="5%" rowspan="2">Average</th>
-                        <th width="5%" rowspan="2">40%</th>
+                        <th rowspan="2">Average</th>
+                        <th rowspan="2">40%</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,10 +71,10 @@ if(isset($_POST['submit'])) {
             </table>
     <?php } else {
             $studData = $db->query("SELECT f.formID, f.section, f.modNum, f.username, f.FA1, f.FA2, f.FA3, f.FA4, f.FA5, f.FA6, f.FA7, f.FA8, f.FA9, f.FA10, f.40per, f.FAavg, si.lastName, si.firstName, si.studProg 
-                        FROM formative AS f 
-                        LEFT JOIN studentinfo AS si ON f.username = si.username 
-                        WHERE si.section IN ('$section') AND modNum = $modNum AND f.courseCode = '".$courseCode."'
-                        ORDER BY si.lastName ASC");
+                                    FROM studentinfo AS si
+                                    LEFT JOIN (SELECT * FROM formative WHERE section = '".$section."' AND modNum = '".$modNum."' AND courseCode = '".$courseCode."') AS f ON f.username = si.username
+                                    WHERE si.section = '".$section."' AND f.modNum = '".$modNum."' AND si.courseCode = '".$courseCode."'
+                                    ORDER BY si.lastName ASC");
 
             if (!$maxscore && !$studData && !$tblamt) {
                 echo mysqli_error($db);
@@ -83,7 +86,7 @@ if(isset($_POST['submit'])) {
                     <tr>
                         <th width="5%" rowspan="2">Program</th>
                         <th width="5%" rowspan="2">Section</th>
-                        <th width="16%" rowspan="2">Email Address</th>
+                        <th rowspan="2">Email Address</th>
                         <th rowspan="2">Student Name</th>
 
                         <?php 

@@ -2,6 +2,10 @@
     require("../php/session_start.php");
     require("../fpdf185/fpdf.php");
     if(isset($_POST['save'])) {
+        if (implode($_POST['program']) == 0) {
+            echo "<script>alert('Try again. Fill all fields of the form')</script>";
+            echo "<script>window.location.href='../php-forms/setup-obe.php'</script>";
+        } else {
         ob_start();
         class PDF extends FPDF {
             function Header() {
@@ -202,10 +206,21 @@
         $pdf->AddPage('L','Legal');
         $pdf->CourseInfo();
         $pdf->COheader();
-        $pdf->CO1();
-        $pdf->CO2();
-        $pdf->CO3();
+        $db = new mysqli("localhost","root","","soit-gradebook");
+        $courseCode = $_SESSION['courseCode'];
+        $query = $db->query("SELECT modNum from moduleinfo WHERE courseCode = '".$courseCode."'");
+        if(mysqli_num_rows($query) == 3) {
+            $pdf->CO1();
+            $pdf->CO2();
+            $pdf->CO3();
+        } else if(mysqli_num_rows($query) == 2) {
+            $pdf->CO1();
+            $pdf->CO2();
+        } else if (mysqli_num_rows($query) == 1) {
+            $pdf->CO1();
+        }
         $pdf->Output('I','OBE Course Assessment.pdf');
         ob_flush();
+    }
     }
 ?>

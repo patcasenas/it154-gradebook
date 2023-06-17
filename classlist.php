@@ -130,4 +130,4 @@ if ($_SESSION['courseCode'] == '0') {
     </script>
 
 </html>
-<?php } ?>
+<?php } mysqli_close($db)?>

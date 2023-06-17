@@ -54,5 +54,8 @@
         }
             echo "<script>alert('Successfully created course. You will be redirected to the homepage.')</script>";
             echo "<script>window.location.href='../index.php'</script>";
-    }        
+    } else {
+        echo "<script>alert('Error uploading course. Try again.')</script>";
+        echo "<script>window.location.href='../index.php'</script>";
+    }
 ?>
