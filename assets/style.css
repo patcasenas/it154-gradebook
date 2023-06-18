@@ -444,7 +444,7 @@ td {
   position: relative;
   border-collapse: collapse;
   text-align: center;
-  table-layout: fixed;
+  table-layout: auto;
   box-shadow: 0px 0px 10px #858585;
   width: 90%;
   margin: 0 auto 2vh;
@@ -672,6 +672,8 @@ textarea {
 .upload-form{
   margin-left: 5%;
   width: auto;
+  position: relative;
+  top: 2vh;
 }
 
 #updateGrade {
@@ -798,8 +800,9 @@ textarea {
 
 /* Update grades display */
 .updategrades-cont {
-  left: 74%;
+  left: 79%;
   width: 20vw;
+  top: 2vh;
   position: relative;
 }
 

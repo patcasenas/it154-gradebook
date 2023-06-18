@@ -2,7 +2,7 @@
     require("php/dbConfig.php");
     require_once("php/session_start.php");
     include("php/navbar.php");
-    include("php-process/totalgrades.php");
+    // include("php-process/totalgrades.php");
     $courseCode = $_SESSION['courseCode'];
 ?>
 <!DOCTYPE html>
@@ -55,11 +55,12 @@
             echo "<script>alert('Select a section from the dropdown')</script>";
             echo "<script>window.location.href='viewmodulegrades.php'</script>";
         } else {
-            $studData = $db->query("SELECT r.username, r.section, r.studProg, r.modNum, r.grade, r.transmutation, si.lastName, si.firstName
-            FROM runavg AS r
-            LEFT JOIN studentinfo AS si ON si.username = r.username
-            WHERE r.section IN ('$section') AND modNum = $modNum AND r.courseCode = '" . $courseCode . "'
-            ORDER BY si.lastName ASC"); ?>
+            include("php-process/totalgrades.php");
+            $studData = $db->query("SELECT r.username, r.section, r.courseCode, r.modNum, r.studProg, r.grade, r.transmutation, si.lastName, si.firstName 
+                                    FROM runavg AS r
+                                    LEFT JOIN (SELECT lastName, firstName, username FROM studentinfo WHERE courseCode = '".$courseCode."' AND section = '".$section."') AS si ON r.username = si.username
+                                    WHERE r.courseCode = '".$courseCode."' AND r.modNum = '".$modNum."' AND r.section = '".$section."'
+                                    ORDER BY si.lastName") ?>
             <table class="students-table">
                 <thead>
                     <tr>

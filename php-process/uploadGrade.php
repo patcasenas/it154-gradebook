@@ -20,7 +20,6 @@ $courseCode = $_SESSION['courseCode'];
         $tableCols = implode(' VARCHAR(255),', $headers) . ' VARCHAR(255)';
         $createQuery = "CREATE TABLE IF NOT EXISTS $tableName ($tableCols)";
         $query = $db->query($createQuery);
-        echo $tableName . "($tableCols)";
         
         while (($data = fgetcsv($handle, 10000, ",")) !== false) {
             $cols = implode(", ", array_map('trim', $headers));
@@ -70,6 +69,7 @@ $courseCode = $_SESSION['courseCode'];
                         if (strpos($columnName, "SA") !== false) {
                             $value = $row[$columnName];
                             $updateSA = $db->query("UPDATE summative SET $assessment = '".$value."' WHERE modNum = $modNum AND courseCode = '".$courseCode."' AND username ='".$row['Username']."'");
+                            // echo "UPDATE summative SET $assessment = '".$value."' WHERE modNum = $modNum AND courseCode = '".$courseCode."' AND username ='".$row['Username']."'" . '<br>';
                         }
 
                         if (strpos($columnName, "FA") !== false) {

@@ -53,15 +53,15 @@
         ?>
         <table class="students-table">
             <tr>
-                <th width="10%" rowspan="2">Program</th>
-                <th width="10%" rowspan="2">Section</th>
+                <th width="5%" rowspan="2">Program</th>
+                <th width="5%" rowspan="2">Section</th>
                 <th rowspan="2">Email Address</th>
                 <th rowspan="2">Student Name</th>
                 <?php foreach ($headers as $header) { ?>
                     <th width="10%"><?php echo $header; ?></th>
                 <?php } ?>
-                <th width="10%" rowspan="2">Average</th>
-                <th width="10%" rowspan="2">60%</th>
+                <th width="5%" rowspan="2">Average</th>
+                <th width="5%" rowspan="2">60%</th>
             </tr>
             <tr>
                 <?php for ($i = 1; $i <= $SAamt; $i++) { ?>
