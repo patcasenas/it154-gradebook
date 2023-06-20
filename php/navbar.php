@@ -49,7 +49,7 @@ function openNav() {
 function closeNav() {
   document.getElementById("sidenav").style.width = "0";
   document.getElementById("container").style.marginLeft= "1%";
-  document.getElementById("students-table").style.width= "80%";
+  document.getElementById("students-table").style.width= "90%";
   document.getElementById("delete-list").style.width = "90%"
   document.getElementById("upload-list").style.marginRight = "9%";
 }
